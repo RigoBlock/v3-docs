@@ -4,8 +4,8 @@ description: The contracts of the RigoBlock protocol
 
 # Protocol
 
-{% content-ref url="../core.md" %}
-[core.md](../core.md)
+{% content-ref url="core/" %}
+[core](core/)
 {% endcontent-ref %}
 
 {% content-ref url="deps/" %}
