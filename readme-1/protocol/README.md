@@ -12,8 +12,8 @@ description: The contracts of the RigoBlock protocol
 [deps](deps/)
 {% endcontent-ref %}
 
-{% content-ref url="../extensions.md" %}
-[extensions.md](../extensions.md)
+{% content-ref url="extensions/" %}
+[extensions](extensions/)
 {% endcontent-ref %}
 
 {% content-ref url="proxies/" %}

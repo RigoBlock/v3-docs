@@ -13,3 +13,5 @@ GRG holders can stake to their preferred staking pool (or the staking pool which
 During an epoch (2-weeks long initially) any wallet can credit the proof-of-performance reward for a said pool to the staking system, which is initially equal to the pool's locked staked GRG to itself.
 
 At the end of each epoch a pool's own stake competes with the other active pools' own stakes. In the same way, the total stake delegated to a pool competes with the total stake delegated to all active pools. The two metrics are weigthed according to an Arrow-Pratt exponential weighting formula, which initial setting of 2/3 weight for the pool's own relative stake and 1/3 weigth for the pool's overall relative delegated stake.
+
+GRG staking is currently available on Ethereum Mainnet and Goerli only.

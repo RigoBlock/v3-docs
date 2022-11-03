@@ -10,3 +10,5 @@ description: >-
 New tokens mint is autonomous, fully transparent and entirely distributed to network contributors according to their relative importance, as defined in the ProofOfPerformance module.
 
 Proof of performance uses a pool's own staked and locked GRG as a proxy for its assets and performance.
+
+GRG is currently deployed on Ethereum Mainnet and Goerli only.
