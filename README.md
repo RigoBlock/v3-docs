@@ -10,13 +10,13 @@ Learn the basics of RigoBlock
 [introduction-to-rigoblock.md](introduction-to-rigoblock.md)
 {% endcontent-ref %}
 
-Jump to a technical overview of the smart contracts
+Jump to the technical overview of the smart contracts
 
 {% content-ref url="readme-1.md" %}
 [readme-1.md](readme-1.md)
 {% endcontent-ref %}
 
-Find deployed smart cotnracts
+Find the deployed smart contracts
 
 {% content-ref url="readme-2/" %}
 [readme-2](readme-2/)
