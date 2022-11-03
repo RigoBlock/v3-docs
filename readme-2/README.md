@@ -8,7 +8,7 @@ description: >-
 
 Currently supported chains are:
 
-* Ethereum mainnet
+* Ethereum Mainnet
 * Ethereum Goerli
 * Arbitrum
 * Optimism
