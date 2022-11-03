@@ -9,6 +9,7 @@
   * [GRG Token](readme-1/grg-token.md)
   * [GRG Staking](readme-1/grg-staking.md)
   * [Proxies](readme-1/proxies.md)
+  * [Protocol](readme-1/protocol.md)
 * [Deployments](readme-2/README.md)
   * [v1.1.0](https://github.com/RigoBlock/V3-deployments/tree/main/src/1.1.0)
   * [v1.1.1](https://github.com/RigoBlock/V3-deployments/tree/main/src/1.1.1)
