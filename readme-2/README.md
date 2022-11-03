@@ -1,11 +1,22 @@
 ---
 description: >-
-  RigoBlock has been deployed on multiple blockchains, currently on 1) Ethereum
-  mainnet 2) Ethereum Goerli 3) Arbitrum 3) Optimism 4) Polygon 5) BNB chain
+  RigoBlock has been deployed on multiple blockchains using deterministic
+  deployment.
 ---
 
 # Deployments
 
-{% content-ref url="rigoblock-v3-deployments.md" %}
-[rigoblock-v3-deployments.md](rigoblock-v3-deployments.md)
+Currently supported chains are:
+
+* Ethereum mainnet
+* Ethereum Goerli
+* Arbitrum
+* Optimism
+* Polygon
+* Bsc
+
+
+
+{% content-ref url="deployed-contracts.md" %}
+[deployed-contracts.md](deployed-contracts.md)
 {% endcontent-ref %}
