@@ -1,3 +1,3 @@
 # Table of contents
 
-* [RigoBlock V3 Documentation](README.md)
+* [RigoBlock Docs](README.md)
