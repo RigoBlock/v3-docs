@@ -8,8 +8,8 @@ description: The contracts of the RigoBlock protocol
 [core.md](../core.md)
 {% endcontent-ref %}
 
-{% content-ref url="../deps.md" %}
-[deps.md](../deps.md)
+{% content-ref url="deps/" %}
+[deps](deps/)
 {% endcontent-ref %}
 
 {% content-ref url="../extensions.md" %}
