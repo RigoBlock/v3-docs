@@ -18,6 +18,6 @@ Jump to a technical overview of the smart contracts
 
 Find deployed smart cotnracts
 
-{% content-ref url="readme-2.md" %}
-[readme-2.md](readme-2.md)
+{% content-ref url="readme-2/" %}
+[readme-2](readme-2/)
 {% endcontent-ref %}
