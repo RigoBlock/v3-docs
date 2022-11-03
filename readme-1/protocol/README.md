@@ -16,6 +16,6 @@ description: The contracts of the RigoBlock protocol
 [extensions.md](../extensions.md)
 {% endcontent-ref %}
 
-{% content-ref url="../proxies.md" %}
-[proxies.md](../proxies.md)
+{% content-ref url="proxies/" %}
+[proxies](proxies/)
 {% endcontent-ref %}

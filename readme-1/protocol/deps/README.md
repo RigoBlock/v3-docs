@@ -8,5 +8,3 @@ description: Contracts that add base functionality to the protocol
 * PoolRegistry --> stores the mapping of a pool proxy address to its assigned ID, which is the hash of the name and the owner, making it unique for a said name and pool operator. A pool's name is not stored in the registry and can be used multiple times (but with different pool owners) in order to prevent a race condition which would make it not 100% certain that they could deploy the same pool to multiple chains. The pool registry is used by applications like the RigoBlock Staking system for querying a pool's unique ID.
 * KYC --> a mock module, since a canonical KYC module is not provided and the pool operator is responsible, if decides to opt-in for whitelisting its pool proxy users, to implementing/selecting the KYC module of his choice, potentially restricting who can mint his operated pool's tokens or the maximum mintable amount.
 
-<figure><img src="../../../.gitbook/assets/mainnet-0xe35129a1e0bdb913cf6fd8332e9d3533b5f41472.svg" alt=""><figcaption></figcaption></figure>
-
