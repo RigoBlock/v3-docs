@@ -12,8 +12,8 @@ Learn the basics of RigoBlock
 
 Jump to the technical overview of the smart contracts
 
-{% content-ref url="readme-1.md" %}
-[readme-1.md](readme-1.md)
+{% content-ref url="readme-1/" %}
+[readme-1](readme-1/)
 {% endcontent-ref %}
 
 Find the deployed smart contracts
