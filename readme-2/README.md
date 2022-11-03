@@ -6,4 +6,6 @@ description: >-
 
 # Deployments
 
-{% embed url="https://github.com/RigoBlock/V3-deployments/blob/main/src/README.md" %}
+{% content-ref url="rigoblock-v3-deployments.md" %}
+[rigoblock-v3-deployments.md](rigoblock-v3-deployments.md)
+{% endcontent-ref %}
