@@ -50,6 +50,8 @@
       * [Solidity API](readme-1/grg-staking/grgvault/solidity-api.md)
     * [StakingProxy](readme-1/grg-staking/stakingproxy.md)
       * [Solidity API](readme-1/grg-staking/stakingproxy/solidity-api.md)
+    * [Staking](readme-1/grg-staking/staking/README.md)
+      * [Solidity API](readme-1/grg-staking/staking/solidity-api.md)
 * [Deployments](readme-2/README.md)
   * [deployed-contracts](readme-2/deployed-contracts.md)
   * [v1.1.1](https://github.com/RigoBlock/V3-deployments/tree/main/src/1.1.1)
