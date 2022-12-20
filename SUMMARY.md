@@ -56,4 +56,4 @@
   * [deployed contracts](readme-2/deployed-contracts.md)
   * [v1.1.1](https://github.com/RigoBlock/V3-deployments/tree/main/src/1.1.1)
   * [v1.1.0](https://github.com/RigoBlock/V3-deployments/tree/main/src/1.1.0)
-* [token whitelists](token-whitelists.md)
+* [Token Whitelists](token-whitelists.md)

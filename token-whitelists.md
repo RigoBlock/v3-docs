@@ -1,8 +1,8 @@
-# token whitelists
+# Token Whitelists
 
 ## token-whitelists
 
-The RigoBlock protocol requires tokens to be whitelisted in order to be added to a pool. The requirement prevents pools from calling rogue contract (which could have undesired effects on the pool or the pool operator wallet). As a rule of thumb, any reputable token will be added to the list upon request. In order to request the addition of a new token, prease open an issue and state: 1) address of the token 2) chain where the token is located. Approved token will be whitelisted by the governance.
+The RigoBlock protocol requires tokens to be whitelisted in order to be added to a pool. The requirement prevents pools from calling rogue contracts (which could have undesired effects on the pool or the pool operator wallet). As a rule of thumb, any reputable token will be added to the list upon request. In order to request the addition of a new token, please open an issue and state: 1) the address of the token and 2) the chain where the token is located. The approved token will be whitelisted by the governance.
 
 ## Whitelisted Tokens
 
