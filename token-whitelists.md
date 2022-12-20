@@ -1,15 +1,13 @@
----
-description: >-
-  in order to prevent undesired protocol behavior, a token is required to have
-  been whitelisted before it can be added to a pool. The governance maintains a
-  token whitelist for each chain.
----
+# token whitelists
 
-# Token Whitelists
+## token-whitelists
 
-````markup
-# Whitelisted Tokens
-## Mainnet
+The RigoBlock protocol requires tokens to be whitelisted in order to be added to a pool. The requirement prevents pools from calling rogue contract (which could have undesired effects on the pool or the pool operator wallet). As a rule of thumb, any reputable token will be added to the list upon request. In order to request the addition of a new token, prease open an issue and state: 1) address of the token 2) chain where the token is located. Approved token will be whitelisted by the governance.
+
+## Whitelisted Tokens
+
+### Mainnet
+
 ```
 1) UNI 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984
 2) GRG 0x4FbB350052Bca5417566f188eB2EBCE5b19BC964
@@ -30,7 +28,9 @@ description: >-
 17) WBTC 0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599
 18) LEO 0x2AF5D2aD76741191D15Dfe7bF6aC92d4Bd912Ca3
 ```
-## Optimism
+
+### Optimism
+
 ```
 1) GRG 0xEcF46257ed31c329F204Eb43E254C609dee143B3
 2) USDC 0x7f5c764cbc14f9669b88837ca1490cca17c31607
@@ -63,7 +63,9 @@ description: >-
 29) PREMIA 0x374ad0f47f4ca39c78e5cc54f1c9e426ff8f231a
 30) wstETH 0x1f32b1c2345538c0c6f582fcb022739c4a194ebb
 ```
-## Arbitrum
+
+### Arbitrum
+
 ```
 1) USDC 0xFF970A61A04b1cA14834A43f5dE4533eBDDB5CC8
 2) USDT 0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9
@@ -106,7 +108,9 @@ description: >-
 39) RPL 0xb766039cc6db368759c1e56b79affe831d0cc507
 40) MIM 0xfea7a6a0b346362bf88a9e4a88416b77a57d6c2a
 ```
-## Polygon
+
+### Polygon
+
 ```
 1) GRG 0xBC0BEA8E634ec838a2a45F8A43E7E16Cd2a8BA99
 2) USDC 0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174
@@ -122,7 +126,9 @@ description: >-
 12) LEO 0x06D02e9D62A13fC76BB229373FB3BBBD1101D2fC
 13) AAVE 0xD6DF932A45C0f255f85145f286eA0b292B21C90B
 ```
-## Bsc
+
+### Bsc
+
 ```
 USDC 0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d
 ETH 0x2170Ed0880ac9A755fd29B2688956BD959F933F8
@@ -144,4 +150,3 @@ PAXG 0x7950865a9140cB519342433146Ed5b40c6F210f7
 TWT 0x4B0F1812e5Df2A09796481Ff14017e6005508003
 BAT 0x101d82428437127bF1608F699CD651e6Abf9766E
 ```
-````

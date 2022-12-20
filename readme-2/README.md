@@ -17,6 +17,6 @@ Currently supported chains are:
 
 
 
-{% content-ref url="deployed-contracts.md" %}
-[deployed-contracts.md](deployed-contracts.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
