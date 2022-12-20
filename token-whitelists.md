@@ -7,7 +7,7 @@ description: >-
 
 # Token Whitelists
 
-````
+````markup
 # Whitelisted Tokens
 ## Mainnet
 ```
