@@ -62,6 +62,7 @@ The RigoBlock protocol requires tokens to be whitelisted in order to be added to
 28) AELIN 0x61baadcf22d2565b0f471b291c475db5555e0b76
 29) PREMIA 0x374ad0f47f4ca39c78e5cc54f1c9e426ff8f231a
 30) wstETH 0x1f32b1c2345538c0c6f582fcb022739c4a194ebb
+31) ZRX 0xD1917629B3E6A72E6772Aab5dBe58Eb7FA3C2F33
 ```
 
 ### Arbitrum
