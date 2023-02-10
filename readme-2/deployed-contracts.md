@@ -6,6 +6,7 @@
 1: mainnet, 
 5: goerli,
 10: optimism,
+56: bsc,
 137: polygon,
 42161: arbitrum 
 ```
@@ -30,7 +31,7 @@ RigoblockPoolProxyFactory 0x8DE8895ddD702d9a216E640966A98e08c9228f24
 EUpgrade 0x64BcA3673c8990B11225E9f49E6da554180690fc
 EWhitelist 0xB43baD2638696F8bC82247B92bD56B8DF37d89aB
 AMulticall 0x9cD3CB7CF9392182890d0b5Fe7d92BFD7539afFC
-AUniswap 0xC1ad7e8ea82f2f5129428a46Eb968D08CD40cb92
+AUniswap 0xC1ad7e8ea82f2f5129428a46Eb968D08CD40cb92 (bsc pending)
 ```
 
 ### staking suite
@@ -105,7 +106,14 @@ AStaking 0xB0B97506516B3aD835Cfa6124F446bA75C4B9653
 #### bsc
 
 ```
+ERC20Proxy 0x28891F41eA506Ba7eA3Be9f2075AB0aa8b81dD29
 RigoToken 0x3d473C3eF4Cd4C909b020f48477a2EE2617A8e3C
+InflationL2 pending
+ProofOfPerformance pending
+GrgVault 0x5494B4193961a467039B92CCfE0138Fe353240d6
+Staking pending
+StakingProxy pending
+AStaking pending
 ```
 
 ## Governance
@@ -132,35 +140,6 @@ bsc
 
 ```
 0x5F8607739c2D2d0b57a4292868C368AB1809767a
-```
-
-### bsc (diff. deterministic deployment factory results in diff. addresses)
-
-```
-56: bsc
-```
-
-#### deps
-
-```
-Authority 0x3B3b08ACf713C06073D86107345E90AF9eE36569
-PoolRegistry 0xA36204A59f93388B8076aB3ba40C5f15650e7359
-```
-
-#### core
-
-```
-RigoblockV3Pool 0x297C433ba14bd50F4F2e56BAC979E0791008c648
-RigoblockPoolProxyFactory 0x62fcda78196Ab8a57ecdef3b99465E711a68d293
-```
-
-#### extensions
-
-```
-EUpgrade 0xdCabDDf637d9a0d67634F4b2D22419d954b0c87a
-EWhitelist 0x2221f6D9Fe993B3B308bFC90aC7cddC50Fcdf7A8
-AMulticall 0x3bBdbE026F53500dA7d64fe8cf856cf28755D6Cb
-AUniswap NA (uniswap does not support bsc)
 ```
 
 ## Whitelisted Methods (can be called by RigoBlock pools)
