@@ -1,6 +1,6 @@
 # deployed contracts
 
-## default contracts addresses on networks:
+## Supported Networks
 
 ```
 1: mainnet, 
@@ -11,21 +11,23 @@
 42161: arbitrum 
 ```
 
-### deps
+## Protocol Addresses
+
+### Deps
 
 ```
 Authority 0xe35129A1E0BdB913CF6Fd8332E9d3533b5F41472
 PoolRegistry 0x06767e8090bA5c4Eca89ED00C3A719909D503ED6
 ```
 
-### core
+### Core
 
 ```
 RigoblockV3Pool 0xeb0c08Ad44af89BcBB5Ed6dD28caD452311B8516
 RigoblockPoolProxyFactory 0x8DE8895ddD702d9a216E640966A98e08c9228f24
 ```
 
-### extensions
+### Extensions
 
 ```
 EUpgrade 0x64BcA3673c8990B11225E9f49E6da554180690fc
@@ -34,9 +36,9 @@ AMulticall 0x9cD3CB7CF9392182890d0b5Fe7d92BFD7539afFC
 AUniswap 0xC1ad7e8ea82f2f5129428a46Eb968D08CD40cb92 (bsc pending)
 ```
 
-### staking suite
+## Staking suite
 
-#### mainnet
+### mainnet
 
 ```
 ERC20Proxy 0x8C96182c1B2FE5c49b1bc9d9e039e369f131ED37
@@ -50,7 +52,7 @@ AStaking 0x70A82fd79983Eb659874A16f56Df593ccE050e77
 ASelfCustody 0x32Caa23B354427ea9A27Ed6A122C04b3c96d071E
 ```
 
-#### goerli
+### goerli
 
 ```
 ERC20Proxy 0x28891F41eA506Ba7eA3Be9f2075AB0aa8b81dD29
@@ -64,7 +66,7 @@ AStaking 0x360343aBCbe5e34dE1e2e33f332601d17F9E4221
 ASelfCustody 0x919e73912510Ee303A52C6A7ddAEbB4ffE2376a1
 ```
 
-#### arbitrum
+### arbitrum
 
 ```
 ERC20Proxy 0x28891F41eA506Ba7eA3Be9f2075AB0aa8b81dD29
@@ -77,7 +79,7 @@ StakingProxy 0xD495296510257DAdf0d74846a8307bf533a0fB48
 AStaking 0x4672fE808ce3dA430128ad611E251b896abe689E
 ```
 
-#### optimism
+### optimism
 
 ```
 ERC20Proxy 0x28891F41eA506Ba7eA3Be9f2075AB0aa8b81dD29
@@ -90,7 +92,7 @@ StakingProxy 0xB844bDCC64a748fDC8c9Ee74FA4812E4BC28FD70
 AStaking 0x21B423Ad9488CAD08E06c50a5DB0F65AAa813254
 ```
 
-#### polygon
+### polygon
 
 ```
 ERC20Proxy 0x28891F41eA506Ba7eA3Be9f2075AB0aa8b81dD29
@@ -103,7 +105,7 @@ StakingProxy 0xC87d1B952303ae3A9218727692BAda6723662dad
 AStaking 0xB0B97506516B3aD835Cfa6124F446bA75C4B9653
 ```
 
-#### bsc
+### bsc
 
 ```
 ERC20Proxy 0x28891F41eA506Ba7eA3Be9f2075AB0aa8b81dD29
@@ -125,24 +127,27 @@ RigoblockGovernanceFactory 0xc1AdDa7605d2DC47Dd91A930c978Cd6a18D2D760
 RigoblockGovernance 0xE5D8204f8335e9786ea7Ce382771B865fE73a304
 ```
 
-#### RigoblockGovernanceStrategy
+### Governance Strategy
 
 ```
+RigoblockGovernanceStrategy
 mainnet
 goerli 0xe98dD4dB97fDB0e61d3159f296BE8281DEfCf7C0
 arbitrum 0xe9141C1AA817165aa6375C8fd82A2a800dCbd9dA
 optimism 0xc8d95B9a7a0C7f36cb97175e806B3B96D117cFb0
 polygon 0x5F63E59e328F2565e71363D3d5F4c29063bB7868
-bsc
+bsc 0x910Aaf1F6818F1044d97DAee22d1eC32647926a7
 ```
 
-#### RigoblockGovernanceProxy
+### Governance Proxy
 
 ```
-0x5F8607739c2D2d0b57a4292868C368AB1809767a
+RigoblockGovernanceProxy 0x5F8607739c2D2d0b57a4292868C368AB1809767a
 ```
 
-## Whitelisted Methods (can be called by RigoBlock pools)
+## Whitelisted Methods
+
+can be called by Rigoblock pools
 
 ### EUpgrade
 
@@ -165,15 +170,16 @@ bsc
 "1f0464d1": "multicall(bytes32,bytes[])"
 ```
 
-### ASelfCustody (mainnet, goerli only)
+### ASelfCustody
 
 ```
+@notice mainnet, goerli only
 "318698a7": "transferToSelfCustody(address,address,uint256)"
 "6d6b09e9": "poolGrgShortfall(address)"
 "4f8554da": "grgVault()"
 ```
 
-### AStaking (mainnet, goerli only)
+### AStaking
 
 ```
 "a694fc3a": "stake(uint256)"
