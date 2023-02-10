@@ -115,7 +115,6 @@ RigoToken 0x3d473C3eF4Cd4C909b020f48477a2EE2617A8e3C
 ```
 RigoblockGovernanceFactory 0xc1AdDa7605d2DC47Dd91A930c978Cd6a18D2D760
 RigoblockGovernance 0xE5D8204f8335e9786ea7Ce382771B865fE73a304
-RigoblockGovernanceStrategy 0xe98dD4dB97fDB0e61d3159f296BE8281DEfCf7C0
 ```
 
 #### RigoblockGovernanceStrategy
@@ -124,7 +123,7 @@ RigoblockGovernanceStrategy 0xe98dD4dB97fDB0e61d3159f296BE8281DEfCf7C0
 mainnet
 goerli 0xe98dD4dB97fDB0e61d3159f296BE8281DEfCf7C0
 arbitrum 0xe9141C1AA817165aa6375C8fd82A2a800dCbd9dA
-optimism
+optimism 0xc8d95B9a7a0C7f36cb97175e806B3B96D117cFb0
 polygon
 bsc
 ```
