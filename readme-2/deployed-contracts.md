@@ -102,6 +102,21 @@ StakingProxy 0xC87d1B952303ae3A9218727692BAda6723662dad
 AStaking 0xB0B97506516B3aD835Cfa6124F446bA75C4B9653
 ```
 
+#### bsc
+
+```
+RigoToken 0x3d473C3eF4Cd4C909b020f48477a2EE2617A8e3C
+```
+
+## Governance
+
+```
+RigoblockGovernanceFactory 0xc1AdDa7605d2DC47Dd91A930c978Cd6a18D2D760
+RigoblockGovernance 0xE5D8204f8335e9786ea7Ce382771B865fE73a304
+RigoblockGovernanceStrategy 0xe98dD4dB97fDB0e61d3159f296BE8281DEfCf7C0
+RigoblockGovernanceProxy 0x5F8607739c2D2d0b57a4292868C368AB1809767a
+```
+
 ### bsc (diff. deterministic deployment factory results in diff. addresses)
 
 ```
