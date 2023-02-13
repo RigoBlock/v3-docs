@@ -29,15 +29,24 @@ In the context of the Rigoblock Protocol and Staking System, the Rigoblock Gover
 </strong>0xc91b0149 authority.setWhitelister(address whitelister, bool whitelisted);
 0x7a9e5e4b registry.setAuthority(address newAuthority);
 0xb516e6e1 registry.setRigoblockDao(address newRigoblockDao);
-0x erc20proxy.addAuthorizedAddress(address target); (grgVault)
-0x erc20Proxy.removeAuthorizedAddress(address target);
-0x erc20Proxy.removeAuthorizedAddressAtIndex(address target, uint256 index);
-0x erc20Proxy.transferOwnership(address newOwner);
-0x grgVault.addAuthorized(address target); (self)
-0x grgVault.removeAuthorized(address target); (self)
-0x grgVault.setStakingProxy(address proxy);
-0x stakingProxy.addAuthorized(address authorized); (self)
-<strong>0x stakingProxy.addPop(address pop);
+0x42f1181e erc20proxy.addAuthorizedAddress(address target); (grgVault)
+0x70712939 erc20Proxy.removeAuthorizedAddress(address target);
+0x9ad26744 erc20Proxy.removeAuthorizedAddressAtIndex(address target, uint256 index);
+0xf2fde38b erc20Proxy.transferOwnership(address newOwner);
+0x42f1181e grgVault.addAuthorizedAddress(address target); (self)
+0x70712939 grgVault.removeAuthorizedAddress(address target); (self)
+0x9ad26744 grgVault.removeAuthorizedAddressAtIndex(address target, uint256 index);
+0x502e5a7f grgVault.enterCatastrophicFailure();
+0xdb8e54bd grgVault.setGrgProxy(address erc20Proxy);
+0x6bf3f9e5 grgVault.setStakingProxy(address proxy);
+0xf2fde38b grgVault.transferOwnership(address newOwner);
+0x42f1181e stakingProxy.addAuthorizedAddress(address target); (self)
+0x70712939 stakingProxy.removeAuthorizedAddress(address target);
+0x9ad26744 stakingProxy.removeAuthorizedAddressAtIndex(address target, uint256 index);
+0xf2fde38b stakingProxy.transferOwnership(address newOwner);
+<strong>0x1f81eb80 stakingProxy.addPopAddress(address proofOfPerformance);
+</strong><strong>0x66615d56 stakingProxy.attachStakingContract(address newStakingImplementation); (when authorized(self))
+</strong><strong>0x37b006a6 stakingProxy.detachStakingContract(); (when authorized(self))
 </strong></code></pre>
 
 #### Notice: transfer of ownership to Rigoblock governance is still ongoing at the time of writing and the governance may have control of just part or none of the above-listed tasks.
