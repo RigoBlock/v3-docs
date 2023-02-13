@@ -25,3 +25,5 @@ The interface "IRigoblockPoolExtended" includes all the methods from core implem
 The interface is not inherited by the pool implementation, as it includes the extensions' methods, which are not implemented at the core of the protocol.
 
 #### Notice: the addition of new extensions requires the update of the interface
+
+#### Disclaimer: contracts in the Rigoblock Protocol have NOT been audited. While 100% code coverage has been achieved, this is by no means guarantee that the software is bug-free. Please use extreme caution when interacting with the contracts and treat them as not safe until an independent audit is released.
