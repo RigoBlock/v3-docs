@@ -4,7 +4,6 @@
 * [Introduction to RigoBlock](introduction-to-rigoblock.md)
 * [Contracts](readme-1/README.md)
   * [Protocol](readme-1/protocol/README.md)
-    * [Extended Pool Interface](readme-1/protocol/extended-pool-interface.md)
     * [Core](readme-1/protocol/core/README.md)
       * [constants](readme-1/protocol/core/constants.md)
       * [immutables](readme-1/protocol/core/immutables.md)
