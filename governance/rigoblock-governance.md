@@ -45,8 +45,24 @@ In the context of the Rigoblock Protocol and Staking System, the Rigoblock Gover
 0x9ad26744 stakingProxy.removeAuthorizedAddressAtIndex(address target, uint256 index);
 0xf2fde38b stakingProxy.transferOwnership(address newOwner);
 <strong>0x1f81eb80 stakingProxy.addPopAddress(address proofOfPerformance);
-</strong><strong>0x66615d56 stakingProxy.attachStakingContract(address newStakingImplementation); (when authorized(self))
+</strong><strong>0x66615d56 stakingProxy.attachStakingContract(address newStakingImplementation);
 </strong><strong>0x37b006a6 stakingProxy.detachStakingContract(); (when authorized(self))
 </strong></code></pre>
+
+### Governance Delegated Tasks
+
+The Rigoblock Governance delegates some tasks to authorized address, in order to remove the need for an onchain vote for tasks where the need for agile execution prevails over the security provided by an onchain vote. In this context, some tasks are delegated which do not pose a risk to the integrity of the network. At any moment the governance can remove such delegation(s) partially or entirely, and even take over the tasks by becoming the only delegated wallet, thus requiring onchain voting for the following tasks as well:
+
+* whitelist tokens
+* remove tokens from whitelist
+*   batch update tokens
+
+    \-> allows adding and removing multiple tokens in one single transaction
+
+```
+0x6247f6f2 eWhitelist.whitelistToken(address token);
+0x5fa7b584 eWhitelist.removeToken(address token);
+0x6ae9e449 eWhitelist.batchUpdateTokens(address[] tokens; bool[] whitelisted);
+```
 
 #### Notice: transfer of ownership to Rigoblock governance is still ongoing at the time of writing and the governance may have control of just part or none of the above-listed tasks.
