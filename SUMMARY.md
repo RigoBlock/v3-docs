@@ -21,6 +21,8 @@
       * [PoolRegistry](readme-1/protocol/deps/poolregistry.md)
         * [pool registry docs](readme-1/protocol/deps/poolregistry/pool-registry-docs.md)
     * [Extensions](readme-1/protocol/extensions/README.md)
+      * [AGovernance](readme-1/protocol/extensions/agovernance/README.md)
+        * [Solidity API](readme-1/protocol/extensions/agovernance/solidity-api.md)
       * [AMulticall](readme-1/protocol/extensions/amulticall.md)
         * [aMulticall docs](readme-1/protocol/extensions/amulticall/amulticall-docs.md)
       * [ASelfCustody](readme-1/protocol/extensions/aselfcustody/README.md)
