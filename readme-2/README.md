@@ -1,7 +1,8 @@
 ---
 description: >-
   RigoBlock has been deployed on multiple blockchains using deterministic
-  deployment.
+  deployment
+  (https://ethereum-magicians.org/t/deterministic-deployment-proxy-magic-wrapped-in-magic/3261).
 ---
 
 # Deployments
@@ -17,6 +18,6 @@ Currently supported chains are:
 
 
 
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
+{% content-ref url="deployed-contracts.md" %}
+[deployed-contracts.md](deployed-contracts.md)
 {% endcontent-ref %}
