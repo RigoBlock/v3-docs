@@ -40,6 +40,7 @@
         * [proxy docs](readme-1/protocol/proxies/proxy/proxy-docs.md)
       * [proxy factory](readme-1/protocol/proxies/proxy-factory.md)
         * [proxyFactory docs](readme-1/protocol/proxies/proxy-factory/proxyfactory-docs.md)
+    * [RigoblockPoolExtended](readme-1/protocol/rigoblockpoolextended.md)
   * [GRG Token](readme-1/grg-token/README.md)
     * [RigoToken](readme-1/grg-token/rigotoken.md)
       * [rigoToken docs](readme-1/grg-token/rigotoken/rigotoken-docs.md)
