@@ -1,10 +1,10 @@
 # Token Whitelists
 
-The Rigoblock protocol requires tokens to be whitelisted in order to be added to a pool. The requirement prevents pools from calling rogue contracts (which could have undesired effects on the pool or the pool operator wallet). As a rule of thumb, reputable tokens will be added to the list upon request. In order to request the addition of a new token, please [open an issue](https://github.com/RigoBlock/default-token-list/issues/new?assignees=\&labels=token+request\&template=token-request.md\&title=Add+%7BTOKEN\_SYMBOL%7D%3A+%7BTOKEN\_NAME%7D) on GitHub. New tokens are added to the whitelist by governance-approved wallets. The addition of new tokens does not require a governance vote.
+The Rigoblock protocol requires tokens to be whitelisted in order to be added to a pool. The requirement prevents pools from calling rogue contracts (which could have undesired effects on the pool or the pool operator wallet). As a rule of thumb, reputable tokens will be added to the list upon request. In order to request the addition of a new token, please [open an issue](https://github.com/RigoBlock/token-whitelists/issues/new?assignees=gabririgo\&labels=token+request\&projects=\&template=token-request.md\&title=Add+%7BTOKEN\_SYMBOL%7D%3A+%7BTOKEN\_NAME%7D) on GitHub. New tokens are added to the whitelist by governance-approved wallets. The addition of new tokens does not require a governance vote.
 
 ## Whitelisted Tokens
 
-### Mainnet
+### Ethereum
 
 ```
 1	UNI	0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984
