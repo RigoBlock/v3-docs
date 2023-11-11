@@ -59,6 +59,7 @@
     * [Solidity API](readme-1/governance/solidity-api.md)
 * [Deployments](readme-2/README.md)
   * [deployed contracts](readme-2/deployed-contracts.md)
+  * [v1.4.2](https://github.com/RigoBlock/V3-deployments/tree/main/src/1.4.2)
   * [v1.4.1](https://github.com/RigoBlock/V3-deployments/tree/main/src/1.4.1)
   * [v1.3.0](https://github.com/RigoBlock/V3-deployments/tree/main/src/1.3.0)
   * [v1.1.1](https://github.com/RigoBlock/V3-deployments/tree/main/src/1.1.1)
