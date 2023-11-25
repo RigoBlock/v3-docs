@@ -25,15 +25,6 @@ can be called by Rigoblock pools
 "1f0464d1": "multicall(bytes32,bytes[])"
 ```
 
-### ASelfCustody
-
-```
-@notice mainnet, goerli only
-"318698a7": "transferToSelfCustody(address,address,uint256)"
-"6d6b09e9": "poolGrgShortfall(address)"
-"4f8554da": "grgVault()"
-```
-
 ### AStaking
 
 ```
