@@ -26,9 +26,9 @@ PoolRegistry 0x06767e8090bA5c4Eca89ED00C3A719909D503ED6
 ```
 RigoblockV3Pool 0x7Df14Ba4a5f565cD56206e49Fc66b3002A91841d
 RigoblockPoolProxyFactory 0x8DE8895ddD702d9a216E640966A98e08c9228f24
-    deployed with 0xeb0c08Ad44af89BcBB5Ed6dD28caD452311B8516 implementation
-    in the constructor
 ```
+
+notice: deterministic deployment requires 0xeb0c08Ad44af89BcBB5Ed6dD28caD452311B8516 as the implementation address in the constructor to obtain the same factory address on new chains.
 
 ### Extensions
 
