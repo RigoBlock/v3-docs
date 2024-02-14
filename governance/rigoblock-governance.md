@@ -2,7 +2,7 @@
 
 Rigoblock voting power is equivalent to a wallet's GRG active stake. A proposal requires a voting power of at least 100k GRG on Ethereum mainnet, 40k GRG on L2s in order for it to be valid. A voter can vote in favor, aginst, or abstain. A proposal requires a quorum of at least 400k GRG on Ethereum mainnnet, 200k GRG on L2s. Each network is managed separately in order to maximize the cost benefit of L2, while maintaining Ethereum L1 voting on L1. This rule is subject to change as Rigoblock could later decide to leverage chain message bridging to improve running its multichain governance.
 
-Two thirds of votes in favor are required for a proposal to be successful. Abstained votes are counted for but are not computed in the quorum or in the voting for/against. The voting period starts from the start of the next GRG staking epoch and lasts for 7 days. The voting period is required to being shorter than the epoch period. If during the voting period the proposal finds absolute qualified majority of support, i.e. the state is final and cannot be changed by further votes against, the proposal state is updated to "Qualified" and the transaction can be executed from next block.
+Two thirds of votes in favor are required for a proposal to be successful. Abstained votes are counted for but are not computed in the quorum or the voting for/against. The voting period starts from the start of the next GRG staking epoch and lasts for 7 days. The voting period is required to be shorter than the epoch period. If during the voting period, the proposal finds an absolute qualified majority of support, i.e. the state is final and cannot be changed by further votes against, the proposal state is updated to "Qualified" and the transaction can be executed from the next block.
 
 ### Governance Tasks
 
@@ -14,7 +14,7 @@ In the context of the Rigoblock Protocol and Staking System, the Rigoblock Gover
 * Set owner in Authority
 * Add a new factory address in Authority
 * add/remove adapter(s) address in Authority
-* add/remove whitelister(s) address in authority
+* add/remove whitelister(s) address in Authority
 * add/remove authorized address in ERC20 Proxy
 * add/remove authorized in GRG Vault
 * set staking proxy in GRG Vault
@@ -51,10 +51,10 @@ In the context of the Rigoblock Protocol and Staking System, the Rigoblock Gover
 
 ### Governance Delegated Tasks
 
-The Rigoblock Governance delegates some tasks to authorized address, in order to remove the need for an onchain vote for tasks where the need for agile execution prevails over the security provided by an onchain vote. In this context, some tasks are delegated which do not pose a risk to the integrity of the network. At any moment the governance can remove such delegation(s) partially or entirely, and even take over the tasks by becoming the only delegated wallet, thus requiring onchain voting for the following tasks as well:
+The Rigoblock Governance delegates some tasks to authorized addresses, in order to remove the need for an onchain vote for tasks where the need for agile execution prevails over the security provided by an onchain vote. In this context, some tasks are delegated which do not pose a risk to tokens owned by the pools. At any moment the governance can remove such delegation(s) partially or entirely, and even take over the tasks by becoming the only delegated wallet, thus requiring onchain voting for the following tasks as well:
 
 * whitelist tokens
-* remove tokens from whitelist
+* remove tokens from the whitelist
 *   batch update tokens
 
     \-> allows adding and removing multiple tokens in one single transaction
@@ -64,5 +64,3 @@ The Rigoblock Governance delegates some tasks to authorized address, in order to
 0x5fa7b584 eWhitelist.removeToken(address token);
 0x6ae9e449 eWhitelist.batchUpdateTokens(address[] tokens; bool[] whitelisted);
 ```
-
-#### Notice: transfer of ownership to Rigoblock governance is still ongoing at the time of writing and the governance may have control of just part or none of the above-listed tasks.
