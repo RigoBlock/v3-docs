@@ -42,6 +42,7 @@ The Rigoblock protocol requires tokens to be whitelisted in order to be added to
 33	PERP	0xbc396689893d065f41bc2c6ecbee5e0085233447
 34	GTC	0xde30da39c46104798bb5aa3fe8b9e0e1f348163f
 35	FDUSD	0xc5f0f7b66764F6ec8C8Dff7BA683102295E16409
+36	SAFE	0x5aFE3855358E112B5647B952709E6165e1c1eEEe
 ```
 
 ### Optimism
