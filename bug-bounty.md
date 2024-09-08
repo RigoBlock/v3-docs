@@ -92,7 +92,7 @@ To be eligible for a reward under this Program, you must:
 * Be at least 18 years of age or, if younger, submit your vulnerability with the consent of your parent or guardian.
 * Comply with all the eligibility requirements of the Program.
 
-## Rewards
+### Rewards
 
 The Program includes the following 4 level severity scale:
 
