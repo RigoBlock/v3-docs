@@ -69,3 +69,4 @@
   * [Token Whitelists](governance/token-whitelists.md)
   * [Supported Methods](governance/supported-methods/README.md)
     * [Selectors](governance/supported-methods/selectors.md)
+* [Bug Bounty](bug-bounty.md)
