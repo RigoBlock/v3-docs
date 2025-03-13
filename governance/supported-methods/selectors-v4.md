@@ -24,8 +24,6 @@ can be called by Rigoblock pools to interact with new external applications with
 ### AUniswap
 
 ```
-"c391b77c": "uniswapv3Npm()",
-"3fc8cef3": "weth()"
 "42966c68": "burn(uint256)",
 "fc6f7865": "collect((uint256,address,uint128,uint128))",
 "13ead562": "createAndInitializePoolIfNecessary(address,address,uint24,uint160)",
