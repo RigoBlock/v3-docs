@@ -23,30 +23,10 @@ can be called by Rigoblock pools to interact with new external applications with
 
 ### AUniswap
 
-```
-"42966c68": "burn(uint256)",
-"fc6f7865": "collect((uint256,address,uint128,uint128))",
-"13ead562": "createAndInitializePoolIfNecessary(address,address,uint24,uint160)",
-"0c49ccbe": "decreaseLiquidity((uint256,uint128,uint256,uint256,uint256))",
-"b858183f": "exactInput(ExactInputParams)",
-"04e45aaf": "exactInputSingle(ExactInputSingleParams)",
-"09b81346": "exactOutput(ExactOutputParams)",
-"5023b4df": "exactOutputSingle(ExactOutputSingleParams)",
-"219f5d17": "increaseLiquidity((uint256,uint256,uint256,uint256,uint256,uint256))",
-"88316456": "mint((address,address,uint24,int24,int24,uint256,uint256,uint256,uint256,address,uint256))",
-"12210e8a": "refundETH()",
-"472b43f3": "swapExactTokensForTokens(uint256,uint256,address[],address)",
-"42712a67": "swapTokensForExactTokens(uint256,uint256,address[],address)",
-"df2ab5bb": "sweepToken(address,uint256,address)",
-"e90a182f": "sweepToken(address,uint256,address)",
-"e0e189a0": "sweepTokenWithFee(address,uint256,address,uint256,address)",
-"3068c554": "sweepTokenWithFee(address,uint256,uint256,address)",
-"49616997": "unwrapWETH9(uint256)",
-"49404b7c": "unwrapWETH9(uint256,address)",
-"9b2c0a37": "unwrapWETH9WithFee(uint256,address,uint256,address)",
-"d4ef38de": "unwrapWETH9WithFee(uint256,uint256,address)"
+<pre><code><strong>"49616997": "unwrapWETH9(uint256)",
+</strong>"49404b7c": "unwrapWETH9(uint256,address)",
 "1c58db4f": "wrapETH(uint256)",
-```
+</code></pre>
 
 ### AUniswapRouter
 
