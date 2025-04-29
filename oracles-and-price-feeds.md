@@ -116,7 +116,10 @@ The oracle hook automatically executes backrunning to counteract price manipulat
 
 This ensures the price feed remains robust without additional user setup.
 
+The Backrunning Geomean Oracle has been selected as part of the Uniswap Foundation Security Fund (UFSF) Cohort 2, and received a security audit subsidy.
+
 ## **Further Reading**
 
 * [RigoBlock Oracle Blog Post](https://mirror.xyz/rigoblock.eth/yKAD5uYyH0KwfdsOxzt0MyppkFJZzXkxAFeufPGVA2M)
 * [Sepolia Oracle Hook](https://sepolia.etherscan.io/address/0xa2e4Ac052B02EeD76bD997F0a2cD3999A9f03AC4)
+* [UFSF](https://valiant-polo-a06.notion.site/Uniswap-Foundation-Security-Fund-Marketplace-1812019bf073802fa41dc30f88d8f513)
