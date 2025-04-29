@@ -71,4 +71,5 @@
   * [Supported Methods](governance/supported-methods/README.md)
     * [Selectors - V4](governance/supported-methods/selectors-v4.md)
     * [Selectors - V3](governance/supported-methods/selectors-v3.md)
-* [Bug Bounty](bug-bounty.md)
+* [Bug Bounty](bug-bounty/README.md)
+  * [Known Attack Vectors](bug-bounty/known-attack-vectors.md)

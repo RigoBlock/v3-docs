@@ -4,10 +4,13 @@ RigoBlock has been deployed on multiple blockchains using [deterministic deploym
 
 * Ethereum Mainnet
 * Arbitrum
+* Base
 * Optimism
 * Polygon
 * Bsc
 * Ethereum Sepolia
+
+Upcoming: Unichain
 
 
 

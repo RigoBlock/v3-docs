@@ -1,0 +1,22 @@
+# Known Attack Vectors
+
+The following is a non-exhaustive list of known attack vectors:
+
+* **Pool Transaction Front-Running by a Malicious Pool Operator**\
+  A pool operator's coordinated wallet could front-run pool transactions. A potential mitigation, such as setting a maximum slippage against an on-chain price feed, may cause transaction reverts in high-volatility environments. However, this does not fully address the issue, as a rogue pool operator could achieve the same result by executing multiple smaller transactions. This attack assumes privileged access (pool operator) with malicious intent against the pool's Total Value Locked (TVL). Additionally, an external attacker could exploit the binding to prevent a pool from executing swaps by manipulating the token price in a sandwich attack. Temporarily blocking a smart pool from executing transactions after a significant price drawdown is not a viable solution, as it could hinder operations during high-volatility periods—when the greatest opportunities arise—and unnecessarily increase gas costs. Developers can implement custom rules on top of the protocol to apply their preferred mitigation strategies.
+* **Purchase of a Rogue Token**\
+  A rogue token, such as one created by the pool operator, could be purchased. This issue is not addressed, as the RigoBlock protocol is unopinionated about which tokens can be included in a pool.
+* **Purchase of a Debt Token**\
+  Purchasing a debt token via a swap or similar action should not be possible on the open market, as debt positions typically have no positive value. However, a sophisticated attack by the pool operator could potentially enable this.
+* **Frontrunning During Pool Token Burning**\
+  When the last holder attempts to burn their pool tokens, an attacker could front-run the transaction by minting a small amount of pool tokens. This would prevent the user from being the sole holder, forcing them to pay the spread to the pool. As a side effect, the pool price would increase, allowing the attacker to effectively "steal" the spread after the lockup period expires. Mitigation strategies include:
+  * Requiring only whitelisted holders in the pool.
+  * Charging the spread in favor of the RigoBlock DAO (or the pool operator) instead of the pool and applying the spread on minting as well. This would minimize price impacts, with only small rounding errors possible.
+  * Excluding spread balances from price calculations.
+* **Attacks Requiring Special Privileges**\
+  Attacks that rely on privileged access, such as those executed by the pool operator.
+* **Attacks Involving a Compromised Pool Operator Private Key**\
+  Attacks that exploit a compromised pool operator private key.
+
+Given these risks, the relationship between the pool operator and pool holder(s) is trust-based. RigoBlock provides a layer of security for pool operators to interact with on-chain applications and enhances transparency by displaying real-time pool activity, portfolio details, and price calculations.\
+An alternative to direct pool participation is the GRG staking system, which allows users to gain exposure to the performance of top pools. Stakers are rewarded for securing the network and supporting pool operators in maximizing staking rewards. This system does not require trust in pool operators and is governed by RigoBlock Governance.
