@@ -13,6 +13,8 @@ The following is a non-exhaustive list of known attack vectors:
   * Requiring only whitelisted holders in the pool.
   * Charging the spread in favor of the RigoBlock DAO (or the pool operator) instead of the pool and applying the spread on minting as well. This would minimize price impacts, with only small rounding errors possible.
   * Excluding spread balances from price calculations.
+* **Unitary Value Inflation on Burn**\
+  Each burn operation (when the pool has multiple holders) incurs a spread charged to the holder burning their tokens, benefiting the smart pool. This inflates the token price but protects the smart pool from discrepancies between the TWAP-based portfolio evaluation and the portfolio's actual value.
 * **Attacks Requiring Special Privileges**\
   Attacks that rely on privileged access, such as those executed by the pool operator.
 * **Attacks Involving a Compromised Pool Operator Private Key**\
