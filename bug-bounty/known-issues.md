@@ -21,6 +21,10 @@ The following is a non-exhaustive list of known potential attack vectors:
   Attacks that exploit a compromised pool operator private key.
 * **Use of a Malicious Uniswap V4 Hook**\
   Although Rigoblock V4 includes safeguards to prevent accidental input errors and restrict hooks' access to a pool's liquidity token balances, the protocol does not restrict the types of hooks a pool may use. A malicious Uniswap V4 hook could impose fees up to 100% of the swap amount, resulting in significant or total loss of funds. As when interacting directly with Uniswap V4, users must exercise extreme caution when interacting with Uniswap V4 hooks via RigoBlock.
+* **Chains that do not use address(0) as Native Currency**\
+  Polygon (or any similar chain that use a token as base currency) are not currently supported by the v4 protocol.
+* **Chains that do not Support Transient Storage Opcodes**\
+  Chains that do not support transient storage are not compatible with Rigoblock V4.
 
 Given these risks, the relationship between the pool operator and pool holder(s) is trust-based. RigoBlock provides a layer of security for pool operators to interact with on-chain applications and enhances transparency by displaying real-time pool activity, portfolio details, and price calculations.\
 An alternative to direct pool participation is the GRG staking system, which allows users to gain exposure to the performance of top pools. Stakers are rewarded for securing the network and supporting pool operators in maximizing staking rewards. This system does not require trust in pool operators and is governed by RigoBlock Governance.

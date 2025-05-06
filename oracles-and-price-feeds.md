@@ -116,7 +116,23 @@ The oracle hook automatically executes backrunning to counteract price manipulat
 
 This ensures the price feed remains robust without additional user setup.
 
-The Backrunning Geomean Oracle has been selected as part of the Uniswap Foundation Security Fund (UFSF) Cohort 2, and received a security audit subsidy.
+The Backrunning Geomean Oracle has been selected as part of the Uniswap Foundation Security Fund (UFSF) Cohort 2. The smart contracts have been audited by [33Audits](https://www.33audits.xyz/). The audit report can be found in the [Github repository](https://github.com/RigoBlock/back-geo-oracle/tree/main/audits).
+
+## Oracle Deployments
+
+#### Mainnet Deployments
+
+1. [Ethereum](https://github.com/RigoBlock/back-geo-oracle/blob/main/src/BackGeoOracle.sol) -> [0xB13250f0Dc8ec6dE297E81CDA8142DB51860BaC4](https://etherscan.io/address/0xB13250f0Dc8ec6dE297E81CDA8142DB51860BaC4)
+2. [Arbitrum](https://github.com/RigoBlock/back-geo-oracle/blob/main/src/BackGeoOracle.sol) -> [0x3043e182047F8696dFE483535785ed1C3681baC4](https://arbiscan.io/address/0x3043e182047F8696dFE483535785ed1C3681baC4)
+3. [Base](https://github.com/RigoBlock/back-geo-oracle/blob/main/src/BackGeoOracle.sol) -> [0x59f39091Fd6f47e9D0bCB466F74e305f1709BAC4](https://basescan.org/address/0x59f39091Fd6f47e9D0bCB466F74e305f1709BAC4)
+4. [Bsc](https://github.com/RigoBlock/back-geo-oracle/blob/main/src/BackGeoOracle.sol) -> [0x77B2051204306786934BE8bEC29a48584E133aC4](https://bscscan.com/address/0x77B2051204306786934BE8bEC29a48584E133aC4)
+5. [Optimism](https://github.com/RigoBlock/back-geo-oracle/blob/main/src/BackGeoOracle.sol) -> [0x79234983dED8EAA571873fffe94e437e11C7FaC4](https://optimistic.etherscan.io/address/0x79234983dED8EAA571873fffe94e437e11C7FaC4)
+6. [Polygon](https://github.com/RigoBlock/back-geo-oracle/blob/main/src/BackGeoOracle.sol) -> [0x1D8691A1A7d53B60DeDd99D8079E026cB0E5bac4](https://polygonscan.com/address/0x1D8691A1A7d53B60DeDd99D8079E026cB0E5bac4)
+7. [Unichain](https://github.com/RigoBlock/back-geo-oracle/blob/main/src/BackGeoOracle.sol) -> [0x54bd666eA7FD8d5404c0593Eab3Dcf9b6E2A3aC4](https://uniscan.xyz/address/0x54bd666eA7FD8d5404c0593Eab3Dcf9b6E2A3aC4)
+
+#### Testnet Deployments
+
+1. Sepolia [0xE39CAf28BF7C238A42D4CDffB96587862F41bAC4](https://sepolia.etherscan.io/address/0xE39CAf28BF7C238A42D4CDffB96587862F41bAC4)
 
 ## **Further Reading**
 

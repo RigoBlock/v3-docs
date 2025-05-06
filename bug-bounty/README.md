@@ -17,6 +17,8 @@ The following are not within the scope of the Program:
 * Any contract located under contracts/test or contracts/examples.
 * Bugs in any third party contract or platform that interacts with Rigoblock V3.
 * Vulnerabilities already reported and/or discovered in contracts built by third parties on Rigoblock V3.
+* Attacks that require a Rigoblock governance takeover.
+* Issues described in the "Known Issues" section.
 * Any already-reported bugs.
 
 Vulnerabilities contingent upon the occurrence of any of the following also are outside the scope of this Program:
@@ -51,7 +53,7 @@ Rigoblock V3 was developed with the following assumptions, and thus any bug must
 
 ### Rewards
 
-Rewards will be allocated based on the severity of the bug disclosed and will be evaluated and rewarded at the discretion of the Rigoblock team. For critical bugs that lead to any loss of smart pool funds, rewards of up to $10,000 will be granted. Lower severity bugs will be rewarded at the discretion of the team.
+Rewards will be allocated based on the severity of the bug disclosed and will be evaluated and rewarded at the discretion of the Rigoblock team. For critical bugs that lead to any loss of smart pool funds, rewards of up to $10,000 will be granted. Lower severity bugs will be rewarded at the discretion of the team. The amount is in any case capped at 10% of the protocol TVL at risk.
 
 ### Prohibited Actions
 
