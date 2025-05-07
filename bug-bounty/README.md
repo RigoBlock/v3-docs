@@ -53,7 +53,7 @@ Rigoblock V3 was developed with the following assumptions, and thus any bug must
 
 ### Rewards
 
-Rewards will be allocated based on the severity of the bug disclosed and will be evaluated and rewarded at the discretion of the Rigoblock team. For critical bugs that lead to any loss of smart pool funds, rewards of up to $10,000 will be granted. Lower severity bugs will be rewarded at the discretion of the team. The amount is in any case capped at 10% of the protocol TVL at risk.
+Rewards will be allocated based on the severity of the bug disclosed and will be evaluated and rewarded at the discretion of the Rigoblock team. For critical bugs that lead to any loss of smart pool funds, rewards of up to $10,000 will be granted. Lower severity bugs will be rewarded at the discretion of the team. The amount is in any case capped at 10% of the protocol TVL at risk. Rewards are paid in stablecoin.
 
 ### Prohibited Actions
 
@@ -107,12 +107,12 @@ Rewards will be given based on the above severity as well as the likelihood of t
 
 ### Payout Calculations
 
-| Risk Score | Payout                 |
-| ---------- | ---------------------- |
-| Critical   | up to $10,000          |
-| High       | up to $2,000           |
-| Medium     | up to $300             |
-| Low        | up to $60, paid in GRG |
+| Risk Score | Payout        |
+| ---------- | ------------- |
+| Critical   | up to $10,000 |
+| High       | up to $2,000  |
+| Medium     | up to $300    |
+| Low        | up to $60     |
 
 ### Other Terms
 
