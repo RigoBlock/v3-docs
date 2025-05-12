@@ -79,33 +79,39 @@ contract PriceFeedConsumer {
 To create a new price feed for a token pair:
 
 * Initialize a Uniswap V4 Pool:
-  * Initialize a new pool via the Uniswap V4 Pool Manager, using the oracle hook.
+  * Initialize a new pool via the Uniswap V4 Position Manager, using the oracle hook.
   * Set maximum tick spacing and full range liquidity (initialization will fail otherwise).
   * Be mindful about correctly setting the initial price, as otherwise the hook will need to get in par with other pools ≃ 10% per block (manually or via arbitrage) once liquidity is provided .
 
 ```
 // Example: Initialize pool with oracle hook (simplified)
-import "@uniswap/v4-core/contracts/interfaces/IPoolManager.sol";
+import "@uniswap/v4-periphery/contracts/interfaces/IPositionManager.sol";
 
 contract PoolInitializer {
-    IPoolManager public poolManager = IPoolManager(POOL_MANAGER_ADDRESS);
+    IPositionManager public posm = IPositionManager(POSM_ADDRESS);
     address public oracleHook = ORACLE_HOOK_ADDRESS;
 
-    function createPool(address token0, address token1, uint24 fee, int24 tickSpacing) external {
-        poolManager.initialize(token0, token1, fee, tickSpacing, oracleHook);
+    function createPool(
+        address token0,
+        address token1,
+        uint24 fee,
+        int24 tickSpacing
+    ) external {
+        posm.initialize(token0, token1, fee, tickSpacing, oracleHook);
     }
 }
 ```
 
 **Add Liquidity:**
 
-* Provide liquidity to the pool to enable trading and price discovery.
-* Ensure full range liquidity to align with the oracle’s manipulation-resistant design.
+* Provide liquidity to the pool to enable trading and price discovery (full range).
+* Your position will be modified via arbitraged if price feed tick is not in line with market.
 
 **Verify Oracle Functionality:**
 
 * Call the observe method to confirm the oracle is providing price data.
 * Test manipulation resistance by simulating large swaps and verifying tick stability.
+* If you created the price feed, make sure you increase pair cardinality by calling the \`increaseCardinalityNext\` method in the BackGeoOracle contract, to increase its robustness (with a cardinality of 1, the extracted TWAP will only return the last stored tick, making it susceptible to manipulation).
 
 ## **Automatic Backrunning**
 
