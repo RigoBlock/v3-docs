@@ -79,16 +79,16 @@ contract PriceFeedConsumer {
 To create a new price feed for a token pair:
 
 * Initialize a Uniswap V4 Pool:
-  * Initialize a new pool via the Uniswap V4 Position Manager, using the oracle hook.
+  * Initialize a new pool via the Uniswap V4 Pool Manager, using the oracle hook.
   * Set maximum tick spacing and full range liquidity (initialization will fail otherwise).
   * Be mindful about correctly setting the initial price, as otherwise the hook will need to get in par with other pools ≃ 10% per block (manually or via arbitrage) once liquidity is provided .
 
 ```
 // Example: Initialize pool with oracle hook (simplified)
-import "@uniswap/v4-periphery/contracts/interfaces/IPositionManager.sol";
+import "@uniswap/v4-core/contracts/interfaces/IPoolManager.sol";
 
 contract PoolInitializer {
-    IPositionManager public posm = IPositionManager(POSM_ADDRESS);
+    IPoolManager public poolManager = IPoolManager(POSM_ADDRESS);
     address public oracleHook = ORACLE_HOOK_ADDRESS;
 
     function createPool(
@@ -97,7 +97,7 @@ contract PoolInitializer {
         uint24 fee,
         int24 tickSpacing
     ) external {
-        posm.initialize(token0, token1, fee, tickSpacing, oracleHook);
+        poolManager.initialize(token0, token1, fee, tickSpacing, oracleHook);
     }
 }
 ```
