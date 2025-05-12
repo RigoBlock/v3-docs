@@ -2,15 +2,18 @@
 
 ## Supported Networks
 
-```
-1: mainnet, 
-5: goerli,
-10: optimism,
+<pre><code><strong>Mainnets
+</strong><strong>1: mainnet, 
+</strong>10: optimism,
 56: bsc,
+130: unichain,
 137: polygon,
 8453: base,
-42161: arbitrum 
-```
+42161: arbitrum
+
+Testnets
+11155111: sepolia
+</code></pre>
 
 ## Protocol Addresses
 
