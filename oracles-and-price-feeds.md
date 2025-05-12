@@ -57,7 +57,7 @@ interface IOracleHook {
 }
 
 contract PriceFeedConsumer {
-    IOracleHook public oracleHook = IOracleHook(0xa2e4Ac052B02EeD76bD997F0a2cD3999A9f03AC4);
+    IOracleHook public oracleHook = IOracleHook(ORACLE_HOOK_ADDRESS);
 
     function getLatestPrice() external view returns (int24 tick) {
         uint32[] memory secondsAgos = new uint32[](2);
@@ -89,7 +89,7 @@ import "@uniswap/v4-core/contracts/interfaces/IPoolManager.sol";
 
 contract PoolInitializer {
     IPoolManager public poolManager = IPoolManager(POOL_MANAGER_ADDRESS);
-    address public oracleHook = 0xa2e4Ac052B02EeD76bD997F0a2cD3999A9f03AC4;
+    address public oracleHook = ORACLE_HOOK_ADDRESS;
 
     function createPool(address token0, address token1, uint24 fee, int24 tickSpacing) external {
         poolManager.initialize(token0, token1, fee, tickSpacing, oracleHook);
