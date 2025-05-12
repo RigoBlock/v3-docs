@@ -15,6 +15,8 @@ The following is a non-exhaustive list of known potential attack vectors:
   * Excluding spread balances from price calculations.
 * **Unitary Value Inflation on Burn**\
   Each burn operation (when the pool has multiple holders) incurs a spread charged to the holder burning their tokens, benefiting the smart pool. This inflates the token price but protects the smart pool from discrepancies between the TWAP-based portfolio evaluation and the portfolio's actual value.
+* **Unitary Value Calculation Errors Due to Price Feed**\
+  On tokens where the oracle liquidity pool is small, or on chains where gas price is high, thus not resulting in a timely price feed update, the smart pool's unitary price calculations may result in error, which might become significant if the owned token has a big percentage of the total portfolio weight. Furthermore, an incorrectly initialized token price feed could take time to get corrected. Pool operators should when using new or illiquid tokens. In particular, the protocol is not opinionated about a price feed's cardinality (a cardinality of 1, for example, means that the TWAP is not really an average, but simply the last stored observation).
 * **Attacks Requiring Special Privileges**\
   Attacks that rely on privileged access, such as those executed by the pool operator.
 * **Attacks Involving a Compromised Pool Operator Private Key**\

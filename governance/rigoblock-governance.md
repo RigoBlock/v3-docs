@@ -49,7 +49,9 @@ In the context of the Rigoblock Protocol and Staking System, the Rigoblock Gover
 </strong><strong>0x37b006a6 stakingProxy.detachStakingContract(); (when authorized(self))
 </strong></code></pre>
 
-### Governance Delegated Tasks (Notice: removed in V4)
+### Governance Delegated Tasks
+
+#### Notice: token whitelist is deprecated in V4 in favor of universal token access
 
 The Rigoblock Governance delegates some tasks to authorized addresses, in order to remove the need for an onchain vote for tasks where the need for agile execution prevails over the security provided by an onchain vote. In this context, some tasks are delegated which do not pose a risk to tokens owned by the pools. At any moment the governance can remove such delegation(s) partially or entirely, and even take over the tasks by becoming the only delegated wallet, thus requiring onchain voting for the following tasks as well:
 

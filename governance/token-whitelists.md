@@ -1,6 +1,6 @@
 # Token Whitelists
 
-**NOTICE: In Rigoblock V4, the whitelist will be discontinued and any token will be potentially ownable, as long as it has an available price feed in the Rigoblock Universal Oracle contract. You can find out more in our** [**blog**](https://mirror.xyz/rigoblock.eth/yKAD5uYyH0KwfdsOxzt0MyppkFJZzXkxAFeufPGVA2M)**.**
+**NOTICE: In Rigoblock V4, the whitelist is discontinued and any token is potentially ownable, as long as it has an available price feed in the Rigoblock Universal Oracle contract. You can find out more in our** [**blog**](https://mirror.xyz/rigoblock.eth/yKAD5uYyH0KwfdsOxzt0MyppkFJZzXkxAFeufPGVA2M)**.**
 
 The Rigoblock protocol requires tokens to be whitelisted in order to be added to a pool. The requirement prevents pools from calling rogue contracts (which could have undesired effects on the pool or the pool operator wallet). As a rule of thumb, reputable tokens will be added to the list upon request. In order to request the addition of a new token, please [open an issue](https://github.com/RigoBlock/token-whitelists/issues/new?assignees=gabririgo\&labels=token+request\&projects=\&template=token-request.md\&title=Add+%7BTOKEN_SYMBOL%7D%3A+%7BTOKEN_NAME%7D) on GitHub. New tokens are added to the whitelist by governance-approved wallets. The addition of new tokens does not require a governance vote.
 

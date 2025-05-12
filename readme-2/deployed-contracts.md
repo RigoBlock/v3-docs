@@ -2,9 +2,10 @@
 
 ## Supported Networks
 
-<pre><code><strong>Mainnets
-</strong><strong>1: mainnet, 
-</strong>10: optimism,
+```
+Mainnets
+1: ethereum,
+10: optimism,
 56: bsc,
 130: unichain,
 137: polygon,
@@ -13,7 +14,7 @@
 
 Testnets
 11155111: sepolia
-</code></pre>
+```
 
 ## Protocol Addresses
 

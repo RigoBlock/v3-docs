@@ -40,7 +40,7 @@ The oracle is designed to resist price manipulation in various consensus environ
 
 * Familiarity with Uniswap V4 and its hook system.
 * Access to an Ethereum development environment (e.g., Hardhat, Foundry).
-* For testing, use the Sepolia testnet where the oracle hook is deployed at: [0xa2e4Ac052B02EeD76bD997F0a2cD3999A9f03AC4](https://sepolia.etherscan.io/address/0xa2e4Ac052B02EeD76bD997F0a2cD3999A9f03AC4).
+* Choose an available deployment (listed at the end of this page).
 
 ## Using an Existing Price Feed
 
@@ -71,7 +71,7 @@ contract PriceFeedConsumer {
 }
 ```
 
-* **Query TWAP tick on Sepolia:** Use the hook address 0xa2e4Ac052B02EeD76bD997F0a2cD3999A9f03AC4 to interact with the oracle.
+* **Query TWAP tick on Sepolia:** Use the different of two tick points to extract the TWAP. Make sure you set a time delta appropriate for your application (5-minutes, 30-minutes).
 * **Tick to Price:** Convert the returned tick to a price using Uniswap’s tick-to-price formula.
 
 #### Creating a New Price Feed
@@ -81,6 +81,7 @@ To create a new price feed for a token pair:
 * Initialize a Uniswap V4 Pool:
   * Initialize a new pool via the Uniswap V4 Pool Manager, using the oracle hook.
   * Set maximum tick spacing and full range liquidity (initialization will fail otherwise).
+  * Be mindful about correctly setting the initial price, as otherwise the hook will need to get in par with other pools ≃ 10% per block (manually or via arbitrage) once liquidity is provided .
 
 ```
 // Example: Initialize pool with oracle hook (simplified)
