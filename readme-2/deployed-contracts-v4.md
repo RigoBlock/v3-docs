@@ -4,12 +4,12 @@
 
 ```
 Mainnets
-1: mainnet (pending governance voting),
-10: optimism (pending governance voting),
-56: bsc (pending governance voting),
+1: mainnet,
+10: optimism,
+56: bsc,
 130: unichain,
-8453: base (pending governance voting),
-42161: arbitrum (pending governance voting)
+8453: base,
+42161: arbitrum
 
 Testnets
 11155111: sepolia
@@ -28,7 +28,10 @@ ExtensionsMapDeployer 0x5A69bBe7f8F9dbDBFEa35CeFf33e093C6690d437
 ### Core
 
 ```
-SmartPool 0xe99DEC5Ba5747E8ADF81Bd58026527c7CB042108
+SmartPool: [
+    default: 0xe99DEC5Ba5747E8ADF81Bd58026527c7CB042108
+    ethereum-mainnet: 0xF43a80838EBe80E9FB5120b98345150101695abd
+]
 RigoblockPoolProxyFactory 0x8DE8895ddD702d9a216E640966A98e08c9228f24
 ```
 
@@ -37,7 +40,9 @@ Notice: deterministic deployment requires 0xeb0c08Ad44af89BcBB5Ed6dD28caD452311B
 ### Extensions - v4.0.1
 
 ```
-ExtensionsMap 0x64138543eA39aE7f82E9B16aFfFB0216cFC29B92
+ExtensionsMap: [
+    default: 0x64138543eA39aE7f82E9B16aFfFB0216cFC29B92
+    ethereum-mainnet: 0x7bA5689CaDC04228Ecb4f713090c041db1f9a8e8
 EUpgrade 0x6A17ca05b112485Bd5c73215F275Baff7F980ac6
 EApps: [
     mainnet: 0x34F63aBB8cA0709F0e5C5A168238BA7f933931EA,
