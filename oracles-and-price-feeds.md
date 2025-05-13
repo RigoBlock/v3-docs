@@ -81,7 +81,7 @@ To create a new price feed for a token pair:
 * Initialize a Uniswap V4 Pool:
   * Initialize a new pool via the Uniswap V4 Pool Manager, using the oracle hook.
   * Set maximum tick spacing and full range liquidity (initialization will fail otherwise).
-  * Be mindful about correctly setting the initial price, as otherwise the hook will need to get in par with other pools ≃ 10% per block (manually or via arbitrage) once liquidity is provided .
+  * Be mindful about correctly setting the initial price, as otherwise the hook will need to get in par with other pools ≃ 10% per block (manually or via arbitrage) once liquidity is provided (10% per second on sub-second chains).
 
 ```
 // Example: Initialize pool with oracle hook (simplified)

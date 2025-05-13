@@ -16,3 +16,6 @@ description: The smart contract used in the RigoBlock ecosystem
 [grg-staking](grg-staking/)
 {% endcontent-ref %}
 
+{% content-ref url="../governance/" %}
+[governance](../governance/)
+{% endcontent-ref %}
