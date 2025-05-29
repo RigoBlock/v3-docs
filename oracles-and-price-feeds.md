@@ -74,7 +74,7 @@ contract PriceFeedConsumer {
 * **Query TWAP tick on Sepolia:** Use the different of two tick points to extract the TWAP. Make sure you set a time delta appropriate for your application (5-minutes, 30-minutes).
 * **Tick to Price:** Convert the returned tick to a price using Uniswap’s tick-to-price formula.
 
-#### Creating a New Price Feed
+## Creating a New Price Feed
 
 To create a new price feed for a token pair:
 

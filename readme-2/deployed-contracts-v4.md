@@ -28,16 +28,13 @@ ExtensionsMapDeployer 0x5A69bBe7f8F9dbDBFEa35CeFf33e093C6690d437
 ### Core
 
 ```
-SmartPool: [
-    default: 0xe99DEC5Ba5747E8ADF81Bd58026527c7CB042108
-    ethereum-mainnet: 0xF43a80838EBe80E9FB5120b98345150101695abd
-]
+SmartPool 0x34481A0A48A579586B3555ed80af482ad9F79EDE - v4.0.2
 RigoblockPoolProxyFactory 0x8DE8895ddD702d9a216E640966A98e08c9228f24
 ```
 
 Notice: deterministic deployment requires 0xeb0c08Ad44af89BcBB5Ed6dD28caD452311B8516 as the implementation address in the constructor to obtain the same factory address on new chains.
 
-### Extensions - v4.0.1
+### Extensions - v4.0.2
 
 ```
 ExtensionsMap: [

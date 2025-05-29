@@ -1,5 +1,5 @@
 ---
-description: Rigoblock V3 Bug Bounty
+description: Rigoblock V4 Bug Bounty
 ---
 
 # Bug Bounty
@@ -8,6 +8,8 @@ description: Rigoblock V3 Bug Bounty
 
 Starting on September 8th, 2024, the [rigoblock-v3-contracts](https://github.com/RigoBlock/v3-contracts) repository is subject to the Rigoblock V3 Bug Bounty (the “Program”) to incentivize responsible bug disclosure.
 
+Starting on May 29th, 2025, the [rigoblock-v3-contracts](https://github.com/RigoBlock/v3-contracts) repository is subject to the Rigoblock V4 Bug Bounty (the “Program”) to incentivize responsible bug disclosure. Rigoblock V3 smart contracts are deprecated and not covered by the Program.
+
 ### Scope
 
 The scope of the Program is limited to bugs that result in the draining of contract funds, abuse of voting power in the Rigoblock governance or affects rewards in the Rigoblock staking system.
@@ -15,8 +17,8 @@ The scope of the Program is limited to bugs that result in the draining of contr
 The following are not within the scope of the Program:
 
 * Any contract located under contracts/test or contracts/examples.
-* Bugs in any third party contract or platform that interacts with Rigoblock V3.
-* Vulnerabilities already reported and/or discovered in contracts built by third parties on Rigoblock V3.
+* Bugs in any third party contract or platform that interacts with Rigoblock V4.
+* Vulnerabilities already reported and/or discovered in contracts built by third parties on Rigoblock V4.
 * Attacks that require a Rigoblock governance takeover.
 * Issues described in the "Known Issues" section.
 * Any already-reported bugs.
@@ -43,13 +45,12 @@ Vulnerabilities contingent upon the occurrence of any of the following also are 
 
 ### Assumptions
 
-Rigoblock V3 was developed with the following assumptions, and thus any bug must also adhere to the following assumptions to be eligible for the bug bounty:
+Rigoblock V4 was developed with the following assumptions, and thus any bug must also adhere to the following assumptions to be eligible for the bug bounty:
 
 * The relation between the smart pool operator and its holders is not completely trustless, there is some accepted level of potential abuse of trust, which is disclosed in the documentation.
-* The `pool operator` is responsible for computing the pool unitary value.
+* The pool unitary value is automatically calculated onchain.
 * Rebase tokens, interest bearing tokens and fee-on-transfer tokens, although technically usable as base tokens for a smart pool, are excluded.
-* The Rigoblock adapter to the Uniswap router is undergoing active work to support the new launch of their v4 protocol.
-* The token whitelist is managed by the Rigoblock governance, but it will eventually be migrated to a permissionless token approval process.
+* Any token is potentially ownable by the smart pools, as long as a price feed on the [BackGeoOracle](../oracles-and-price-feeds.md) is available. The protocol is unopinionated about the validity of the price feed.
 
 ### Rewards
 
@@ -85,7 +86,7 @@ To be eligible for a reward under this Program, you must:
 * Provide sufficient information to enable our engineers to reproduce and fix the vulnerability.
 * Not engage in any unlawful conduct when disclosing the bug, including through threats, demands, or any other coercive tactics.
 * Not exploit the vulnerability in any way, including through making it public or by obtaining a profit (other than a reward under this Program).
-* Make a good faith effort to avoid privacy violations, destruction of data, interruption or degradation of Rigoblock V3.
+* Make a good faith effort to avoid privacy violations, destruction of data, interruption or degradation of Rigoblock V4.
 * Submit only one vulnerability per submission, unless you need to chain vulnerabilities to provide impact regarding any of the vulnerabilities.
 * Not submit a vulnerability caused by an underlying issue that is the same as an issue on which a reward has been paid under this Program.
 * Not engage in any unlawful conduct when disclosing the bug, including through threats, demands, or any other coercive tactics.

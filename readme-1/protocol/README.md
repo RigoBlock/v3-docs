@@ -24,6 +24,8 @@ description: The contracts of the RigoBlock protocol
 
 * HF 3.1.0 -> 0xeb0c08Ad44af89BcBB5Ed6dD28caD452311B8516 (initial v3 implementation)
 * HF 3.1.2 -> 0x7Df14Ba4a5f565cD56206e49Fc66b3002A91841d (self custody deprecated)
+* 4.0.1 -> 0xe99DEC5Ba5747E8ADF81Bd58026527c7CB042108 (automated nav)
+* 4.0.2 -> 0x34481A0A48A579586B3555ed80af482ad9F79EDE (first mint fix)
 
 HF 3.1.0 is also the initial v3 implementation, to be used in the proxy factory constructor to obtain the same deterministic deployed address for the same pool on all networks (relevant for protocol deployment on new chains).
 
