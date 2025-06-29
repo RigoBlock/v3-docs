@@ -52,27 +52,102 @@ To retrieve price data from an existing Uniswap V4 pool with liquidity and an at
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-interface IOracleHook {
-    function observe(uint32[] calldata secondsAgos) external view returns (int56[] memory tickCumulatives, uint160[] memory secondsPerLiquidityCumulativeX128s);
+import {OracleLibrary} from "@uniswap/v3-periphery/contracts/libraries/OracleLibrary.sol";
+import {IHooks} from "@uniswap/v4-core/src/interfaces/IHooks.sol";
+import {TickMath} from "@uniswap/v4-core/src/libraries/TickMath.sol";
+import {PoolKey} from "@uniswap/v4-core/src/types/PoolKey.sol";
+
+interface IOracle {
+    function observe(
+        PoolKey calldata key,
+        uint32[] calldata secondsAgos
+    ) external view returns (int48[] memory tickCumulatives, uint144[] memory secondsPerLiquidityCumulativeX128s);
 }
 
 contract PriceFeedConsumer {
-    IOracleHook public oracleHook = IOracleHook(ORACLE_HOOK_ADDRESS);
+    IOracle public backGeoOracle;
+    
+    constructor(IOracle _backGeoOracle) {
+        backGeoOracle = _backGeoOracle;
+    }
 
-    function getLatestPrice() external view returns (int24 tick) {
+    function getTwapTick(address tokenA, address tokenB) external view returns (int24 twapTick) {
         uint32[] memory secondsAgos = new uint32[](2);
         secondsAgos[0] = 0; // Latest observation
-        secondsAgos[1] = 1; // Previous observation
+        uint32 twapWindow = 1; // 1-second TWAP
+        secondsAgos[1] = twapWindow; // Previous observation
+        
+        PoolKey memory key = PoolKey({
+            currency0: Currency.wrap(tokenA),
+            currency1: Currency.wrap(tokenB),
+            fee: 0,
+            tickSpacing: TickMath.MAX_TICK_SPACING,
+            hooks: IHooks(backGeoOracle)
+        });
 
-        (int56[] memory tickCumulatives, ) = oracleHook.observe(secondsAgos);
-        tick = int24((tickCumulatives[0] - tickCumulatives[1]) / 1); // Calculate average tick
-        return tick;
+        (int56[] memory tickCumulatives, ) = oracleHook.observe(key, secondsAgos);
+        twapTick = int24((tickCumulatives[0] - tickCumulatives[1]) / int56(uint56(twapWindow))); // Calculate average tick
+        return twapTick;
     }
 }
 ```
 
-* **Query TWAP tick on Sepolia:** Use the different of two tick points to extract the TWAP. Make sure you set a time delta appropriate for your application (5-minutes, 30-minutes).
+* **Query TWAP tick:** Use the different of two tick points to extract the TWAP. Make sure you set a time delta appropriate for your application (i.e. 1-minute, 5-minutes).
 * **Tick to Price:** Convert the returned tick to a price using Uniswap’s tick-to-price formula.
+
+#### **Example: Converting token amount from base to quote using TWAP**
+
+```
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+import {OracleLibrary} from "@uniswap/v3-periphery/contracts/libraries/OracleLibrary.sol";
+import {IHooks} from "@uniswap/v4-core/src/interfaces/IHooks.sol";
+import {TickMath} from "@uniswap/v4-core/src/libraries/TickMath.sol";
+import {PoolKey} from "@uniswap/v4-core/src/types/PoolKey.sol";
+
+interface IOracle {
+    function observe(
+        PoolKey calldata key,
+        uint32[] calldata secondsAgos
+    ) external view returns (int48[] memory tickCumulatives, uint144[] memory secondsPerLiquidityCumulativeX128s);
+}
+
+/// @notice derived from Euler's UniswapV3Oracle https://github.com/euler-xyz/euler-price-oracle/blob/master/src/adapter/uniswap/UniswapV3Oracle.sol
+contract PriceFeedConsumer {
+    error PriceOracle_Overflow();
+
+    IOracle public backGeoOracle;
+    
+    constructor(IOracle _backGeoOracle) {
+        backGeoOracle = _backGeoOracle;
+    }
+
+    function getQuote(uint256 inAmount, address base, address quote) external view returns (uint256) {
+        // Size limitation enforced by the pool.
+        if (inAmount > type(uint128).max) revert PriceOracle_Overflow();
+
+        uint32[] memory secondsAgos = new uint32[](2);
+        uint32 twapWindow = 300; // 5-minute TWAP
+        secondsAgos[0] = twapWindow;
+
+        PoolKey memory key = PoolKey({
+            currency0: Currency.wrap(tokenA),
+            currency1: Currency.wrap(tokenB),
+            fee: 0,
+            tickSpacing: TickMath.MAX_TICK_SPACING,
+            hooks: IHooks(backGeoOracle)
+        });
+
+        // Calculate the mean tick over the twap window.
+        (int48[] memory tickCumulatives,) = IOracle(backGeoOracle).observe(key, secondsAgos);
+        int56 tickCumulativesDelta = tickCumulatives[1] - tickCumulatives[0];
+        int24 tick = int24(tickCumulativesDelta / int56(uint56(twapWindow)));
+        if (tickCumulativesDelta < 0 && (tickCumulativesDelta % int56(uint56(twapWindow)) != 0)) tick--;
+        return OracleLibrary.getQuoteAtTick(tick, uint128(inAmount), base, quote);
+    }
+}
+```
 
 ## Creating a New Price Feed
 
@@ -88,9 +163,15 @@ To create a new price feed for a token pair:
 import "@uniswap/v4-core/contracts/interfaces/IPoolManager.sol";
 
 contract PoolInitializer {
-    IPoolManager public poolManager = IPoolManager(POSM_ADDRESS);
-    address public oracleHook = ORACLE_HOOK_ADDRESS;
+    address public immutable oracleHook;
 
+    IPoolManager public poolManager = IPoolManager(POSM_ADDRESS);
+    
+    constructor(address backGeoOracle) {
+        oracleHook = backGeoOracle;
+    }
+
+    /// @notice fee must be 0, tickSpacing must be TickMath.MAX_TICK_SPACING
     function createPool(
         address token0,
         address token1,
