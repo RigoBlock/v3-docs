@@ -33,6 +33,7 @@ Vulnerabilities contingent upon the occurrence of any of the following also are 
 * Third party contracts that are not under the direct control of Rigoblock
 * Issues already listed in the audits for the contracts above
 * Bugs in third party contracts or applications that use Rigoblock contracts
+* Attacks that require oracle manipulation
 * Brute force attacks
 * Rounding errors
 * Extreme market turmoil vulnerability
