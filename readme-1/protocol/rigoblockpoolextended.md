@@ -127,7 +127,7 @@ description: >-
         {
           "indexed": true,
           "internalType": "address",
-          "name": "poolOperator",
+          "name": "sender",
           "type": "address"
         },
         {
@@ -163,6 +163,31 @@ description: >-
         }
       ],
       "name": "NewOwner",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "holder",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "operator",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "bool",
+          "name": "approved",
+          "type": "bool"
+        }
+      ],
+      "name": "OperatorSet",
       "type": "event"
     },
     {
@@ -257,25 +282,6 @@ description: >-
         }
       ],
       "name": "Upgraded",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "internalType": "address",
-          "name": "token",
-          "type": "address"
-        },
-        {
-          "indexed": false,
-          "internalType": "bool",
-          "name": "isWhitelisted",
-          "type": "bool"
-        }
-      ],
-      "name": "Whitelisted",
       "type": "event"
     },
     {
@@ -378,31 +384,24 @@ description: >-
     {
       "inputs": [
         {
-          "internalType": "address[]",
-          "name": "tokens",
-          "type": "address[]"
+          "internalType": "uint256",
+          "name": "amountIn",
+          "type": "uint256"
         },
         {
-          "internalType": "bool[]",
-          "name": "whitelisted",
-          "type": "bool[]"
-        }
-      ],
-      "name": "batchUpdateTokens",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
           "internalType": "uint256",
-          "name": "tokenId",
+          "name": "amountOutMin",
           "type": "uint256"
         }
       ],
       "name": "burn",
-      "outputs": [],
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "netRevenue",
+          "type": "uint256"
+        }
+      ],
       "stateMutability": "nonpayable",
       "type": "function"
     },
@@ -417,9 +416,14 @@ description: >-
           "internalType": "uint256",
           "name": "amountOutMin",
           "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "tokenOut",
+          "type": "address"
         }
       ],
-      "name": "burn",
+      "name": "burnForToken",
       "outputs": [
         {
           "internalType": "uint256",
@@ -490,81 +494,59 @@ description: >-
     {
       "inputs": [
         {
-          "components": [
-            {
-              "internalType": "uint256",
-              "name": "tokenId",
-              "type": "uint256"
-            },
-            {
-              "internalType": "address",
-              "name": "recipient",
-              "type": "address"
-            },
-            {
-              "internalType": "uint128",
-              "name": "amount0Max",
-              "type": "uint128"
-            },
-            {
-              "internalType": "uint128",
-              "name": "amount1Max",
-              "type": "uint128"
-            }
-          ],
-          "internalType": "struct INonfungiblePositionManager.CollectParams",
-          "name": "params",
-          "type": "tuple"
-        }
-      ],
-      "name": "collect",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "amount0",
-          "type": "uint256"
+          "internalType": "address[]",
+          "name": "tokens",
+          "type": "address[]"
         },
         {
-          "internalType": "uint256",
-          "name": "amount1",
-          "type": "uint256"
+          "internalType": "int256[]",
+          "name": "amounts",
+          "type": "int256[]"
+        },
+        {
+          "internalType": "address",
+          "name": "targetToken",
+          "type": "address"
         }
       ],
-      "stateMutability": "nonpayable",
+      "name": "convertBatchTokenAmounts",
+      "outputs": [
+        {
+          "internalType": "int256",
+          "name": "totalConvertedAmount",
+          "type": "int256"
+        }
+      ],
+      "stateMutability": "view",
       "type": "function"
     },
     {
       "inputs": [
         {
           "internalType": "address",
-          "name": "token0",
+          "name": "token",
           "type": "address"
+        },
+        {
+          "internalType": "int256",
+          "name": "amount",
+          "type": "int256"
         },
         {
           "internalType": "address",
-          "name": "token1",
+          "name": "targetToken",
           "type": "address"
-        },
-        {
-          "internalType": "uint24",
-          "name": "fee",
-          "type": "uint24"
-        },
-        {
-          "internalType": "uint160",
-          "name": "sqrtPriceX96",
-          "type": "uint160"
         }
       ],
-      "name": "createAndInitializePoolIfNecessary",
+      "name": "convertTokenAmount",
       "outputs": [
         {
-          "internalType": "address",
-          "name": "pool",
-          "type": "address"
+          "internalType": "int256",
+          "name": "convertedAmount",
+          "type": "int256"
         }
       ],
-      "stateMutability": "nonpayable",
+      "stateMutability": "view",
       "type": "function"
     },
     {
@@ -583,245 +565,41 @@ description: >-
     {
       "inputs": [
         {
-          "components": [
-            {
-              "internalType": "uint256",
-              "name": "tokenId",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint128",
-              "name": "liquidity",
-              "type": "uint128"
-            },
-            {
-              "internalType": "uint256",
-              "name": "amount0Min",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "amount1Min",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "deadline",
-              "type": "uint256"
-            }
-          ],
-          "internalType": "struct INonfungiblePositionManager.DecreaseLiquidityParams",
-          "name": "params",
-          "type": "tuple"
+          "internalType": "bytes",
+          "name": "commands",
+          "type": "bytes"
+        },
+        {
+          "internalType": "bytes[]",
+          "name": "inputs",
+          "type": "bytes[]"
         }
       ],
-      "name": "decreaseLiquidity",
-      "outputs": [
+      "name": "execute",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
         {
-          "internalType": "uint256",
-          "name": "amount0",
-          "type": "uint256"
+          "internalType": "bytes",
+          "name": "commands",
+          "type": "bytes"
+        },
+        {
+          "internalType": "bytes[]",
+          "name": "inputs",
+          "type": "bytes[]"
         },
         {
           "internalType": "uint256",
-          "name": "amount1",
+          "name": "deadline",
           "type": "uint256"
         }
       ],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "components": [
-            {
-              "internalType": "bytes",
-              "name": "path",
-              "type": "bytes"
-            },
-            {
-              "internalType": "address",
-              "name": "recipient",
-              "type": "address"
-            },
-            {
-              "internalType": "uint256",
-              "name": "amountIn",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "amountOutMinimum",
-              "type": "uint256"
-            }
-          ],
-          "internalType": "struct IV3SwapRouter.ExactInputParams",
-          "name": "params",
-          "type": "tuple"
-        }
-      ],
-      "name": "exactInput",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "amountOut",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "components": [
-            {
-              "internalType": "address",
-              "name": "tokenIn",
-              "type": "address"
-            },
-            {
-              "internalType": "address",
-              "name": "tokenOut",
-              "type": "address"
-            },
-            {
-              "internalType": "uint24",
-              "name": "fee",
-              "type": "uint24"
-            },
-            {
-              "internalType": "address",
-              "name": "recipient",
-              "type": "address"
-            },
-            {
-              "internalType": "uint256",
-              "name": "amountIn",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "amountOutMinimum",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint160",
-              "name": "sqrtPriceLimitX96",
-              "type": "uint160"
-            }
-          ],
-          "internalType": "struct IV3SwapRouter.ExactInputSingleParams",
-          "name": "params",
-          "type": "tuple"
-        }
-      ],
-      "name": "exactInputSingle",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "amountOut",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "components": [
-            {
-              "internalType": "bytes",
-              "name": "path",
-              "type": "bytes"
-            },
-            {
-              "internalType": "address",
-              "name": "recipient",
-              "type": "address"
-            },
-            {
-              "internalType": "uint256",
-              "name": "amountOut",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "amountInMaximum",
-              "type": "uint256"
-            }
-          ],
-          "internalType": "struct IV3SwapRouter.ExactOutputParams",
-          "name": "params",
-          "type": "tuple"
-        }
-      ],
-      "name": "exactOutput",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "amountIn",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "components": [
-            {
-              "internalType": "address",
-              "name": "tokenIn",
-              "type": "address"
-            },
-            {
-              "internalType": "address",
-              "name": "tokenOut",
-              "type": "address"
-            },
-            {
-              "internalType": "uint24",
-              "name": "fee",
-              "type": "uint24"
-            },
-            {
-              "internalType": "address",
-              "name": "recipient",
-              "type": "address"
-            },
-            {
-              "internalType": "uint256",
-              "name": "amountOut",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "amountInMaximum",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint160",
-              "name": "sqrtPriceLimitX96",
-              "type": "uint160"
-            }
-          ],
-          "internalType": "struct IV3SwapRouter.ExactOutputSingleParams",
-          "name": "params",
-          "type": "tuple"
-        }
-      ],
-      "name": "exactOutputSingle",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "amountIn",
-          "type": "uint256"
-        }
-      ],
+      "name": "execute",
+      "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
     },
@@ -840,7 +618,88 @@ description: >-
     },
     {
       "inputs": [],
-      "name": "getAuthority",
+      "name": "getActiveApplications",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "packedApplications",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getActiveTokens",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "address[]",
+              "name": "activeTokens",
+              "type": "address[]"
+            },
+            {
+              "internalType": "address",
+              "name": "baseToken",
+              "type": "address"
+            }
+          ],
+          "internalType": "struct ISmartPoolState.ActiveTokens",
+          "name": "tokens",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "packedApplications",
+          "type": "uint256"
+        }
+      ],
+      "name": "getAppTokenBalances",
+      "outputs": [
+        {
+          "components": [
+            {
+              "components": [
+                {
+                  "internalType": "address",
+                  "name": "token",
+                  "type": "address"
+                },
+                {
+                  "internalType": "int256",
+                  "name": "amount",
+                  "type": "int256"
+                }
+              ],
+              "internalType": "struct AppTokenBalance[]",
+              "name": "balances",
+              "type": "tuple[]"
+            },
+            {
+              "internalType": "uint256",
+              "name": "appType",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct ExternalApp[]",
+          "name": "appBalances",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getBeacon",
       "outputs": [
         {
           "internalType": "address",
@@ -883,7 +742,7 @@ description: >-
               "type": "address"
             }
           ],
-          "internalType": "struct IRigoblockV3PoolState.ReturnedPool",
+          "internalType": "struct ISmartPoolState.ReturnedPool",
           "name": "",
           "type": "tuple"
         }
@@ -923,7 +782,7 @@ description: >-
               "type": "address"
             }
           ],
-          "internalType": "struct IRigoblockV3PoolState.PoolParams",
+          "internalType": "struct ISmartPoolState.PoolParams",
           "name": "",
           "type": "tuple"
         }
@@ -963,7 +822,7 @@ description: >-
               "type": "address"
             }
           ],
-          "internalType": "struct IRigoblockV3PoolState.ReturnedPool",
+          "internalType": "struct ISmartPoolState.ReturnedPool",
           "name": "poolInitParams",
           "type": "tuple"
         },
@@ -995,7 +854,7 @@ description: >-
               "type": "address"
             }
           ],
-          "internalType": "struct IRigoblockV3PoolState.PoolParams",
+          "internalType": "struct ISmartPoolState.PoolParams",
           "name": "poolVariables",
           "type": "tuple"
         },
@@ -1012,7 +871,7 @@ description: >-
               "type": "uint256"
             }
           ],
-          "internalType": "struct IRigoblockV3PoolState.PoolTokens",
+          "internalType": "struct ISmartPoolState.PoolTokens",
           "name": "poolTokensInfo",
           "type": "tuple"
         }
@@ -1037,7 +896,7 @@ description: >-
               "type": "uint256"
             }
           ],
-          "internalType": "struct IRigoblockV3PoolState.PoolTokens",
+          "internalType": "struct ISmartPoolState.PoolTokens",
           "name": "",
           "type": "tuple"
         }
@@ -1092,6 +951,38 @@ description: >-
       "inputs": [
         {
           "internalType": "address",
+          "name": "token",
+          "type": "address"
+        }
+      ],
+      "name": "getTwap",
+      "outputs": [
+        {
+          "internalType": "int24",
+          "name": "twap",
+          "type": "int24"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getUniV4TokenIds",
+      "outputs": [
+        {
+          "internalType": "uint256[]",
+          "name": "tokenIds",
+          "type": "uint256[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
           "name": "_who",
           "type": "address"
         }
@@ -1111,7 +1002,7 @@ description: >-
               "type": "uint48"
             }
           ],
-          "internalType": "struct IRigoblockV3PoolState.UserAccount",
+          "internalType": "struct ISmartPoolState.UserAccount",
           "name": "",
           "type": "tuple"
         }
@@ -1122,62 +1013,20 @@ description: >-
     {
       "inputs": [
         {
-          "components": [
-            {
-              "internalType": "uint256",
-              "name": "tokenId",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "amount0Desired",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "amount1Desired",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "amount0Min",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "amount1Min",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "deadline",
-              "type": "uint256"
-            }
-          ],
-          "internalType": "struct INonfungiblePositionManager.IncreaseLiquidityParams",
-          "name": "params",
-          "type": "tuple"
+          "internalType": "address",
+          "name": "token",
+          "type": "address"
         }
       ],
-      "name": "increaseLiquidity",
+      "name": "hasPriceFeed",
       "outputs": [
         {
-          "internalType": "uint128",
-          "name": "liquidity",
-          "type": "uint128"
-        },
-        {
-          "internalType": "uint256",
-          "name": "amount0",
-          "type": "uint256"
-        },
-        {
-          "internalType": "uint256",
-          "name": "amount1",
-          "type": "uint256"
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
         }
       ],
-      "stateMutability": "nonpayable",
+      "stateMutability": "view",
       "type": "function"
     },
     {
@@ -1191,15 +1040,20 @@ description: >-
       "inputs": [
         {
           "internalType": "address",
-          "name": "token",
+          "name": "holder",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "operator",
           "type": "address"
         }
       ],
-      "name": "isWhitelistedToken",
+      "name": "isOperator",
       "outputs": [
         {
           "internalType": "bool",
-          "name": "",
+          "name": "approved",
           "type": "bool"
         }
       ],
@@ -1238,91 +1092,18 @@ description: >-
     {
       "inputs": [
         {
-          "components": [
-            {
-              "internalType": "address",
-              "name": "token0",
-              "type": "address"
-            },
-            {
-              "internalType": "address",
-              "name": "token1",
-              "type": "address"
-            },
-            {
-              "internalType": "uint24",
-              "name": "fee",
-              "type": "uint24"
-            },
-            {
-              "internalType": "int24",
-              "name": "tickLower",
-              "type": "int24"
-            },
-            {
-              "internalType": "int24",
-              "name": "tickUpper",
-              "type": "int24"
-            },
-            {
-              "internalType": "uint256",
-              "name": "amount0Desired",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "amount1Desired",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "amount0Min",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "amount1Min",
-              "type": "uint256"
-            },
-            {
-              "internalType": "address",
-              "name": "recipient",
-              "type": "address"
-            },
-            {
-              "internalType": "uint256",
-              "name": "deadline",
-              "type": "uint256"
-            }
-          ],
-          "internalType": "struct INonfungiblePositionManager.MintParams",
-          "name": "params",
-          "type": "tuple"
-        }
-      ],
-      "name": "mint",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "tokenId",
-          "type": "uint256"
-        },
-        {
-          "internalType": "uint128",
-          "name": "liquidity",
-          "type": "uint128"
+          "internalType": "bytes",
+          "name": "unlockData",
+          "type": "bytes"
         },
         {
           "internalType": "uint256",
-          "name": "amount0",
-          "type": "uint256"
-        },
-        {
-          "internalType": "uint256",
-          "name": "amount1",
+          "name": "deadline",
           "type": "uint256"
         }
       ],
+      "name": "modifyLiquidities",
+      "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
     },
@@ -1456,20 +1237,7 @@ description: >-
     },
     {
       "inputs": [],
-      "name": "refundETH",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "token",
-          "type": "address"
-        }
-      ],
-      "name": "removeToken",
+      "name": "purgeInactiveTokensAndApps",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
@@ -1484,6 +1252,30 @@ description: >-
       ],
       "name": "setKycProvider",
       "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "operator",
+          "type": "address"
+        },
+        {
+          "internalType": "bool",
+          "name": "approved",
+          "type": "bool"
+        }
+      ],
+      "name": "setOperator",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
       "stateMutability": "nonpayable",
       "type": "function"
     },
@@ -1517,194 +1309,11 @@ description: >-
       "inputs": [
         {
           "internalType": "uint256",
-          "name": "unitaryValue",
-          "type": "uint256"
-        }
-      ],
-      "name": "setUnitaryValue",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
           "name": "amount",
           "type": "uint256"
         }
       ],
       "name": "stake",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "amountIn",
-          "type": "uint256"
-        },
-        {
-          "internalType": "uint256",
-          "name": "amountOutMin",
-          "type": "uint256"
-        },
-        {
-          "internalType": "address[]",
-          "name": "path",
-          "type": "address[]"
-        },
-        {
-          "internalType": "address",
-          "name": "to",
-          "type": "address"
-        }
-      ],
-      "name": "swapExactTokensForTokens",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "amountOut",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "amountOut",
-          "type": "uint256"
-        },
-        {
-          "internalType": "uint256",
-          "name": "amountInMax",
-          "type": "uint256"
-        },
-        {
-          "internalType": "address[]",
-          "name": "path",
-          "type": "address[]"
-        },
-        {
-          "internalType": "address",
-          "name": "to",
-          "type": "address"
-        }
-      ],
-      "name": "swapTokensForExactTokens",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "amountIn",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "token",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "amountMinimum",
-          "type": "uint256"
-        },
-        {
-          "internalType": "address",
-          "name": "recipient",
-          "type": "address"
-        }
-      ],
-      "name": "sweepToken",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "token",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "amountMinimum",
-          "type": "uint256"
-        }
-      ],
-      "name": "sweepToken",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "token",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "amountMinimum",
-          "type": "uint256"
-        },
-        {
-          "internalType": "uint256",
-          "name": "feeBips",
-          "type": "uint256"
-        },
-        {
-          "internalType": "address",
-          "name": "feeRecipient",
-          "type": "address"
-        }
-      ],
-      "name": "sweepTokenWithFee",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "token",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "amountMinimum",
-          "type": "uint256"
-        },
-        {
-          "internalType": "address",
-          "name": "recipient",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "feeBips",
-          "type": "uint256"
-        },
-        {
-          "internalType": "address",
-          "name": "feeRecipient",
-          "type": "address"
-        }
-      ],
-      "name": "sweepTokenWithFee",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
@@ -1802,32 +1411,6 @@ description: >-
       "type": "function"
     },
     {
-      "inputs": [],
-      "name": "uniswapRouter02",
-      "outputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "uniswapv3Npm",
-      "outputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
       "inputs": [
         {
           "internalType": "uint256",
@@ -1872,52 +1455,8 @@ description: >-
       "type": "function"
     },
     {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "amountMinimum",
-          "type": "uint256"
-        },
-        {
-          "internalType": "address",
-          "name": "recipient",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "feeBips",
-          "type": "uint256"
-        },
-        {
-          "internalType": "address",
-          "name": "feeRecipient",
-          "type": "address"
-        }
-      ],
-      "name": "unwrapWETH9WithFee",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "amountMinimum",
-          "type": "uint256"
-        },
-        {
-          "internalType": "uint256",
-          "name": "feeBips",
-          "type": "uint256"
-        },
-        {
-          "internalType": "address",
-          "name": "feeRecipient",
-          "type": "address"
-        }
-      ],
-      "name": "unwrapWETH9WithFee",
+      "inputs": [],
+      "name": "updateUnitaryValue",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
@@ -1925,32 +1464,6 @@ description: >-
     {
       "inputs": [],
       "name": "upgradeImplementation",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "weth",
-      "outputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "token",
-          "type": "address"
-        }
-      ],
-      "name": "whitelistToken",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
@@ -1973,6 +1486,19 @@ description: >-
       "name": "wrapETH",
       "outputs": [],
       "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "wrappedNative",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
       "type": "function"
     },
     {
