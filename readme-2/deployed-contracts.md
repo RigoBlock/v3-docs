@@ -158,7 +158,9 @@ StakingProxy 0xD40edcc947fF35637233d765CB9efCFc10fC8c22
 
 ```
 RigoblockGovernanceFactory 0xc1AdDa7605d2DC47Dd91A930c978Cd6a18D2D760
-RigoblockGovernance 0xE5D8204f8335e9786ea7Ce382771B865fE73a304
+RigoblockGovernance
+    unchain: 0xf9f0432c606359aa1Eeec6c7c2846E012cCDc959
+    other: 0xE5D8204f8335e9786ea7Ce382771B865fE73a304
 ```
 
 ### Governance Strategy
@@ -171,7 +173,7 @@ RigoblockGovernanceStrategy: [
     polygon: 0x5F63E59e328F2565e71363D3d5F4c29063bB7868,
     bsc: 0x910Aaf1F6818F1044d97DAee22d1eC32647926a7,
     base: 0x1fBEf987C7d87f794548Aa9089E87B9A15dB07EA,
-    unichain: TBD
+    unichain: 0xeBA708293C4F21131AAc2c384526c9b9b8E2D9d9
 ]
 ```
 
