@@ -36,7 +36,7 @@ RigoblockPoolProxyFactory 0x8DE8895ddD702d9a216E640966A98e08c9228f24
 
 Notice: deterministic deployment requires 0xeb0c08Ad44af89BcBB5Ed6dD28caD452311B8516 as the implementation address in the constructor to obtain the same factory address on new chains.
 
-### Extensions - v4.0.3
+### Extensions - ^v4.0.2
 
 ```
 ExtensionsMap: [

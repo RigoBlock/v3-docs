@@ -51,7 +51,7 @@ Rigoblock V4 was developed with the following assumptions, and thus any bug must
 * The relation between the smart pool operator and its holders is not completely trustless, there is some accepted level of potential abuse of trust, which is disclosed in the documentation.
 * The pool unitary value is automatically calculated onchain.
 * Rebase tokens, interest bearing tokens and fee-on-transfer tokens, although technically usable as base tokens for a smart pool, are excluded.
-* Any token is potentially ownable by the smart pools, as long as a price feed on the [BackGeoOracle](../oracles-and-price-feeds.md) is available. The protocol is unopinionated about the validity of the price feed.
+* Any token is potentially ownable by the smart pools, as long as a price feed on the [BackGeoOracle](../oracles-and-price-feeds.md) exists. The protocol is unopinionated about the validity of the price feed, and uses a geometric mean TWAP to calculate prices for token conversions.
 
 ### Rewards
 

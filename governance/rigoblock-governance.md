@@ -51,10 +51,10 @@ In the context of the Rigoblock Protocol and Staking System, the Rigoblock Gover
 
 ### Governance Delegated Tasks
 
-The Rigoblock Governance delegates some tasks to authorized addresses, in order to remove the need for an onchain vote for tasks where the need for agile execution prevails over the security provided by an onchain vote. In this context, some tasks are delegated which do not pose a risk to tokens owned by the pools. At any moment the governance can remove such delegation(s) partially or entirely, and even take over the tasks by becoming the only delegated wallet, thus requiring onchain voting for the following tasks as well:
+The Rigoblock Governance can delegate the task of activating/deactivating previously approved adapters' methods to authorized addresses, in order to remove the need for an onchain vote. At any moment the governance can remove such delegation(s) partially or entirely, and even take over the tasks by becoming the only delegated wallet, thus requiring an onchain voting for:
 
-* add a selector to adapter address mapping in the authority contract
-* remove a selector to adapter address mapping in the authority contract
+* adding a selector to adapter address mapping in the authority contract
+* removing a selector to adapter address mapping in the authority contract
 
 ```
 0xcd29d473 authority.addMethod(bytes4 selector, address adapter);

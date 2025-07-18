@@ -7,4 +7,4 @@ Currently the Rigoblock protocol supports the following external applications
 3. GRG Staking
 4. Rigoblock Governance
 
-Further applications will be added by the governance based on market demand.
+Further applications can be added by the governance (like yield farming, cross-chain pool activity, ...) based on market demand.
