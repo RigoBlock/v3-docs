@@ -225,4 +225,4 @@ The Backrunning Geomean Oracle has been selected as part of the Uniswap Foundati
 ## **Further Reading**
 
 * [RigoBlock Oracle Blog Post](https://mirror.xyz/rigoblock.eth/yKAD5uYyH0KwfdsOxzt0MyppkFJZzXkxAFeufPGVA2M)
-* [UFSF](https://valiant-polo-a06.notion.site/Uniswap-Foundation-Security-Fund-Marketplace-1812019bf073802fa41dc30f88d8f513)
+* [UFSF](https://www.uniswapfoundation.org/blog/uniswap-foundation-security-fund-cohort-2)
