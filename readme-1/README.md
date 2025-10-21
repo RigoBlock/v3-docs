@@ -1,5 +1,5 @@
 ---
-description: The smart contract used in the RigoBlock ecosystem
+description: The smart contract used in the Rigoblock ecosystem
 ---
 
 # Contracts

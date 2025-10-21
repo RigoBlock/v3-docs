@@ -1,6 +1,6 @@
 ---
 description: >-
-  Each RigoBlock pool proxy is deployed by the proxy factory, which also serves
+  Each Rigoblock pool proxy is deployed by the proxy factory, which also serves
   as a beacon for pool implementation upgrades
 ---
 

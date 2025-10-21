@@ -1,7 +1,7 @@
 # Table of contents
 
 * [Welcome](README.md)
-* [Introduction to RigoBlock](introduction-to-rigoblock.md)
+* [Introduction to Rigoblock](introduction-to-rigoblock.md)
 * [Contracts](readme-1/README.md)
   * [Protocol](readme-1/protocol/README.md)
     * [RigoblockPoolExtended](readme-1/protocol/rigoblockpoolextended.md)

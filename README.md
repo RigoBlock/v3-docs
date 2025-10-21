@@ -6,7 +6,7 @@ description: >-
 
 # Welcome
 
-Learn the basics of RigoBlock
+Learn the basics of Rigoblock
 
 {% content-ref url="introduction-to-rigoblock.md" %}
 [introduction-to-rigoblock.md](introduction-to-rigoblock.md)
@@ -26,4 +26,6 @@ Find the deployed smart contracts
 
 Get an on-chain price feed for any token
 
-[oracles-and-price-feeds.md](oracles-and-price-feeds.md "mention")
+{% content-ref url="oracles-and-price-feeds.md" %}
+[oracles-and-price-feeds.md](oracles-and-price-feeds.md)
+{% endcontent-ref %}

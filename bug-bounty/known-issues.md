@@ -33,7 +33,6 @@ The following is a non-exhaustive list of known potential attack vectors:
 * **Chains that do not Support Transient Storage Opcodes**\
   Chains that do not support transient storage are not compatible with Rigoblock V4.
 
-Given these risks, the relationship between the pool operator and pool holder(s) is trust-based. RigoBlock provides an extra layer of security for pool operators to interact with on-chain applications and enhances transparency by tracking real-time pool activity, portfolio positions, and price calculations.\
+Given these risks, the relationship between the pool operator and pool holder(s) is trust-based. Rigoblock provides an extra layer of security for pool operators to interact with on-chain applications and enhances transparency by tracking real-time pool activity, portfolio positions, and price calculations.
 
-
-An alternative to direct participation to a pool is by staking GRG in the target pool, which allows users to gain exposure to the performance of top pools (i.e. GRG staking can be considered a proxy of the performance, but without the downside of holding a pool - besides the market price fluctuations). Stakers are rewarded for securing the network and supporting pool operators in maximizing staking rewards. The system does not require trust in pool operators and is governed by RigoBlock Governance.
+An alternative to direct participation to a pool is by staking GRG in the target pool, which allows users to gain exposure to the performance of top pools (i.e. GRG staking can be considered a proxy of the performance, but without the downside of holding a pool - besides the market price fluctuations). Stakers are rewarded for securing the network and supporting pool operators in maximizing staking rewards. The system does not require trust in pool operators and is governed by Rigoblock Governance.

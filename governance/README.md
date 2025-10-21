@@ -6,5 +6,3 @@ A lightweight governance proxy is deployed and stores the state of the governanc
 
 While opting for the canonical implementation, a project could later opt-out and use a custom implementation as the governance is upgradable after successful proposal execution. Upgradable governance parameters include: a) implementation; b) voting strategy; c) proposal threshold; d) voting threshold. New parameters a) and b) are required to being a smart contract, while new parameters c) and b) are required to pass validation in the governance strategy.
 
-#### Disclaimer: contracts in the Rigoblock Governance have not been audited. While 100% code coverage has been achieved, this is by no means guarantee that the software is bug-free.
-
