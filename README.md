@@ -1,5 +1,7 @@
 ---
-description: Learn how to deploy and run your on-chain token management strategies.
+description: >-
+  Learn how to deploy and run your on-chain trading vaults, or query on-chain
+  token prices.
 ---
 
 # Welcome
@@ -21,3 +23,7 @@ Find the deployed smart contracts
 {% content-ref url="readme-2/" %}
 [readme-2](readme-2/)
 {% endcontent-ref %}
+
+Get an on-chain price feed for any token
+
+[oracles-and-price-feeds.md](oracles-and-price-feeds.md "mention")
