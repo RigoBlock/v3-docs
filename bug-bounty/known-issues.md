@@ -4,8 +4,14 @@ The following is a non-exhaustive list of known potential attack vectors:
 
 * **Pool Transaction Front-Running by a Malicious Pool Operator**\
   A pool operator's coordinated wallet could front-run pool transactions. A potential mitigation, such as setting a maximum slippage against an on-chain price feed, may cause transaction reverts in high-volatility environments. However, this does not fully address the issue, as a rogue pool operator could achieve the same result by executing multiple smaller transactions. This attack assumes privileged access (pool operator) with malicious intent against the pool's Total Value Locked (TVL). Additionally, an external attacker could exploit the binding to prevent a pool from executing swaps by manipulating the token price in a sandwich attack. Temporarily blocking a smart pool from executing transactions after a significant price drawdown is not a viable solution, as it could hinder operations during high-volatility periods—when the greatest opportunities arise—and unnecessarily increase gas costs. Developers can implement custom rules on top of the protocol to apply their preferred mitigation strategies.
+*   **Pool Burn Front-Running by a Malicious Pool Operator**
+
+    A pool operator could initiate a crosschain Sync operation using input param that result in the crosschain deposit to expire without being filled on the destination chain. This can result in the burn to fail, or in the holder to receive a smaller amount than he should. At the same time, the pool operator cannot know when the refund will occur, which partially counterbalances the incentive for such an attack.
 * **Purchase of a Rogue Token**\
-  A rogue token, such as one created by the pool operator, could be purchased. This issue is not addressed, as the RigoBlock protocol is unopinionated about which tokens can be included in a pool.
+  A rogue token, such as one created by the pool operator, could be purchased. This issue is not addressed, as the RigoBlock protocol is unopinionated about which tokens can be included in a pool, as long as they conform to token standards and can be exchanged.
+*   **Setting a Rogue Token as Accepted for Mint Operations**
+
+    A rogue token could be deployed and set as acceptable mint token by the pool operator. Whenever someone mints using the base token, anyone could manipulate the rogue token price on the open market and mint big amounts of pool tokens.
 * **Purchase of a Debt Token**\
   Purchasing a debt token via a swap or similar action should not be possible on the open market, as debt positions typically have no positive value. However, a sophisticated attack by the pool operator could potentially enable this.
 * **Frontrunning During Pool Token Burning**\
@@ -26,8 +32,8 @@ The following is a non-exhaustive list of known potential attack vectors:
   Attacks that exploit a compromised pool operator private key.
 * **Use of a Malicious Uniswap V4 Hook**\
   Although Rigoblock V4 includes safeguards to prevent accidental input errors and restrict hooks' access to a pool's liquidity token balances, the protocol does not restrict the types of hooks a pool may use. A malicious Uniswap V4 hook could impose fees up to 100% of the swap amount, resulting in significant or total loss of funds. As when interacting directly with Uniswap V4, users must exercise extreme caution when interacting with Uniswap V4 hooks via RigoBlock.
-* **Burn of Uniswap V4 ERC6909 Tokens**\
-  If an external wallet or a hook mints ERC6909 Tokens, they cannot be burnt within the smart pool. Future releases will support this functionality.
+* **Crosschain Sync Latency**\
+  While single-chain pool price is updated in real time, the price will differ across chains until a Sync operation is prompted by the pool operator. These operations can be sent programmatically, and are entirely under the pool operator's control.
 * **Chains that do not use address(0) as Native Currency**\
   Polygon (or any similar chain that use a token as base currency) are not currently supported by the v4 protocol.
 * **Chains that do not Support Transient Storage Opcodes**\
