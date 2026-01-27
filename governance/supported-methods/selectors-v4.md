@@ -43,3 +43,9 @@ can be called by Rigoblock pools to interact with new external applications with
 "fe0d94c1": "execute(uint256)",
 "367015bb": "propose(Proposal, string)"
 ```
+
+### AIntents
+
+```
+"770d096f": "depositV3(AcrossParams)"
+```
