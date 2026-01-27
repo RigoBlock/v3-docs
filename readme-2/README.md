@@ -14,6 +14,6 @@ Rigoblock has been deployed on multiple blockchains using [deterministic deploym
 [deployed-contracts-v4.md](deployed-contracts-v4.md)
 {% endcontent-ref %}
 
-{% content-ref url="deployed-contracts.md" %}
-[deployed-contracts.md](deployed-contracts.md)
+{% content-ref url="deployed-contracts-v3.md" %}
+[deployed-contracts-v3.md](deployed-contracts-v3.md)
 {% endcontent-ref %}

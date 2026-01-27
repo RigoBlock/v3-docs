@@ -1,4 +1,10 @@
-# deployed contracts
+---
+description: >-
+  Notice: only minimal support as pool operators are encouraged to upgrade to
+  V4.
+---
+
+# Deployed Contracts - v3
 
 ## Supported Networks
 
@@ -133,7 +139,7 @@ AStaking 0x9E9abF328B5d1f4b4c66715cB54cA0F66225FBfa
 ```
 ERC20Proxy 0x28891F41eA506Ba7eA3Be9f2075AB0aa8b81dD29
 RigoToken 0x03C2868c6D7fD27575426f395EE081498B1120dd
-InflationL2 0xA889E90d4F1BA125Df1B4C1f55c7fff9F4377C03
+InflationL2 0x3A0C479A2715cc01bC3f744F74Efd45f40f8Dad6
 ProofOfPerformance 0xa094BEB834b439bA77763c5889DaBf434Bc26662
 GRGVault 0x448366d7C2e0af67D3723De875b7eAf548474A37
 Staking 0x87211E18cAae43a8cd865aD37442a137149BB40c

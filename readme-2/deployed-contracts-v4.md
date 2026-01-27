@@ -1,4 +1,4 @@
-# deployed contracts - V4
+# Deployed Contracts - V4
 
 ## Supported Networks
 
@@ -113,6 +113,7 @@ EOracle: [
     bsc: 0x9cD3CB7CF9392182890d0b5Fe7d92BFD7539afFC,
     optimism: 0x9cD3CB7CF9392182890d0b5Fe7d92BFD7539afFC,
     unichain: 0x1DC90d2C0d5312dcBC31be6Ccd23b03bf251fFc6,
+    polygon: 0x9cD3CB7CF9392182890d0b5Fe7d92BFD7539afFC,
     sepolia: 0x1DC90d2C0d5312dcBC31be6Ccd23b03bf251fFc6
 ]
 <strong>AStaking: [
@@ -122,6 +123,7 @@ EOracle: [
     bsc: 0xcfDAC3f80a99ebB4d0F951a9C2aa40138992eCD1,
     optimism: 0x21B423Ad9488CAD08E06c50a5DB0F65AAa813254,
     unichain: 0x77f4cF40adC6026B0e8C0df088E0B1459005922c,
+    polygon: 0xB0B97506516B3aD835Cfa6124F446bA75C4B9653,
     sepolia: 0x7CD4d2c1e816123da38cc6e56b7f893Ff8C3a756
 ]
 AUniswap: [
@@ -131,6 +133,7 @@ AUniswap: [
     bsc: 0x794D9E8dc76b777D9e7B1DD9cd14c1A3b7D9013B,
     optimism: 0x88351E94b443CAcd7234920B53e0b68A7Cb5e028,
     unichain: 0x88351E94b443CAcd7234920B53e0b68A7Cb5e028,
+    polygon: 0xA95d519fb7328B8B11C1a62ecc0BF9131DBeEeA1,
     sepolia: 0x93434f51C8ddc626bca96aF22137e091382A522c
 ]
 AUniswapRouter: [
@@ -140,6 +143,7 @@ AUniswapRouter: [
     bsc: 0xB58Ec22Bd45A5c4A2d9ba59bEDccC12f57e31C03,
     optimism: 0x56e3e9eC0371A85dA5f0747C0d60d2923B9fDabc,
     unichain: 0x1dbecB1942347F53A4594e11C9a58b6032E6210a,
+    polygon: 0x399565C3A880b8FB651dfBd5ce13e17fB35b2049,
     sepolia: 0xd33988828BB0B8ce2e7aad4174e8953C7F00E971
 ]
 AIntents: [
