@@ -73,7 +73,6 @@
   * [Supported Methods](governance/supported-methods/README.md)
     * [Selectors - V4](governance/supported-methods/selectors-v4.md)
     * [Selectors - V3](governance/supported-methods/selectors-v3.md)
-  * [Token Whitelists (Deprecated in V4)](governance/token-whitelists-deprecated-in-v4.md)
 * [Bug Bounty](bug-bounty/README.md)
   * [Known Issues](bug-bounty/known-issues.md)
 * [Oracles and Price Feeds](oracles-and-price-feeds.md)
