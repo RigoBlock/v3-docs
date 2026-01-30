@@ -77,25 +77,12 @@ ENavView: [
 ]
 ```
 
-### Extensions - v4.0.2, v4.0.3
+### Extensions - v4.0.3
 
-<pre><code><strong>ExtensionsMap: [
-</strong>    default: 0x64138543eA39aE7f82E9B16aFfFB0216cFC29B92
-    ethereum-mainnet: 0x7bA5689CaDC04228Ecb4f713090c041db1f9a8e8
-]
-EUpgrade 0x6A17ca05b112485Bd5c73215F275Baff7F980ac6
-EApps: [
-    arbitrum: 0x5545aCb1C55c273001E1136adf25C274cbf8279D,
-    bsc: 0x2F4F56B504A432d733eb2a475d3F740246B8d13a,
-    unichain: 0xAEdC22891103F031779ed863B454E7A404e24F1C,
-    sepolia: 0xaE1af5419d4643Bf91e0e3F9715a6D0B468Ad42c
-]
-EOracle: [
-    arbitrum: 0x4E1A9064b8DA32CA1161CDB10CEE1614bd1506D3,
-    bsc: 0xa917e5Ec3D0421eAA9A68236CC75a0833fbb71C0,
-    unichain: 0x180fFD810EFf8b9D976aA925535844A7Faea2A2F,
-    sepolia: 0x4AF3dff41D760954534E6E015a12b4cAc15f1FB1
-]
+<pre><code><strong>ExtensionsMap: 0x64138543eA39aE7f82E9B16aFfFB0216cFC29B92
+</strong>EUpgrade 0x6A17ca05b112485Bd5c73215F275Baff7F980ac6
+EApps (unichain): 0xAEdC22891103F031779ed863B454E7A404e24F1C
+EOracle (unichain): 0x180fFD810EFf8b9D976aA925535844A7Faea2A2F
 </code></pre>
 
 ## Adapters
