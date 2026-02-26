@@ -7,5 +7,6 @@ Currently the Rigoblock protocol supports the following external applications
 3. GRG Staking
 4. Rigoblock Governance
 5. Across - Superfast crosschain transfers
+6. 0x Aggregator - a ton of liquidity sources
 
 Further applications can be flexibly added by the governance based on demand.

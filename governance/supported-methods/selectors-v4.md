@@ -49,3 +49,9 @@ can be called by Rigoblock pools to interact with new external applications with
 ```
 "770d096f": "depositV3(AcrossParams)"
 ```
+
+### A0xRouter
+
+```
+"0x2213bc0b": "exec(address, address, uint256, bytes)"
+```
