@@ -55,3 +55,13 @@ can be called by Rigoblock pools to interact with new external applications with
 ```
 "0x2213bc0b": "exec(address, address, uint256, bytes)"
 ```
+
+### AGmxV2 (Arbitrum-only)
+
+<pre><code>"0x7489ec23": "cancelOrder(bytes32)"
+"0xe9249b57": "claimCollateral(address[],address[],address[],address)"
+"0xc41b1ab3": "claimFundingFees(address[],address[],address)"
+<strong>"0xe478512e": "createDecreaseOrder(CreateOrderParams)"
+</strong>"0x13b4312f": "createIncreaseOrder(CreateOrderParams)"
+"0xdd5baad2": "updateOrder(bytes32,uint256,uint256,uint256,uint256,uint256,bool)"
+</code></pre>
