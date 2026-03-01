@@ -56,7 +56,7 @@ can be called by Rigoblock pools to interact with new external applications with
 "0x2213bc0b": "exec(address, address, uint256, bytes)"
 ```
 
-### AGmxV2 (Arbitrum-only)
+### AGmxV2 (Arbitrum)
 
 <pre><code>"0x7489ec23": "cancelOrder(bytes32)"
 "0xe9249b57": "claimCollateral(address[],address[],address[],address)"
