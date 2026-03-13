@@ -1,19 +1,21 @@
-# Deployments
+---
+description: The smart contract used in the Rigoblock ecosystem
+---
 
-Rigoblock has been deployed on multiple blockchains using [deterministic deployment](https://ethereum-magicians.org/t/deterministic-deployment-proxy-magic-wrapped-in-magic/3261). Currently supported mainnet chains are:
+# Contracts
 
-* Ethereum Mainnet
-* Arbitrum
-* Base
-* Optimism
-* Bsc
-* Unichain
-* Polygon (V3 only, soft-deprecated in V4)
-
-{% content-ref url="deployed-contracts-v4.md" %}
-[deployed-contracts-v4.md](deployed-contracts-v4.md)
+{% content-ref url="protocol/" %}
+[protocol](protocol/)
 {% endcontent-ref %}
 
-{% content-ref url="deployed-contracts-v3.md" %}
-[deployed-contracts-v3.md](deployed-contracts-v3.md)
+{% content-ref url="grg-token/" %}
+[grg-token](grg-token/)
+{% endcontent-ref %}
+
+{% content-ref url="grg-staking/" %}
+[grg-staking](grg-staking/)
+{% endcontent-ref %}
+
+{% content-ref url="../governance/" %}
+[governance](../governance/)
 {% endcontent-ref %}
