@@ -8,7 +8,7 @@ Rigoblock has been deployed on multiple blockchains using [deterministic deploym
 * Optimism
 * Bsc
 * Unichain
-* Polygon (V3 only, soft-deprecated in V4)
+* Polygon
 
 {% content-ref url="deployed-contracts-v4.md" %}
 [deployed-contracts-v4.md](deployed-contracts-v4.md)
