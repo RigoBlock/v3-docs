@@ -35,7 +35,7 @@ The following is a non-exhaustive list of known potential attack vectors:
 * **Crosschain Sync Latency**\
   While single-chain pool price is updated in real time, the price will differ across chains until a Sync operation is prompted by the pool operator. These operations can be sent programmatically, and are entirely under the pool operator's control.
 * **Chains that do not use address(0) as Native Currency**\
-  Polygon (or any similar chain that use a token as base currency) are not currently supported by the v4 protocol.
+  Chains that use a token as base currency are not currently supported by the v4 protocol.
 * **Chains that do not Support Transient Storage Opcodes**\
   Chains that do not support transient storage are not compatible with Rigoblock V4.
 
