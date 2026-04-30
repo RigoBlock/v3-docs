@@ -1,27 +1,21 @@
 # TWAP Order
 
-````md
-# TWAP Orders — Technical Specification
+## TWAP Orders — Technical Specification
 
-> This document describes the TWAP (Time-Weighted Average Price) order system
-> built into the Rigoblock Agentic Operator. It covers the data model, execution
-> pipeline, safety controls, and API surface for integrators interested in
-> building on top of or integrating with TWAP execution.
+> This document describes the TWAP (Time-Weighted Average Price) order system built into the Rigoblock Agentic Operator. It covers the data model, execution pipeline, safety controls, and API surface for integrators interested in building on top of or integrating with TWAP execution.
 
----
+***
 
-## What Is a TWAP Order?
+### What Is a TWAP Order?
 
-A TWAP order splits a large swap into **N equal-sized slices** executed at
-**regular time intervals**. The goal is to reduce price impact on the DEX by
-spreading the trade over time rather than executing it as a single atomic swap.
+A TWAP order splits a large swap into **N equal-sized slices** executed at **regular time intervals**. The goal is to reduce price impact on the DEX by spreading the trade over time rather than executing it as a single atomic swap.
 
 A TWAP order:
 
-- Executes deterministically — no LLM judgment in the execution loop
-- Runs autonomously on a cron schedule (minimum 5-minute intervals)
-- Has a defined total amount, slice size, and duration
-- Supports both **buy-side** (exact-output) and **sell-side** (exact-input) semantics
+* Executes deterministically — no LLM judgment in the execution loop
+* Runs autonomously on a cron schedule (minimum 5-minute intervals)
+* Has a defined total amount, slice size, and duration
+* Supports both **buy-side** (exact-output) and **sell-side** (exact-input) semantics
 
 **Example:**
 
@@ -29,11 +23,11 @@ A TWAP order:
 >
 > → 5 slices × 20 GRG (exact-output) × 5-minute interval = completes in 25 minutes
 
----
+***
 
-## How TWAP Orders Work
+### How TWAP Orders Work
 
-### Lifecycle
+#### Lifecycle
 
 ```
 create_twap_order
@@ -69,9 +63,9 @@ create_twap_order
   save updated order state
 ```
 
----
+***
 
-## Data Model
+### Data Model
 
 ```typescript
 interface TwapOrder {
@@ -102,11 +96,9 @@ interface TwapOrder {
 }
 ```
 
-### swapMeta — Slice Fill Data
+#### swapMeta — Slice Fill Data
 
-When a slice executes, the `build_vault_swap` tool returns an `UnsignedTransaction`
-that includes a `swapMeta` object. The TWAP executor reads this to update
-the order's accounting fields (`amountSpent`, `totalBought`):
+When a slice executes, the `build_vault_swap` tool returns an `UnsignedTransaction` that includes a `swapMeta` object. The TWAP executor reads this to update the order's accounting fields (`amountSpent`, `totalBought`):
 
 ```typescript
 interface SwapMeta {
@@ -119,10 +111,9 @@ interface SwapMeta {
 }
 ```
 
-If the TWAP executor cannot read `swapMeta` from the returned transaction (e.g.,
-the tool returned an error), the slice failure is recorded but `amountSpent` and
-`totalBought` are not updated for that slice.
-```
+If the TWAP executor cannot read `swapMeta` from the returned transaction (e.g., the tool returned an error), the slice failure is recorded but `amountSpent` and `totalBought` are not updated for that slice.
+
+````
 
 ### Key Invariants
 
@@ -159,36 +150,26 @@ const toolArgs = side === "buy"
   ? { tokenOut: buyRef, tokenIn: sellRef, amountOut: order.sliceAmount, dex: order.dex }
   : { tokenIn: sellRef, tokenOut: buyRef, amountIn: order.sliceAmount, dex: order.dex };
 toolArgs.chain = chainName;
-```
+````
 
-This is **identical** to the standard swap tool call path — it goes through the
-same safety stack as a manually triggered swap.
+This is **identical** to the standard swap tool call path — it goes through the same safety stack as a manually triggered swap.
 
-### Safety Controls Applied on Every TWAP Slice
+#### Safety Controls Applied on Every TWAP Slice
 
-#### 1. Swap Shield (Oracle Price Protection)
+**1. Swap Shield (Oracle Price Protection)**
 
-Before building swap calldata, the system compares the DEX quote against the
-vault's on-chain BackgeoOracle TWAP price:
+Before building swap calldata, the system compares the DEX quote against the vault's on-chain BackgeoOracle TWAP price:
 
-- Uses `vault.convertTokenAmount(tokenIn, amountIn, tokenOut)` — a 5-minute TWAP oracle
-- Blocks if DEX quote is **>5% worse** than oracle (bad fill for the vault)
-- Blocks if DEX quote is **>10% better** than oracle (stale oracle or manipulated route)
-- Gracefully allows the swap when the oracle has no price feed for a token (`NO_PRICE_FEED`)
-    within vaults, this case only allows selling non-tracked tokens (i.e. airdrops or direct
-    transfers.
+* Uses `vault.convertTokenAmount(tokenIn, amountIn, tokenOut)` — a 5-minute TWAP oracle
+* Blocks if DEX quote is **>5% worse** than oracle (bad fill for the vault)
+* Blocks if DEX quote is **>10% better** than oracle (stale oracle or manipulated route)
+* Gracefully allows the swap when the oracle has no price feed for a token (`NO_PRICE_FEED`) within vaults, this case only allows selling non-tracked tokens (i.e. airdrops or direct transfers.
 
-This prevents TWAP orders from executing at unfavorable prices due to poor liquidity,
-stale DEX state, or oracle manipulation.
+This prevents TWAP orders from executing at unfavorable prices due to poor liquidity, stale DEX state, or oracle manipulation.
 
-**Swap Shield and TWAP timing:** The `disable_swap_shield` tool sets a 10-minute TTL
-opt-out window. TWAP slices fire at cron time (minimum 5-minute intervals), so a
-disabled shield can affect subsequent slices that fire within the TTL window. The
-shield auto-re-enables after the TTL expires — the operator must re-disable it if
-they want multiple consecutive slices to bypass it. Partial shield opt-out (one slice
-at a time) is not supported; the TTL applies globally to the vault.
+**Swap Shield and TWAP timing:** The `disable_swap_shield` tool sets a 10-minute TTL opt-out window. TWAP slices fire at cron time (minimum 5-minute intervals), so a disabled shield can affect subsequent slices that fire within the TTL window. The shield auto-re-enables after the TTL expires — the operator must re-disable it if they want multiple consecutive slices to bypass it. Partial shield opt-out (one slice at a time) is not supported; the TTL applies globally to the vault.
 
-#### 2. NAV Shield Pre-Check
+**2. NAV Shield Pre-Check**
 
 Before the slice transaction is built and returned, the system atomically simulates:
 
@@ -196,18 +177,13 @@ Before the slice transaction is built and returned, the system atomically simula
 multicall([swap_calldata, updateUnitaryValue()])
 ```
 
-If the simulated post-swap NAV drops **>10%** versus the pre-swap NAV (or the
-24-hour baseline, whichever is higher), the slice is **blocked** and an error
-is recorded.
+If the simulated post-swap NAV drops **>10%** versus the pre-swap NAV (or the 24-hour baseline, whichever is higher), the slice is **blocked** and an error is recorded.
 
-#### 3. NAV Shield at Broadcast Time (auto-execute mode)
+**3. NAV Shield at Broadcast Time (auto-execute mode)**
 
-For `autoExecute: true`, a second NAV shield check runs inside `executeTxList()`
-immediately before the CDP-signed transaction is broadcast. This is a
-belt-and-suspenders check in case market conditions changed between building
-and broadcasting the calldata.
+For `autoExecute: true`, a second NAV shield check runs inside `executeTxList()` immediately before the CDP-signed transaction is broadcast. This is a belt-and-suspenders check in case market conditions changed between building and broadcasting the calldata.
 
-#### 4. Seven-Point Execution Validation
+**4. Seven-Point Execution Validation**
 
 For `autoExecute: true`, `executeTxList()` runs the full 7-point validation:
 
@@ -219,22 +195,22 @@ For `autoExecute: true`, `executeTxList()` runs the full 7-point validation:
 6. Agent wallet has sufficient ETH for gas - unless sponsored transaction
 7. Gas fees within per-chain hard caps
 
-#### 5. Slippage Protection
+**5. Slippage Protection**
 
 Default slippage: **1% (100 bps)**. Configurable by the operator via:
-- `set_default_slippage` tool (persisted per operator in KV)
-- `slippageBps` field in the chat request body
 
-Clamped to [10, 500] bps (0.1%–5%). The LLM cannot set slippage directly.
+* `set_default_slippage` tool (persisted per operator in KV)
+* `slippageBps` field in the chat request body
 
-#### 6. Auto-Pause on Failure
+Clamped to \[10, 500] bps (0.1%–5%). The LLM cannot set slippage directly.
 
-After **3 consecutive slice failures**, the order is automatically paused (`active = false`).
-The operator is notified via Telegram on every failure (not just on auto-pause).
+**6. Auto-Pause on Failure**
 
----
+After **3 consecutive slice failures**, the order is automatically paused (`active = false`). The operator is notified via Telegram on every failure (not just on auto-pause).
 
-## Execution Context
+***
+
+### Execution Context
 
 When a TWAP slice fires at cron time, the request context is:
 
@@ -248,36 +224,32 @@ const ctx: RequestContext = {
 };
 ```
 
-`isBrowserRequest: false` bypasses the browser auth gate (which requires a connected
-wallet), since TWAP slices run server-side without a browser session. Security is
-maintained via delegation verification in the execution pipeline.
+`isBrowserRequest: false` bypasses the browser auth gate (which requires a connected wallet), since TWAP slices run server-side without a browser session. Security is maintained via delegation verification in the execution pipeline.
 
----
+***
 
-## Manual vs Autonomous Mode
+### Manual vs Autonomous Mode
 
-| Mode | `autoExecute` | Behavior |
-|------|--------------|---------|
-| **Manual** | `false` (default) | LLM analyzes + builds tx, sends Telegram notification. No on-chain execution. |
-| **Autonomous** | `true` | Builds tx + broadcasts via CDP agent wallet. Operator notified after execution. |
+| Mode           | `autoExecute`     | Behavior                                                                        |
+| -------------- | ----------------- | ------------------------------------------------------------------------------- |
+| **Manual**     | `false` (default) | LLM analyzes + builds tx, sends Telegram notification. No on-chain execution.   |
+| **Autonomous** | `true`            | Builds tx + broadcasts via CDP agent wallet. Operator notified after execution. |
 
-Both modes apply the Swap Shield and NAV pre-check when building the transaction.
-Only autonomous mode applies the broadcast-time NAV check and 7-point validation.
+Both modes apply the Swap Shield and NAV pre-check when building the transaction. Only autonomous mode applies the broadcast-time NAV check and 7-point validation.
 
-For autonomous mode, the vault must have **active delegation** to the agent wallet
-on the target chain, with the `execute()` selector included.
+For autonomous mode, the vault must have **active delegation** to the agent wallet on the target chain, with the `execute()` selector included.
 
----
+***
 
-## KV Storage Schema
+### KV Storage Schema
 
-| Key | Value | TTL |
-|-----|-------|-----|
-| `twap:{vault}` | JSON array of `TwapOrder[]` (active + up to 20 closed) | none |
-| `twap-hwm:{vault}` | Highest ID ever assigned (integer string) | none |
-| `twap-events:{vault}` | JSON array of `TwapEvent[]` (last 20 events) | 24h |
+| Key                   | Value                                                  | TTL  |
+| --------------------- | ------------------------------------------------------ | ---- |
+| `twap:{vault}`        | JSON array of `TwapOrder[]` (active + up to 20 closed) | none |
+| `twap-hwm:{vault}`    | Highest ID ever assigned (integer string)              | none |
+| `twap-events:{vault}` | JSON array of `TwapEvent[]` (last 20 events)           | 24h  |
 
-### TwapEvent Schema
+#### TwapEvent Schema
 
 ```typescript
 interface TwapEvent {
@@ -292,17 +264,15 @@ interface TwapEvent {
 }
 ```
 
-Events are served via `GET /api/strategy-events?vault=0x…&since={timestamp}` and
-polled by the frontend to show slice history.
+Events are served via `GET /api/strategy-events?vault=0x…&since={timestamp}` and polled by the frontend to show slice history.
 
----
+***
 
-## API Tools
+### API Tools
 
-TWAP orders are created and managed via the `/api/chat` endpoint using the
-following tools:
+TWAP orders are created and managed via the `/api/chat` endpoint using the following tools:
 
-### `create_twap_order`
+#### `create_twap_order`
 
 ```json
 {
@@ -320,82 +290,74 @@ following tools:
 
 **Returns:** Confirmation message with order ID, duration, and mode.
 
-### `cancel_twap_order`
+#### `cancel_twap_order`
 
 ```json
 { "id": 3 }          // cancel specific order
 { "id": 0 }          // cancel all active orders
 ```
 
-### `list_twap_orders`
+#### `list_twap_orders`
 
-No parameters. Returns formatted list of all orders (active and closed)
-with progress, amounts spent, and status.
+No parameters. Returns formatted list of all orders (active and closed) with progress, amounts spent, and status.
 
-**Alias:** `list_strategies` maps to the same handler — both names work
-interchangeably in the chat interface.
+**Alias:** `list_strategies` maps to the same handler — both names work interchangeably in the chat interface.
 
----
+***
 
-## Fast-Path Processing
+### Fast-Path Processing
 
-The chat agent includes a **regex-based fast path** for commonly phrased TWAP
-commands. When a message matches the fast path, the TWAP order is created directly
-without invoking the LLM — reducing latency and cost.
+The chat agent includes a **regex-based fast path** for commonly phrased TWAP commands. When a message matches the fast path, the TWAP order is created directly without invoking the LLM — reducing latency and cost.
 
 The fast path activates when the message contains both:
-- `"every N minutes"` — sets `intervalMinutes`
-- `"X at a time"` — sets `sliceAmount`
+
+* `"every N minutes"` — sets `intervalMinutes`
+* `"X at a time"` — sets `sliceAmount`
 
 Examples that hit the fast path:
+
 ```
 "Sell 1 ETH for USDC, 0.2 at a time, every 10 minutes"
 "Buy 100 GRG with ETH, 20 at a time, every 5 minutes, auto-execute"
 ```
 
-If neither pattern is present, the full inference path handles the request.
-The LLM is always invoked for ambiguous phrasing, multi-step requests, or when
-the user asks follow-up questions about an order.
+If neither pattern is present, the full inference path handles the request. The LLM is always invoked for ambiguous phrasing, multi-step requests, or when the user asks follow-up questions about an order.
 
 The fast path also handles:
-- `"list twap orders"` / `"list strategies"` → `list_twap_orders`
-- `"cancel twap {id}"` / `"cancel all twap orders"` → `cancel_twap_order`
-- `"enable/disable swap shield"` → `enable_swap_shield` / `disable_swap_shield`
 
----
+* `"list twap orders"` / `"list strategies"` → `list_twap_orders`
+* `"cancel twap {id}"` / `"cancel all twap orders"` → `cancel_twap_order`
+* `"enable/disable swap shield"` → `enable_swap_shield` / `disable_swap_shield`
 
-## Constraints
+***
 
-| Constraint | Value |
-|-----------|-------|
-| Max active orders per vault | 3 |
-| Max stored closed orders per vault | 20 |
-| Minimum interval | 5 minutes |
-| Max consecutive failures before auto-pause | 3 |
-| Max stored events | 20 (per vault, 24h TTL) |
+### Constraints
 
----
+| Constraint                                 | Value                   |
+| ------------------------------------------ | ----------------------- |
+| Max active orders per vault                | 3                       |
+| Max stored closed orders per vault         | 20                      |
+| Minimum interval                           | 5 minutes               |
+| Max consecutive failures before auto-pause | 3                       |
+| Max stored events                          | 20 (per vault, 24h TTL) |
 
-## Delegation Requirements (Autonomous Mode)
+***
 
-For `autoExecute: true`, the vault must have **active on-chain delegation** to the
-agent wallet for each function selector the TWAP executor will call.
+### Delegation Requirements (Autonomous Mode)
 
-### How Rigoblock Delegation Works
+For `autoExecute: true`, the vault must have **active on-chain delegation** to the agent wallet for each function selector the TWAP executor will call.
 
-Rigoblock vaults implement a **granular per-selector delegation system**.
-The vault contract maintains a permission mapping:
+#### How Rigoblock Delegation Works
+
+Rigoblock vaults implement a **granular per-selector delegation system**. The vault contract maintains a permission mapping:
 
 ```
 delegation().selectorToAddressPosition[bytes4 selector][address agent] → bool
 ```
 
-When a call arrives at the vault's fallback, the contract checks this mapping
-before forwarding the call to the appropriate adapter. If the calling address
-is not delegated for that selector, the call reverts.
+When a call arrives at the vault's fallback, the contract checks this mapping before forwarding the call to the appropriate adapter. If the calling address is not delegated for that selector, the call reverts.
 
-The operator grants permissions by sending an `updateDelegation(Delegation[])` transaction
-from their EOA (the vault owner address):
+The operator grants permissions by sending an `updateDelegation(Delegation[])` transaction from their EOA (the vault owner address):
 
 ```solidity
 struct Delegation {
@@ -405,17 +367,18 @@ struct Delegation {
 }
 ```
 
-Revocation is atomic: `revokeAllDelegations(agentAddress)` removes all selectors
-for the agent in a single call.
+Revocation is atomic: `revokeAllDelegations(agentAddress)` removes all selectors for the agent in a single call.
 
-### Setting Up Delegation
+#### Setting Up Delegation
 
 Via the chat interface (browser or API):
+
 ```
 "Set up delegation on Base"
 ```
 
 Or programmatically:
+
 ```
 POST /api/delegation/setup   →  unsigned updateDelegation() tx
   [operator signs + broadcasts]
@@ -423,58 +386,43 @@ POST /api/delegation/confirm →  stores delegation state in KV
 ```
 
 The operator can revoke all permissions instantly at any time:
+
 ```
 "Revoke delegation on Base"
 ```
+
 Or on-chain: `pool.revokeAllDelegations(agentAddress)`.
 
-### EIP-7702 — Code Delegation (Pectra)
+#### EIP-7702 — Code Delegation (Pectra)
 
-EIP-7702, introduced in Ethereum's Pectra upgrade, allows an **EOA to temporarily
-adopt smart contract code** within a single transaction. It is designed for
-smart-wallet use cases: a user's EOA can batch calls, pay gas in ERC-20 tokens,
-or execute sponsored transactions by delegating to a chosen implementation contract
-for the duration of one transaction.
+EIP-7702, introduced in Ethereum's Pectra upgrade, allows an **EOA to temporarily adopt smart contract code** within a single transaction. It is designed for smart-wallet use cases: a user's EOA can batch calls, pay gas in ERC-20 tokens, or execute sponsored transactions by delegating to a chosen implementation contract for the duration of one transaction.
 
-**TWAP does not use EIP-7702.** The agent wallet is a CDP-managed EOA with its own
-signing capability — it does not need to adopt smart contract code. The delegation
-problem TWAP solves is different: it is not "allow this EOA to batch-call during
-one transaction" but rather "allow this external EOA to call specific vault functions
-indefinitely, until the operator revokes." That is a **persistent, contract-level**
-permission that EIP-7702 (which is transaction-scoped and EOA-level) cannot express.
+**TWAP does not use EIP-7702.** The agent wallet is a CDP-managed EOA with its own signing capability — it does not need to adopt smart contract code. The delegation problem TWAP solves is different: it is not "allow this EOA to batch-call during one transaction" but rather "allow this external EOA to call specific vault functions indefinitely, until the operator revokes." That is a **persistent, contract-level** permission that EIP-7702 (which is transaction-scoped and EOA-level) cannot express.
 
-### EIP-7715 — Scoped Wallet Permissions (`wallet_grantPermissions`)
+#### EIP-7715 — Scoped Wallet Permissions (`wallet_grantPermissions`)
 
-EIP-7715 proposes a wallet RPC method (`wallet_grantPermissions`) for granting
-**scoped permissions** to dApps or agents — specifying which functions they may call,
-with which parameters, and under which conditions (spend limits, expiry, allowed
-contracts). This is the EIP that most closely resembles Rigoblock's delegation model.
+EIP-7715 proposes a wallet RPC method (`wallet_grantPermissions`) for granting **scoped permissions** to dApps or agents — specifying which functions they may call, with which parameters, and under which conditions (spend limits, expiry, allowed contracts). This is the EIP that most closely resembles Rigoblock's delegation model.
 
 **Conceptual alignment:**
-- Both are selector-scoped (specific `bytes4` function signatures)
-- Both are address-bound (permission granted to a specific agent address)
-- Both support revocation
+
+* Both are selector-scoped (specific `bytes4` function signatures)
+* Both are address-bound (permission granted to a specific agent address)
+* Both support revocation
 
 **Key difference in layer:**
-- EIP-7715 operates at the **wallet level** — the permission is enforced by the
-  user's wallet before it signs any transaction.
-- Rigoblock delegation operates at the **vault contract level** — the permission is
-  enforced on-chain inside the vault's fallback function, independent of who signs
-  or how.
 
-As EIP-7715 matures, an operator could use it to further constrain what the agent's
-wallet is permitted to sign (e.g., only transactions targeting this specific vault),
-complementing the existing on-chain vault delegation. The two layers are not mutually
-exclusive — vault-level delegation remains the primary enforcement layer.
+* EIP-7715 operates at the **wallet level** — the permission is enforced by the user's wallet before it signs any transaction.
+* Rigoblock delegation operates at the **vault contract level** — the permission is enforced on-chain inside the vault's fallback function, independent of who signs or how.
 
----
+As EIP-7715 matures, an operator could use it to further constrain what the agent's wallet is permitted to sign (e.g., only transactions targeting this specific vault), complementing the existing on-chain vault delegation. The two layers are not mutually exclusive — vault-level delegation remains the primary enforcement layer.
 
-## EIPs and Standards Used
+***
 
-### EIP-191: Signed Data Standard
+### EIPs and Standards Used
 
-Used for **operator authentication**. When setting up TWAP orders via the chat
-or API, the operator must sign:
+#### EIP-191: Signed Data Standard
+
+Used for **operator authentication**. When setting up TWAP orders via the chat or API, the operator must sign:
 
 ```
 Welcome to Rigoblock Operator
@@ -482,10 +430,9 @@ Welcome to Rigoblock Operator
 Sign this message to verify your wallet and access your smart pool assistant.
 ```
 
-The signature is verified server-side via `viem.verifyMessage()`. Valid for 24 hours.
-Purpose: proves the caller owns the vault operator wallet, not just the x402 payer wallet.
+The signature is verified server-side via `viem.verifyMessage()`. Valid for 24 hours. Purpose: proves the caller owns the vault operator wallet, not just the x402 payer wallet.
 
-### EIP-712: Typed Structured Data Hashing (implicit)
+#### EIP-712: Typed Structured Data Hashing (implicit)
 
 The Rigoblock vault's `updateDelegation()` function uses typed structs:
 
@@ -497,53 +444,41 @@ struct Delegation {
 }
 ```
 
-When the operator sets up delegation, they sign and send `updateDelegation(Delegation[])`
-from their EOA. This grants the agent wallet selector-level permissions.
+When the operator sets up delegation, they sign and send `updateDelegation(Delegation[])` from their EOA. This grants the agent wallet selector-level permissions.
 
-### EIP-1193: Ethereum Provider JavaScript API
+#### EIP-1193: Ethereum Provider JavaScript API
 
-The TWAP creation flow runs inside the chat agent. Actual slice execution
-(for autonomous mode) uses the **CDP Server Wallet** (Coinbase Developer Platform).
-CDP manages the agent's private key server-side in a TEE (Trusted Execution Environment) —
-the key never appears in Worker code or KV storage. The CDP account is wrapped into a
-viem-compatible `EvmServerAccount` / `LocalAccount` interface for signing.
+The TWAP creation flow runs inside the chat agent. Actual slice execution (for autonomous mode) uses the **CDP Server Wallet** (Coinbase Developer Platform). CDP manages the agent's private key server-side in a TEE (Trusted Execution Environment) — the key never appears in Worker code or KV storage. The CDP account is wrapped into a viem-compatible `EvmServerAccount` / `LocalAccount` interface for signing.
 
-For manual mode, the slice transaction is returned as unsigned calldata (same as
-all other vault transactions) and the operator signs it via their connected wallet
-using the standard `eth_sendTransaction` call.
+For manual mode, the slice transaction is returned as unsigned calldata (same as all other vault transactions) and the operator signs it via their connected wallet using the standard `eth_sendTransaction` call.
 
-### x402: HTTP Micropayments (RFC Draft)
+#### x402: HTTP Micropayments (RFC Draft)
 
-TWAP orders are created via the `/api/chat` endpoint, which is x402-gated at
-**$0.015 USDC per request** (paid on Base mainnet). The x402 payment is an
-**API access fee** — it does NOT authorize vault operations. Vault authorization
-requires a separate operator signature (EIP-191) AND active on-chain delegation.
-These are completely independent layers: a request may have x402 payment without
-operator auth (anonymous mode, receives unsigned calldata only) or both (full access
-including delegated execution).
+TWAP orders are created via the `/api/chat` endpoint, which is x402-gated at **$0.015 USDC per request** (paid on Base mainnet). The x402 payment is an **API access fee** — it does NOT authorize vault operations. Vault authorization requires a separate operator signature (EIP-191) AND active on-chain delegation. These are completely independent layers: a request may have x402 payment without operator auth (anonymous mode, receives unsigned calldata only) or both (full access including delegated execution).
 
-See [AGENTS.md](../AGENTS.md) for full x402 setup instructions.
+See AGENTS.md for full x402 setup instructions.
 
----
+***
 
-## Observability
+### Observability
 
-### Telegram Notifications
+#### Telegram Notifications
 
 If Telegram is paired (`/api/telegram/pair`), the operator receives:
 
-- **Per-slice execution** (autonomous mode): swap amounts, progress fraction, tx link
-- **Order completion**: total spent/bought summary
-- **Slice failure**: error message + Tenderly debug calldata (to/from/value/data)
-- **Auto-pause**: notification when 3 consecutive failures occur
+* **Per-slice execution** (autonomous mode): swap amounts, progress fraction, tx link
+* **Order completion**: total spent/bought summary
+* **Slice failure**: error message + Tenderly debug calldata (to/from/value/data)
+* **Auto-pause**: notification when 3 consecutive failures occur
 
-### Strategy Events Polling
+#### Strategy Events Polling
 
 ```
 GET /api/strategy-events?vault=0xYourVault&since=1700000000000
 ```
 
 Returns:
+
 ```json
 {
   "events": [
@@ -558,28 +493,25 @@ Returns:
 }
 ```
 
----
+***
 
-## Security Properties
+### Security Properties
 
 TWAP orders cannot:
 
-| Action | Reason |
-|--------|--------|
-| Execute without delegation | Agent wallet only has whitelisted selectors |
-| Execute a swap that drops NAV >10% | NAV shield blocked at build AND broadcast time |
-| Execute at an unfavorable price | Swap Shield compares against on-chain TWAP oracle |
-| Call arbitrary contracts | Transaction target must equal vault address |
-| Exceed gas caps | Hard-coded per-chain gas limits |
+| Action                             | Reason                                            |
+| ---------------------------------- | ------------------------------------------------- |
+| Execute without delegation         | Agent wallet only has whitelisted selectors       |
+| Execute a swap that drops NAV >10% | NAV shield blocked at build AND broadcast time    |
+| Execute at an unfavorable price    | Swap Shield compares against on-chain TWAP oracle |
+| Call arbitrary contracts           | Transaction target must equal vault address       |
+| Exceed gas caps                    | Hard-coded per-chain gas limits                   |
 
-The vault contract enforces these constraints on-chain, independently of the
-agent or TWAP scheduler code. Even a compromised Worker cannot bypass the
-on-chain delegation mapping.
+The vault contract enforces these constraints on-chain, independently of the agent or TWAP scheduler code. Even a compromised Worker cannot bypass the on-chain delegation mapping.
 
----
+***
 
-
-## Example: Creating a TWAP Order via x402
+### Example: Creating a TWAP Order via x402
 
 ```typescript
 import { x402Client, x402HTTPClient } from "@x402/core/client";
@@ -636,12 +568,11 @@ if (res.status === 402) {
 }
 ```
 
----
+***
 
-## Direct Tool API (x402)
+### Direct Tool API (x402)
 
-You can also call the `create_twap_order` tool directly without going through
-the LLM, using `POST /api/tools/create_twap_order`:
+You can also call the `create_twap_order` tool directly without going through the LLM, using `POST /api/tools/create_twap_order`:
 
 ```bash
 curl -X POST https://trader.rigoblock.com/api/tools/create_twap_order \
@@ -664,25 +595,20 @@ curl -X POST https://trader.rigoblock.com/api/tools/create_twap_order \
   }'
 ```
 
----
+***
 
-## Comparison with Strategy System
+### Comparison with Strategy System
 
-The Rigoblock Agentic Operator also has a general **strategy system** (LLM-driven)
-where an LLM evaluates market conditions and decides whether to execute a trade.
-TWAP orders differ fundamentally:
+The Rigoblock Agentic Operator also has a general **strategy system** (LLM-driven) where an LLM evaluates market conditions and decides whether to execute a trade. TWAP orders differ fundamentally:
 
-| Aspect | TWAP Orders | LLM Strategies |
-|--------|-------------|----------------|
-| Execution logic | Deterministic (always executes on schedule) | LLM judgment (may skip if conditions unfavorable) |
-| Tool calls | Direct tool dispatch (no LLM involved) | LLM decides what to call |
-| Latency | Low (sub-second build time) | Higher (LLM inference) |
-| Cost | Lower (no LLM tokens on execution) | Higher (LLM tokens per run) |
-| Flexibility | Fixed: swap at regular intervals | Flexible: any supported operation |
-| Monitoring | Per-slice events + Telegram | Per-run recommendations + Telegram |
-| Failure handling | Auto-pause at 3 failures | Auto-pause at 3 failures |
+| Aspect           | TWAP Orders                                 | LLM Strategies                                    |
+| ---------------- | ------------------------------------------- | ------------------------------------------------- |
+| Execution logic  | Deterministic (always executes on schedule) | LLM judgment (may skip if conditions unfavorable) |
+| Tool calls       | Direct tool dispatch (no LLM involved)      | LLM decides what to call                          |
+| Latency          | Low (sub-second build time)                 | Higher (LLM inference)                            |
+| Cost             | Lower (no LLM tokens on execution)          | Higher (LLM tokens per run)                       |
+| Flexibility      | Fixed: swap at regular intervals            | Flexible: any supported operation                 |
+| Monitoring       | Per-slice events + Telegram                 | Per-run recommendations + Telegram                |
+| Failure handling | Auto-pause at 3 failures                    | Auto-pause at 3 failures                          |
 
-TWAP orders are the right choice for mechanical, scheduled execution.
-LLM strategies are better for adaptive, market-condition-sensitive execution.
-
-````
+TWAP orders are the right choice for mechanical, scheduled execution. LLM strategies are better for adaptive, market-condition-sensitive execution.
