@@ -14,6 +14,7 @@
 * [Oracles and Price Feeds](oracles-and-price-feeds.md)
 * [AI Agents](ai-agents/README.md)
   * [TWAP Order](ai-agents/twap-order.md)
+  * [Swap Shield](ai-agents/swap-shield.md)
 * [Protocol fee](protocol-fee/README.md)
   * [Overview](protocol-fee/overview.md)
   * [Deployments](protocol-fee/deployments.md)
