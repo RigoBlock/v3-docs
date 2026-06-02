@@ -6,7 +6,7 @@ description: Oracle-protected Swaps
 
 Rigoblock offers oracle-protected swaps. Every quote is compared against an oracle price and the API returns the deviation from said price. Integrators can inspect the reponse, and decide whether the quote should be executed or not. When a price feed is not available for the target token pair, a `false` boolean is returned alongside a null `oracleAmount`.&#x20;
 
-The trader.rigoblock.com agent blocks rogue swaps via the Swap Shield - a component outside of control of the agent that reverts any trade that is 5% off the oracle price. It is the first line of defense in Rigoblock’s two-layer agent safety stack and is enabled by default on every trade.
+The trader.rigoblock.com agent blocks rogue swaps via the Swap Shield - a component outside of control of the agent that reverts any trade that is off the oracle price. It is the first line of defense in Rigoblock’s two-layer agent safety stack and is enabled by default on every trade.
 
 ### How Swap Shield Works
 
@@ -16,6 +16,7 @@ The trade is instantly blocked if the DEX quote deviates more than 5 percent in 
 
 * More than 5 percent worse than oracle → protects against bad fills, low liquidity, or stale DEX state
 * More than 5 percent better than oracle → protects against manipulation, front-running, or stale oracle routes
+* The default 5% deviation can be adjusted by the user in the range of 0.1% and 50%, outside of control of the agent (meaning the agent cannot modify the parameter to execute a swap outside the operator-defined or default deviation - protected from prompt injection attacks).
 
 If the oracle returns NO\_PRICE\_FEED for a token Swap Shield gracefully allows the swap. This is reserved for legitimate actions such as selling airdrops or tokens received via direct transfer. Otherwise, tokens held by the Rigoblock smart pools are guaranteed to have a price feed.
 

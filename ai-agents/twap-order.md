@@ -158,16 +158,12 @@ This is **identical** to the standard swap tool call path — it goes through th
 
 **1. Swap Shield (Oracle Price Protection)**
 
-Before building swap calldata, the system compares the DEX quote against the vault's on-chain BackgeoOracle TWAP price:
+Before building swap calldata, the system compares the DEX quote against the vault's on-chain BackgeoOracle price:
 
-* Uses `vault.convertTokenAmount(tokenIn, amountIn, tokenOut)` — a 5-minute TWAP oracle
-* Blocks if DEX quote is **>5% worse** than oracle (bad fill for the vault)
-* Blocks if DEX quote is **>10% better** than oracle (stale oracle or manipulated route)
-* Gracefully allows the swap when the oracle has no price feed for a token (`NO_PRICE_FEED`) within vaults, this case only allows selling non-tracked tokens (i.e. airdrops or direct transfers.
+* Blocks if DEX quote is **>5% off** than oracle
+* Gracefully allows the swap when the oracle has no price feed for a token (`NO_PRICE_FEED`) within vaults, this case only allows selling non-tracked tokens (i.e. airdrops or direct transfers).
 
-This prevents TWAP orders from executing at unfavorable prices due to poor liquidity, stale DEX state, or oracle manipulation.
-
-**Swap Shield and TWAP timing:** The `disable_swap_shield` tool sets a 10-minute TTL opt-out window. TWAP slices fire at cron time (minimum 5-minute intervals), so a disabled shield can affect subsequent slices that fire within the TTL window. The shield auto-re-enables after the TTL expires — the operator must re-disable it if they want multiple consecutive slices to bypass it. Partial shield opt-out (one slice at a time) is not supported; the TTL applies globally to the vault.
+This greatly limits TWAP orders from executing at unfavorable prices due to poor liquidity, stale DEX state, or oracle manipulation.
 
 **2. NAV Shield Pre-Check**
 
