@@ -4,11 +4,13 @@ description: Oracle-protected Swaps
 
 # Swap Shield
 
-Swap Shield is the oracle-based price protection layer that runs at the AI Trading Agent level [trader.rigoblock.com](https://trader.rigoblock.com) and x402 API. It is the first line of defense in Rigoblock’s two-layer agent safety stack and is enabled by default on every trade.
+Rigoblock offers oracle-protected swaps. Every quote is compared against an oracle price and the API returns the deviation from said price. Integrators can inspect the reponse, and decide whether the quote should be executed or not. When a price feed is not available for the target token pair, a `false` boolean is returned alongside a null `oracleAmount`.&#x20;
+
+The trader.rigoblock.com agent blocks rogue swaps via the Swap Shield - a component outside of control of the agent that reverts any trade that is 5% off the oracle price. It is the first line of defense in Rigoblock’s two-layer agent safety stack and is enabled by default on every trade.
 
 ### How Swap Shield Works
 
-Before any swap calldata is built or broadcast the system automatically compares the received DEX quote against the vault’s trusted on-chain BackGeoOracle 5-minute TWAP using the internal call `vault.convertTokenAmount(address tokenIn, uint256 amountIn, address tokenOut)`.
+Before any swap calldata is built or broadcast the system automatically compares the received DEX quote against the onchain BackGeoOracle price.
 
 The trade is instantly blocked if the DEX quote deviates more than 5 percent in either direction from the oracle price. This unified two-sided tolerance means:
 
