@@ -14,14 +14,14 @@ Learn the basics of Rigoblock
 
 Jump to the technical overview of the smart contracts
 
-{% content-ref url="readme-2/" %}
-[readme-2](readme-2/)
+{% content-ref url="contracts/" %}
+[contracts](contracts/)
 {% endcontent-ref %}
 
 Find the deployed smart contracts
 
-{% content-ref url="readme-1/" %}
-[readme-1](readme-1/)
+{% content-ref url="deployments/" %}
+[deployments](deployments/)
 {% endcontent-ref %}
 
 Get an on-chain price feed for any token
