@@ -55,7 +55,7 @@ Rigoblock V4 was developed with the following assumptions, and thus any bug must
 
 ### Rewards
 
-Rewards will be allocated based on the severity of the bug disclosed and will be evaluated and rewarded at the discretion of the Rigoblock team. For critical bugs that lead to any loss of smart pool funds, rewards of up to $10,000 will be granted. Lower severity bugs will be rewarded at the discretion of the team. The amount is in any case capped at 10% of the protocol TVL at risk. Rewards are paid in stablecoin.
+Rewards will be allocated based on the severity of the bug disclosed and will be evaluated and rewarded at the discretion of the Rigoblock team. For critical bugs that lead to any loss of smart pool funds, rewards of up to $10,000 will be granted. Lower severity bugs will be rewarded at the discretion of the team. The amount is in any case capped at 10% of the protocol TVL at risk for high and critical bugs. Rewards are paid in stablecoin.
 
 ### Prohibited Actions
 
@@ -100,10 +100,9 @@ To be eligible for a reward under this Program, you must:
 
 The Program includes the following 4 level severity scale:
 
-* **Critical** Issues that could impact numerous users and have serious reputational, legal or financial implications. An example would be being able to lock contracts permanently or take funds from all smart pools  / users.
-* **High** Issues that impact individual smart pools  / users where exploitation would pose reputational, legal or moderate financial risk to the smart pool / user.
+* **Critical** Issues that could impact numerous users and have serious reputational, legal or financial implications. An example would be being able to lock contracts permanently or take funds from all smart pools / users.
+* **High** Issues that impact individual smart pools / users where exploitation would pose reputational, legal or moderate financial risk to the smart pool / user.
 * **Medium** The risk is relatively small and does not pose a threat to smart pool / user funds.
-* **Low/Informational** The issue does not pose an immediate risk but is relevant to security best practices.
 
 Rewards will be given based on the above severity as well as the likelihood of the bug being triggered or exploited, to be determined at the sole discretion of Rigoblock.
 
@@ -113,8 +112,7 @@ Rewards will be given based on the above severity as well as the likelihood of t
 | ---------- | ------------- |
 | Critical   | up to $10,000 |
 | High       | up to $2,000  |
-| Medium     | up to $300    |
-| Low        | up to $60     |
+| Medium     | $100 to $250  |
 
 ### Other Terms
 
