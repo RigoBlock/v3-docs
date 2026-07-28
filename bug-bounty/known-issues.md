@@ -14,11 +14,6 @@ The following is a non-exhaustive list of known potential attack vectors:
     A rogue token could be deployed and set as acceptable mint token by the pool operator. Whenever someone mints using the base token, anyone could manipulate the rogue token price on the open market and mint big amounts of pool tokens.
 * **Purchase of a Debt Token**\
   Purchasing a debt token via a swap or similar action should not be possible on the open market, as debt positions typically have no positive value. However, a sophisticated attack by the pool operator could potentially enable this.
-* **Frontrunning During Pool Token Burning**\
-  When the last holder attempts to burn their pool tokens, an attacker could front-run the transaction by minting a small amount of pool tokens. This would prevent the user from being the sole holder, forcing them to pay the spread to the pool. As a side effect, the pool price would increase, allowing the attacker to effectively "steal" the spread after the lockup period expires. Mitigation strategies include:
-  * Requiring only whitelisted holders in the pool.
-  * Charging the spread in favor of the RigoBlock DAO (or the pool operator) instead of the pool and applying the spread on minting as well. This would minimize price impacts, with only small rounding errors possible.
-  * Excluding spread balances from price calculations.
 * **Unitary Value Calculation Errors Due to Price Feed**\
   On tokens where the oracle liquidity pool is small, or on chains where gas price is high, thus not resulting in a timely price feed update, the smart pool's unitary price calculations may result in error, which might become significant if the owned token has a big percentage of the total portfolio weight. Furthermore, an incorrectly initialized token price feed could take time to get corrected. Pool operators should use caution when using new or illiquid tokens. In particular, the protocol is not opinionated about a price feed's cardinality (a cardinality of 1, for example, means that the TWAP is not really an average, but simply the last stored observation).
 *   **Oracle Manipulation Attacks**
@@ -37,6 +32,4 @@ The following is a non-exhaustive list of known potential attack vectors:
 * **Chains that do not Support Transient Storage Opcodes**\
   Chains that do not support transient storage are not compatible with Rigoblock V4.
 
-Given these risks, the relationship between the pool operator and pool holder(s) is trust-based. Rigoblock provides an extra layer of security for pool operators to interact with on-chain applications and enhances transparency by tracking real-time pool activity, portfolio positions, and price calculations.
-
-An alternative to direct participation to a pool is by staking GRG in the target pool, which allows users to gain exposure to the performance of top pools (i.e. GRG staking can be considered a proxy of the performance, but without the downside of holding a pool - besides the market price fluctuations). Stakers are rewarded for securing the network and supporting pool operators in maximizing staking rewards. The system does not require trust in pool operators and is governed by Rigoblock Governance.
+Therefore, the relationship between the pool operator and pool holder(s) is trust-minimized, and serves as the rails to run strategies onchain, where the LPs have agreed to some offchain terms which the protocol does not enforce. Rigoblock provides an extra layer of security for pool operators to interact with on-chain applications and enhances transparency by tracking real-time pool activity, portfolio positions, and price calculations.
