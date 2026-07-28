@@ -98,7 +98,7 @@ To be eligible for a reward under this Program, you must:
 
 ### Rewards
 
-The Program includes the following 4 level severity scale:
+The Program includes the following 3 level severity scale:
 
 * **Critical** Issues that could impact numerous users and have serious reputational, legal or financial implications. An example would be being able to lock contracts permanently or take funds from all smart pools / users.
 * **High** Issues that impact individual smart pools / users where exploitation would pose reputational, legal or moderate financial risk to the smart pool / user.
@@ -108,11 +108,11 @@ Rewards will be given based on the above severity as well as the likelihood of t
 
 ### Payout Calculations
 
-| Risk Score | Payout        |
-| ---------- | ------------- |
-| Critical   | up to $10,000 |
-| High       | up to $2,000  |
-| Medium     | $100 to $250  |
+| Risk Score | Payout                       |
+| ---------- | ---------------------------- |
+| Critical   | up to $10,000 - minimum $200 |
+| High       | up to $2,000 - minimum $150  |
+| Medium     | up to $250 - minimum $100    |
 
 ### Other Terms
 
