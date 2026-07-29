@@ -12,11 +12,11 @@ Starting on May 29th, 2025, the [rigoblock-v3-contracts](https://github.com/Rigo
 
 ### Scope
 
-The scope of the Program is limited to bugs that result in the draining of contract funds, abuse of voting power in the Rigoblock governance or affects rewards in the Rigoblock staking system.
+The scope of the Program is limited to bugs that result in the draining of contract funds located under contracts/protocol, and abuse of voting power in the Rigoblock governance located under contract/governance.
 
 The following are not within the scope of the Program:
 
-* Any contract located under contracts/test or contracts/examples.
+* Any contract located under contracts/mocks contracts/test or contracts/examples.
 * Bugs in any third party contract or platform that interacts with Rigoblock V4.
 * Vulnerabilities already reported and/or discovered in contracts built by third parties on Rigoblock V4.
 * Attacks that require a Rigoblock governance takeover.
