@@ -20,7 +20,7 @@ The following are not within the scope of the Program:
 * Bugs in any third party contract or platform that interacts with Rigoblock V4.
 * Vulnerabilities already reported and/or discovered in contracts built by third parties on Rigoblock V4.
 * Attacks that require a Rigoblock governance takeover (including voting power rental or attacks that need a substantial amount of capital to be executed successfully).
-* Issues described in the "Known Issues" section.
+* Issues described in the [Known Issues](known-issues.md) page.
 * Any already-reported bugs.
 
 Vulnerabilities contingent upon the occurrence of any of the following also are outside the scope of this Program:

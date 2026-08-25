@@ -31,7 +31,8 @@ The following is a non-exhaustive list of known potential attack vectors:
   Chains that use a token as base currency are not currently supported by the v4 protocol.
 * **Chains that do not Support Transient Storage Opcodes**\
   Chains that do not support transient storage are not compatible with Rigoblock V4.
-* **Permanent NAV Understatement in Expired Across Transfer Refund**
+* **Permanent NAV Understatement in Expired Across Transfer Refund**\
+  Expired deposits result in permanent NAV understatement, which is limited by a expected fee amount, and efficient client-side solver fee retrieval. The excess funds are held by the smart pool, and can be included in the NAV at a future upgrade. The permanent NAV understatement is an accepted compromise.
 * **HyperEvm NAV Understatement with HyperCore pending deposits**\
   In the case a deposit to hyperCore is not confirmed in the following block, NAV will be underestimated. To prevent this, pool operators are encouraged to use a different chain as main, restrict mint operations to whitelisted wallets, and use HyperEvm for perps only.
 * **First Mint at Unitary Price**\
