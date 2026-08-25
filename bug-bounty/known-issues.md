@@ -11,7 +11,7 @@ The following is a non-exhaustive list of known potential attack vectors:
   A rogue token, such as one created by the pool operator, could be purchased. This issue is not addressed, as the RigoBlock protocol is unopinionated about which tokens can be included in a pool, as long as they conform to token standards and can be exchanged. A rogue token includes tokens that temporarily revert on standard ERC20 methods, in which case it is deemed safer to exclude such tokens from NAV accounting.
 *   **Setting a Rogue Token as Accepted for Mint Operations**
 
-    A rogue token could be deployed and set as acceptable mint token by the pool operator. Whenever someone mints using the base token, anyone could manipulate the rogue token price on the open market and mint big amounts of pool tokens.
+    A rogue token could be deployed and set as acceptable mint token by the pool operator. Whenever someone mints using the base token, anyone could manipulate the rogue token price on the open market and mint big amounts of pool tokens. Attacks using `mintWithToken` first require the pool operator to explicitly approve the target token as mint token!
 * **Purchase of a Debt Token**\
   Purchasing a debt token via a swap or similar action should not be possible on the open market, as debt positions typically have no positive value. However, a sophisticated attack by the pool operator could potentially enable this.
 * **Unitary Value Calculation Errors Due to Price Feed**\
