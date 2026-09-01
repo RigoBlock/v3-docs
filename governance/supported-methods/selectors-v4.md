@@ -7,47 +7,47 @@ can be called by Rigoblock pools to interact with new external applications with
 ### AMulticall
 
 ```
-"ac9650d8": "multicall(bytes[])"
-"5ae401dc": "multicall(uint256,bytes[])"
-"1f0464d1": "multicall(bytes32,bytes[])"
+"0xac9650d8": "multicall(bytes[])"
+"0x5ae401dc": "multicall(uint256,bytes[])"
+"0x1f0464d1": "multicall(bytes32,bytes[])"
 ```
 
 ### AStaking
 
 ```
-"a694fc3a": "stake(uint256)"
-"4aace835": "undelegateStake(uint256)",
-"2e17de78": "unstake(uint256)",
-"b880660b": "withdrawDelegatorRewards()"
+"0xa694fc3a": "stake(uint256)"
+"0x4aace835": "undelegateStake(uint256)",
+"0x2e17de78": "unstake(uint256)",
+"0xb880660b": "withdrawDelegatorRewards()"
 ```
 
 ### AUniswap
 
-<pre><code><strong>"49616997": "unwrapWETH9(uint256)",
-</strong>"49404b7c": "unwrapWETH9(uint256,address)",
-"1c58db4f": "wrapETH(uint256)",
+<pre><code><strong>"0x49616997": "unwrapWETH9(uint256)",
+</strong>"0x49404b7c": "unwrapWETH9(uint256,address)",
+"0x1c58db4f": "wrapETH(uint256)",
 </code></pre>
 
 ### AUniswapRouter
 
 ```
-"3593564c": "execute(bytes calldata, bytes[] calldata, uint256)",
-"24856bc3": "execute(bytes calldata, bytes[] calldata)"
-"dd46508f": "modifyLiquidities(bytes calldata, uint256)"
+"0x3593564c": "execute(bytes calldata, bytes[] calldata, uint256)",
+"0x24856bc3": "execute(bytes calldata, bytes[] calldata)"
+"0xdd46508f": "modifyLiquidities(bytes calldata, uint256)"
 ```
 
 ### AGovernance
 
 ```
-"56781388": "castVote(uint256, VoteType)",
-"fe0d94c1": "execute(uint256)",
-"367015bb": "propose(Proposal, string)"
+"0x56781388": "castVote(uint256, VoteType)",
+"0xfe0d94c1": "execute(uint256)",
+"0x367015bb": "propose(Proposal, string)"
 ```
 
 ### AIntents
 
 ```
-"770d096f": "depositV3(AcrossParams)"
+"0x770d096f": "depositV3(AcrossParams)"
 ```
 
 ### A0xRouter
@@ -65,3 +65,11 @@ can be called by Rigoblock pools to interact with new external applications with
 </strong>"0x13b4312f": "createIncreaseOrder(CreateOrderParams)"
 "0xdd5baad2": "updateOrder(bytes32,uint256,uint256,uint256,uint256,uint256,bool)"
 </code></pre>
+
+### AHyperliquid (HyperEvm)
+
+```
+"0x2b2dfd2c": "deposit(uint256,uint32)"
+"0xc23c545a": "depositFor(address,uint256,uint32)"
+"0x17938e13": "sendRawAction(bytes)"
+```

@@ -8,6 +8,7 @@ Currently the Rigoblock protocol supports the following external applications
 4. Rigoblock Governance
 5. Across - Superfast crosschain transfers
 6. 0x Aggregator - a ton of liquidity sources
-7. GMX Dex
+7. GMX
+8. Hyperliquid
 
 Further applications can be flexibly added by the governance based on demand.
