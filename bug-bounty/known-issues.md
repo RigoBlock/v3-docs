@@ -39,6 +39,8 @@ The following is a non-exhaustive list of known potential attack vectors:
   This is intended. Externally transferred assets are ignored on the first mint and the pool is always initialized at unitary value. Smart pools are not expected to receive funds externally - any funds accidentally directly send to the smart pool (i.e. not using the `mint` `burn` or similar methods) are lost for the sender, as the smart pool cannot directly transfer funds to an arbitrary wallet.
 * **Fee Collector Balance Griefing attacks**\
   The pool operator can at any time update the address of the fee collector to stop the griefing attacks.
+* **Native Transfers to Contracts that Write to State**\
+  On burn, native transfers have a hard gas amount provided to prevent reentrancy. This means that if the pool holder is a smart contract and wants to write to something in storage when native is received (i.e. after a burn operation) , the transaction would revert. Integrators should be aware that receiving native currency from a Rigoblock smart pool is not intended to be used as a callback, and should query native balance before and after the burn call instead.
 
 Therefore, the relationship between the pool operator and pool holder(s) is trust-minimized, and serves as the rails to run strategies onchain, where the LPs have agreed to some offchain terms which the protocol does not enforce. Rigoblock provides an extra layer of security for pool operators to interact with on-chain applications and enhances transparency by tracking real-time pool activity, portfolio positions, and price calculations.
 
