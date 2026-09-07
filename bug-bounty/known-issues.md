@@ -26,7 +26,7 @@ The following is a non-exhaustive list of known potential attack vectors:
 * **Use of a Malicious Uniswap V4 Hook**\
   Although Rigoblock V4 includes safeguards to prevent accidental input errors and restrict hooks' access to a pool's liquidity token balances, the protocol does not restrict the types of hooks a pool may use. A malicious Uniswap V4 hook could impose fees up to 100% of the swap amount, resulting in significant or total loss of funds. As when interacting directly with Uniswap V4, users must exercise extreme caution when interacting with Uniswap V4 hooks via RigoBlock.
 * **Crosschain Sync Latency**\
-  While single-chain pool price is updated in real time, the price will differ across chains until a Sync operation is prompted by the pool operator. These operations can be sent programmatically, and are entirely under the pool operator's control.
+  While single-chain pool price is updated in real time, the price will differ across chains until a Sync operation is prompted by the pool operator. These operations can be sent programmatically, and are entirely under the pool operator's control. When a Sync operation expires, the nav is undervalued until an escrow refund call is made. An attacker's attempt to take advantage of the mispricing is considered self-griefing and out of scope, as the risk greatly outweights the profit potential (attacker must lock capital for the minimum period, and smart pool might not have liquidity if it is all deployed to i.e. a different chain).
 * **Chains that do not use address(0) as Native Currency**\
   Chains that use a token as base currency are not currently supported by the v4 protocol.
 * **Chains that do not Support Transient Storage Opcodes**\
