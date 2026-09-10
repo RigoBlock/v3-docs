@@ -89,7 +89,7 @@ EGmxCallback: 0x3227af7fA79e54469757353E1F3c4f21d33A5E51 (Arbitrum only)
 
 ## Adapters
 
-<pre><code>AMulticall: 0x04EdE1591733793d2321C0393f318cF83d215bF0 (not mapped ony hyperEvm)
+<pre><code>AMulticall: 0x04EdE1591733793d2321C0393f318cF83d215bF0
 <strong>AStaking: [
 </strong>    ethereum: 0x70A82fd79983Eb659874A16f56Df593ccE050e77,
     arbitrum: 0x4672fE808ce3dA430128ad611E251b896abe689E,
