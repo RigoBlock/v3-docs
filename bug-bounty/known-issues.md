@@ -41,6 +41,8 @@ The following is a non-exhaustive list of known potential attack vectors:
   The pool operator can at any time update the address of the fee collector to stop the griefing attacks.
 * **Native Transfers to Contracts that Write to State**\
   On burn, native transfers have a hard gas amount provided to prevent reentrancy. This means that if the pool holder is a smart contract and wants to write to something in storage when native is received (i.e. after a burn operation) , the transaction would revert. Integrators should be aware that receiving native currency from a Rigoblock smart pool is not intended to be used as a callback, and should query native balance before and after the burn call instead.
+* **Sentinel 1-wei Price when 0 or sub-zero**\
+  When calculated nav is non-positive, a 1 wei sentinel value is returned instead. This is by design and we have not found a satisfactory solution to tiny-price pools. Undesired mint operations can be locked by pool operators by requiring only approved users for mint.<br>
 
 Therefore, the relationship between the pool operator and pool holder(s) is trust-minimized, and serves as the rails to run strategies onchain, where the LPs have agreed to some offchain terms which the protocol does not enforce. Rigoblock provides an extra layer of security for pool operators to interact with on-chain applications and enhances transparency by tracking real-time pool activity, portfolio positions, and price calculations.
 
