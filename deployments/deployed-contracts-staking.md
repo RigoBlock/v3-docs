@@ -1,5 +1,7 @@
 ---
-description: Staking suite
+description: >-
+  Staking suite - Notice: Staking is in the process of being deprecated on
+  chains other than ethereum mainnet as crosschain vaults do not need them.
 ---
 
 # Deployed Contracts - Staking

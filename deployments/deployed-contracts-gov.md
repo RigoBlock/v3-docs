@@ -1,3 +1,10 @@
+---
+description: >-
+  Notice: Governance is going through a crosschain migration, where hyperEvm,
+  bsc and polygon gov is going to be controlled by the ethereum mainnet gov,
+  while other chain have both gov.
+---
+
 # Deployed Contracts - Gov
 
 ### Governance Core
@@ -19,7 +26,8 @@ RigoblockGovernanceStrategy: [
     polygon: 0x5F63E59e328F2565e71363D3d5F4c29063bB7868,
     bsc: 0x910Aaf1F6818F1044d97DAee22d1eC32647926a7,
     base: 0x1fBEf987C7d87f794548Aa9089E87B9A15dB07EA,
-    unichain: 0xeBA708293C4F21131AAc2c384526c9b9b8E2D9d9
+    unichain: 0xeBA708293C4F21131AAc2c384526c9b9b8E2D9d9,
+    hyperEvm: 0x9F713cafbAD5bE71C4eD4E6c797C985d34F8f06a
 ]
 ```
 
