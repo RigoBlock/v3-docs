@@ -1,10 +1,15 @@
-# Solidity API
+# SafeTransferLib
 
-## Currency
+## Overview
 
-## SafeTransferLib
+#### License: Apache3.0-or-later
 
-_This library allows for safe transfer of tokens without using assembly_
+```solidity
+library SafeTransferLib
+```
+
+This library allows for safe transfer of tokens without using assembly
+## Errors info
 
 ### ApprovalFailed
 
@@ -12,11 +17,13 @@ _This library allows for safe transfer of tokens without using assembly_
 error ApprovalFailed(address token)
 ```
 
+
 ### NativeTransferFailed
 
 ```solidity
 error NativeTransferFailed()
 ```
+
 
 ### TokenTransferFailed
 
@@ -24,11 +31,13 @@ error NativeTransferFailed()
 error TokenTransferFailed()
 ```
 
+
 ### TokenTransferFromFailed
 
 ```solidity
 error TokenTransferFromFailed()
 ```
+
 
 ### ApprovalTargetIsNotContract
 
@@ -36,11 +45,15 @@ error TokenTransferFromFailed()
 error ApprovalTargetIsNotContract(address token)
 ```
 
+
+## Functions info
+
 ### safeTransferNative
 
 ```solidity
 function safeTransferNative(address to, uint256 amount) internal
 ```
+
 
 ### safeTransfer
 
@@ -48,11 +61,18 @@ function safeTransferNative(address to, uint256 amount) internal
 function safeTransfer(address token, address to, uint256 amount) internal
 ```
 
+
 ### safeTransferFrom
 
 ```solidity
-function safeTransferFrom(address token, address from, address to, uint256 amount) internal
+function safeTransferFrom(
+    address token,
+    address from,
+    address to,
+    uint256 amount
+) internal
 ```
+
 
 ### safeApprove
 
@@ -60,8 +80,7 @@ function safeTransferFrom(address token, address from, address to, uint256 amoun
 function safeApprove(address token, address spender, uint256 amount) internal
 ```
 
-_Allows approving all ERC20 tokens, forcing approvals when needed._
-
+Allows approving all ERC20 tokens, forcing approvals when needed.
 ### isAddressZero
 
 ```solidity

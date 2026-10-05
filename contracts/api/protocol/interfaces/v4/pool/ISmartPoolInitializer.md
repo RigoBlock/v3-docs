@@ -1,8 +1,17 @@
-# Solidity API
+# ISmartPoolInitializer
 
-## ISmartPoolInitializer
+## Overview
 
-### initializePool
+#### License: Apache 2.0-or-later
+
+```solidity
+interface ISmartPoolInitializer
+```
+
+Author: Gabriele Rigo - <gab@rigoblock.com>
+## Functions info
+
+### initializePool (0x250e6de0)
 
 ```solidity
 function initializePool() external
@@ -10,5 +19,4 @@ function initializePool() external
 
 Initializes to pool storage.
 
-_Pool can only be initialized at creation, meaning this method cannot be called directly to implementation._
-
+Pool can only be initialized at creation, meaning this method cannot be called directly to implementation.

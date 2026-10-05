@@ -1,36 +1,49 @@
-# Solidity API
+# IENavView
 
-## IENavView
+## Overview
 
-Provides view methods to retrieve token balances and NAV without modifying state
-
-_Designed for off-chain queries like DeFiLlama, subgraphs, or ZK proof generation_
-
-### getNavDataView
+#### License: Apache-2.0-or-later
 
 ```solidity
-function getNavDataView() external view returns (struct NavView.NavData navData)
+interface IENavView
+```
+
+Author: Gabriele Rigo - <gab@rigoblock.com>
+Provides view methods to retrieve token balances and NAV without modifying state
+
+Designed for off-chain queries like DeFiLlama, subgraphs, or ZK proof generation
+
+## Functions info
+
+### getNavDataView (0x5d7d86de)
+
+```solidity
+function getNavDataView() external view returns (NavData memory navData)
 ```
 
 Returns complete NAV data for the pool
 
-#### Return Values
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| navData | struct NavView.NavData | Struct containing totalValue, unitaryValue, and timestamp |
+Return values:
 
-### getAppTokensAndBalancesView
+| Name    | Type           | Description                                               |
+| :------ | :------------- | :-------------------------------------------------------- |
+| navData | struct NavData | Struct containing totalValue, unitaryValue, and timestamp |
+
+### getAppTokensAndBalancesView (0x37ad0f03)
 
 ```solidity
-function getAppTokensAndBalancesView() external view returns (struct AppTokenBalance[] apps)
+function getAppTokensAndBalancesView()
+    external
+    view
+    returns (AppTokenBalance[] memory apps)
 ```
 
 Returns application token balances for external positions
 
-#### Return Values
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
+Return values:
+
+| Name | Type                     | Description                                    |
+| :--- | :----------------------- | :--------------------------------------------- |
 | apps | struct AppTokenBalance[] | Array of AppTokenBalance structs with balances |
-

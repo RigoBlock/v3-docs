@@ -1,6 +1,15 @@
-# Solidity API
+# ISmartPoolFallback
 
-## ISmartPoolFallback
+## Overview
+
+#### License: Apache 2.0-or-later
+
+```solidity
+interface ISmartPoolFallback
+```
+
+Author: Gabriele Rigo - <gab@rigoblock.com>
+## Functions info
 
 ### fallback
 
@@ -10,9 +19,9 @@ fallback() external
 
 Delegate calls to pool extension.
 
-_Delegatecall restricted to owner, staticcall accessible by everyone.
-Restricting delegatecall to owner effectively locks direct calls._
+Delegatecall restricted to owner, staticcall accessible by everyone.
 
+Restricting delegatecall to owner effectively locks direct calls.
 ### receive
 
 ```solidity
@@ -21,5 +30,4 @@ receive() external payable
 
 Allows transfers to pool.
 
-_Prevents accidental transfer to implementation contract._
-
+Prevents accidental transfer to implementation contract.

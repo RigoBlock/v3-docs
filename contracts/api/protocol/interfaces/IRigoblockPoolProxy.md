@@ -1,20 +1,29 @@
-# Solidity API
+# IRigoblockPoolProxy
 
-## IRigoblockPoolProxy
+## Overview
+
+#### License: Apache-2.0-or-later
+
+```solidity
+interface IRigoblockPoolProxy
+```
+
+
+## Events info
 
 ### Upgraded
 
 ```solidity
-event Upgraded(address newImplementation)
+event Upgraded(address indexed newImplementation)
 ```
 
 Emitted when implementation written to proxy storage.
 
-_Emitted also at first variable initialization._
+Emitted also at first variable initialization.
 
-#### Parameters
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
+Parameters:
+
+| Name              | Type    | Description                        |
+| :---------------- | :------ | :--------------------------------- |
 | newImplementation | address | Address of the new implementation. |
-

@@ -1,97 +1,47 @@
-# Solidity API
+# GmxLib
 
-## GmxLib
+## Overview
 
-### ARBITRUM_CHAIN_ID
-
-```solidity
-uint256 ARBITRUM_CHAIN_ID
-```
-
-### WRAPPED_NATIVE
+#### License: Apache-2.0-or-later
 
 ```solidity
-address WRAPPED_NATIVE
+library GmxLib
 ```
 
-### GMX_ROUTER
-
-```solidity
-contract IGmxExchangeRouter GMX_ROUTER
-```
-
-### _GMX_READER
-
-```solidity
-address _GMX_READER
-```
-
-### _GMX_DATA_STORE
-
-```solidity
-address _GMX_DATA_STORE
-```
-
-### _GMX_ROLE_STORE
-
-```solidity
-address _GMX_ROLE_STORE
-```
-
-### MaxGmxPositionsReached
-
-```solidity
-error MaxGmxPositionsReached()
-```
+NAV-only GMX v2 helpers. Keeps the adapter surface out of the NAV
+code path so `ENavView` / `EApps` stay as small as possible.
+## Structs info
 
 ### TokenPrice
 
 ```solidity
 struct TokenPrice {
-  address token;
-  struct Price.Props price;
+	address token;
+	Price.Props price;
 }
 ```
 
-### computeExecutionFee
 
-```solidity
-function computeExecutionFee(bool isIncrease, uint256 callbackGasLimit) internal view returns (uint256)
-```
-
-### getPnlToken
-
-```solidity
-function getPnlToken(address market, bool isLong) internal view returns (address)
-```
-
-### assertPositionLimitNotReached
-
-```solidity
-function assertPositionLimitNotReached(address account, address market, address collateralToken, bool isLong) internal view
-```
+## Functions info
 
 ### getGmxPositionBalances
 
 ```solidity
-function getGmxPositionBalances(address account) internal view returns (struct AppTokenBalance[] balances)
+function getGmxPositionBalances(
+    address account
+) internal view returns (AppTokenBalance[] memory balances)
 ```
 
-### isMarketActive
+
+### getGmxPrice
 
 ```solidity
-function isMarketActive(address account, address market) internal view returns (bool)
+function getGmxPrice(
+    address token
+) internal view returns (Price.Props memory price)
 ```
 
-### hasClaimableFundingFees
+Returns the best available GMX price for `token`.
 
-```solidity
-function hasClaimableFundingFees(address account, address market) internal view returns (bool)
-```
-
-### claimableCollateralAmount
-
-```solidity
-function claimableCollateralAmount(bytes32 amountKey, address account) internal view returns (uint256)
-```
-
+Tries the GMX Chainlink price provider first, falls back to a hardcoded Chainlink aggregator.
+Returns a zero Price.Props when the token cannot be priced or the fallback is stale/invalid.

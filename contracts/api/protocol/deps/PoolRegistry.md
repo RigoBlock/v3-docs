@@ -1,32 +1,31 @@
-# Solidity API
+# PoolRegistry
 
-## PoolRegistry
+## Overview
 
-### authority
+#### License: Apache 2.0
+
+```solidity
+contract PoolRegistry is IPoolRegistry
+```
+
+Author: Gabriele Rigo - <gab@rigoblock.com>
+## State variables info
+
+### authority (0xbf7e214f)
 
 ```solidity
 address authority
 ```
 
-Returns the address of the Rigoblock authority contract.
 
-#### Return Values
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-
-### rigoblockDao
+### rigoblockDao (0x3edd80c3)
 
 ```solidity
 address rigoblockDao
 ```
 
-Returns the address of the Rigoblock Dao.
 
-#### Return Values
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
+## Modifiers info
 
 ### onlyWhitelistedFactory
 
@@ -34,11 +33,13 @@ Returns the address of the Rigoblock Dao.
 modifier onlyWhitelistedFactory()
 ```
 
+
 ### onlyPoolOperator
 
 ```solidity
 modifier onlyPoolOperator(address pool)
 ```
+
 
 ### onlyRigoblockDao
 
@@ -46,11 +47,13 @@ modifier onlyPoolOperator(address pool)
 modifier onlyRigoblockDao()
 ```
 
+
 ### whenAddressFree
 
 ```solidity
 modifier whenAddressFree(address pool)
 ```
+
 
 ### whenPoolRegistered
 
@@ -58,119 +61,140 @@ modifier whenAddressFree(address pool)
 modifier whenPoolRegistered(address pool)
 ```
 
+
+## Functions info
+
 ### constructor
 
 ```solidity
-constructor(address newAuthority, address newRigoblockDao) public
+constructor(address newAuthority, address newRigoblockDao)
 ```
 
-### register
+
+### register (0x3f47734b)
 
 ```solidity
-function register(address pool, string name, string symbol, bytes32 poolId) external
+function register(
+    address pool,
+    string calldata name,
+    string calldata symbol,
+    bytes32 poolId
+) external override onlyWhitelistedFactory whenAddressFree(pool)
 ```
 
 Allows a factory which is an authority to register a pool.
 
-#### Parameters
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| pool | address | Address of the pool. |
-| name | string | String name of the pool (31 characters/bytes or less). |
-| symbol | string | String symbol of the pool (3 to 5 characters/bytes). |
-| poolId | bytes32 | Bytes32 of the pool id. |
+Parameters:
 
-### setAuthority
+| Name   | Type    | Description                                             |
+| :----- | :------ | :------------------------------------------------------ |
+| pool   | address | Address of the pool.                                    |
+| name   | string  | String name of the pool (31 characters/bytes or less).  |
+| symbol | string  | String symbol of the pool (3 to 5 characters/bytes).    |
+| poolId | bytes32 | Bytes32 of the pool id.                                 |
+
+### setAuthority (0x7a9e5e4b)
 
 ```solidity
-function setAuthority(address newAuthority) external
+function setAuthority(address newAuthority) external override onlyRigoblockDao
 ```
 
 Allows Rigoblock governance to update authority.
 
-#### Parameters
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| newAuthority | address |  |
+Parameters:
 
-### setMeta
+| Name      | Type    | Description                        |
+| :-------- | :------ | :--------------------------------- |
+| authority | address | Address of the authority contract. |
+
+### setMeta (0x56d002c4)
 
 ```solidity
-function setMeta(address pool, bytes32 key, bytes32 value) external
+function setMeta(
+    address pool,
+    bytes32 key,
+    bytes32 value
+) external override onlyPoolOperator(pool) whenPoolRegistered(pool)
 ```
 
 Allows pool owner to set metadata for a pool.
 
-#### Parameters
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| pool | address | Address of the pool. |
-| key | bytes32 | Bytes32 of the key. |
+Parameters:
+
+| Name  | Type    | Description           |
+| :---- | :------ | :-------------------- |
+| pool  | address | Address of the pool.  |
+| key   | bytes32 | Bytes32 of the key.   |
 | value | bytes32 | Bytes32 of the value. |
 
-### setRigoblockDao
+### setRigoblockDao (0xb516e6e1)
 
 ```solidity
-function setRigoblockDao(address newRigoblockDao) external
+function setRigoblockDao(
+    address newRigoblockDao
+) external override onlyRigoblockDao
 ```
 
 Allows Rigoblock Dao to update its address.
 
-_Creates internal record._
+Creates internal record.
 
-#### Parameters
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
+Parameters:
+
+| Name            | Type    | Description                   |
+| :-------------- | :------ | :---------------------------- |
 | newRigoblockDao | address | Address of the Rigoblock Dao. |
 
-### getPoolIdFromAddress
+### getPoolIdFromAddress (0x2cee2191)
 
 ```solidity
-function getPoolIdFromAddress(address pool) external view returns (bytes32 poolId)
+function getPoolIdFromAddress(
+    address pool
+) external view override returns (bytes32 poolId)
 ```
 
 Returns the id of a pool from its address.
 
-#### Parameters
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| pool | address | Address of the pool. |
+Parameters:
 
-#### Return Values
+| Name | Type    | Description           |
+| :--- | :------ | :-------------------- |
+| pool | address | Address of the pool.  |
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
+
+Return values:
+
+| Name   | Type    | Description             |
+| :----- | :------ | :---------------------- |
 | poolId | bytes32 | bytes32 id of the pool. |
 
-### getMeta
+### getMeta (0x386f5adf)
 
 ```solidity
-function getMeta(address pool, bytes32 key) external view returns (bytes32 poolMeta)
+function getMeta(
+    address pool,
+    bytes32 key
+) external view override returns (bytes32 poolMeta)
 ```
 
 Returns metadata for a given pool.
 
-#### Parameters
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| pool | address | Address of the pool. |
-| key | bytes32 | Bytes32 key. |
+Parameters:
 
-#### Return Values
+| Name | Type    | Description           |
+| :--- | :------ | :-------------------- |
+| pool | address | Address of the pool.  |
+| key  | bytes32 | Bytes32 key.          |
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
+
+Return values:
+
+| Name     | Type    | Description  |
+| :------- | :------ | :----------- |
 | poolMeta | bytes32 | Meta by key. |
-
-### _assertValidNameAndSymbol
-
-```solidity
-function _assertValidNameAndSymbol(string name, string symbol) internal pure
-```
-

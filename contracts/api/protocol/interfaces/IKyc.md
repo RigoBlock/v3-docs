@@ -1,8 +1,17 @@
-# Solidity API
+# IKyc
 
-## IKyc
+## Overview
 
-### isWhitelistedUser
+#### License: Apache 2.0
+
+```solidity
+interface IKyc
+```
+
+Author: Gabriele Rigo - <gab@rigoblock.com>
+## Functions info
+
+### isWhitelistedUser (0xd88c271e)
 
 ```solidity
 function isWhitelistedUser(address user) external view returns (bool)
@@ -10,15 +19,16 @@ function isWhitelistedUser(address user) external view returns (bool)
 
 Returns whether an address has been whitelisted.
 
-#### Parameters
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| user | address | The address to verify. |
+Parameters:
 
-#### Return Values
+| Name | Type    | Description             |
+| :--- | :------ | :---------------------- |
+| user | address | The address to verify.  |
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| [0] | bool | Bool the user is whitelisted. |
 
+Return values:
+
+| Name | Type | Description                   |
+| :--- | :--- | :---------------------------- |
+| [0]  | bool | Bool the user is whitelisted. |

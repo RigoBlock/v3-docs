@@ -1,8 +1,15 @@
-# Solidity API
+# MixinImmutables
 
-## MixinImmutables
+## Overview
+
+#### License: Apache 2.0-or-later
+
+```solidity
+abstract contract MixinImmutables is MixinConstants
+```
 
 Immutables are not assigned a storage slot, can be safely added to this contract.
+## Errors info
 
 ### InvalidAuthorityInput
 
@@ -10,72 +17,33 @@ Immutables are not assigned a storage slot, can be safely added to this contract
 error InvalidAuthorityInput()
 ```
 
+
 ### InvalidExtensionsMapInput
 
 ```solidity
 error InvalidExtensionsMapInput()
 ```
 
-### authority
+
+## State variables info
+
+### authority (0xbf7e214f)
 
 ```solidity
-address authority
+address immutable authority
 ```
 
-Returns the address of the authority contract.
 
-#### Return Values
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-
-### wrappedNative
+### wrappedNative (0xeb6d3a11)
 
 ```solidity
-address wrappedNative
+address immutable wrappedNative
 ```
 
-Returns the address of the WETH9 contract.
 
-_Used to convert WETH balances to ETH without executing an oracle call._
-
-#### Return Values
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-
-### tokenJar
+### tokenJar (0x490c98f5)
 
 ```solidity
-address tokenJar
+address immutable tokenJar
 ```
-
-Returns the address of the Rigoblock token jar contract.
-
-_Used to transfer protocol fees to the buy-back-and-burn contract._
-
-#### Return Values
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-
-### _implementation
-
-```solidity
-address _implementation
-```
-
-### _extensionsMap
-
-```solidity
-contract IExtensionsMap _extensionsMap
-```
-
-### constructor
-
-```solidity
-constructor(address _authority, address extensionsMap, address _tokenJar) internal
-```
-
-The ExtensionsMap interface is required to implement the expected methods as sanity check.
 

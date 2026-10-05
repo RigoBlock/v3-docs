@@ -1,40 +1,53 @@
-# Solidity API
+# IERC20
 
-## IERC20
+## Overview
+
+#### License: Apache 2.0
+
+```solidity
+interface IERC20
+```
+
+
+## Events info
 
 ### Transfer
 
 ```solidity
-event Transfer(address from, address to, uint256 value)
+event Transfer(address indexed from, address indexed to, uint256 value)
 ```
 
 Emitted when a token is transferred.
 
-#### Parameters
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| from | address | Address transferring the tokens. |
-| to | address | Address receiving the tokens. |
-| value | uint256 | Number of token units. |
+Parameters:
+
+| Name  | Type    | Description                       |
+| :---- | :------ | :-------------------------------- |
+| from  | address | Address transferring the tokens.  |
+| to    | address | Address receiving the tokens.     |
+| value | uint256 | Number of token units.            |
 
 ### Approval
 
 ```solidity
-event Approval(address owner, address spender, uint256 value)
+event Approval(address indexed owner, address indexed spender, uint256 value)
 ```
 
 Emitted when a token holder sets and approval.
 
-#### Parameters
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| owner | address | Address of the account setting the approval. |
-| spender | address | Address of the allowed account. |
-| value | uint256 | Number of approved units. |
+Parameters:
 
-### transfer
+| Name    | Type    | Description                                   |
+| :------ | :------ | :-------------------------------------------- |
+| owner   | address | Address of the account setting the approval.  |
+| spender | address | Address of the allowed account.               |
+| value   | uint256 | Number of approved units.                     |
+
+## Functions info
+
+### transfer (0xa9059cbb)
 
 ```solidity
 function transfer(address to, uint256 value) external returns (bool success)
@@ -42,63 +55,76 @@ function transfer(address to, uint256 value) external returns (bool success)
 
 Transfers token from holder to another address.
 
-#### Parameters
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| to | address | Address to send tokens to. |
-| value | uint256 | Number of token units to send. |
+Parameters:
 
-#### Return Values
+| Name  | Type    | Description                     |
+| :---- | :------ | :------------------------------ |
+| to    | address | Address to send tokens to.      |
+| value | uint256 | Number of token units to send.  |
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
+
+Return values:
+
+| Name    | Type | Description                          |
+| :------ | :--- | :----------------------------------- |
 | success | bool | Bool the transaction was successful. |
 
-### transferFrom
+### transferFrom (0x23b872dd)
 
 ```solidity
-function transferFrom(address from, address to, uint256 value) external returns (bool success)
+function transferFrom(
+    address from,
+    address to,
+    uint256 value
+) external returns (bool success)
 ```
 
 Allows spender to transfer tokens from the holder.
 
-#### Parameters
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| from | address | Address of the token holder. |
-| to | address | Address to send tokens to. |
-| value | uint256 | Number of units to transfer. |
+Parameters:
 
-#### Return Values
+| Name  | Type    | Description                   |
+| :---- | :------ | :---------------------------- |
+| from  | address | Address of the token holder.  |
+| to    | address | Address to send tokens to.    |
+| value | uint256 | Number of units to transfer.  |
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
+
+Return values:
+
+| Name    | Type | Description                          |
+| :------ | :--- | :----------------------------------- |
 | success | bool | Bool the transaction was successful. |
 
-### approve
+### approve (0x095ea7b3)
 
 ```solidity
-function approve(address spender, uint256 value) external returns (bool success)
+function approve(
+    address spender,
+    uint256 value
+) external returns (bool success)
 ```
 
 Allows a holder to approve a spender.
 
-#### Parameters
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| spender | address | Address of the token spender. |
-| value | uint256 | Number of units to be approved. |
+Parameters:
 
-#### Return Values
+| Name    | Type    | Description                      |
+| :------ | :------ | :------------------------------- |
+| spender | address | Address of the token spender.    |
+| value   | uint256 | Number of units to be approved.  |
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
+
+Return values:
+
+| Name    | Type | Description                          |
+| :------ | :--- | :----------------------------------- |
 | success | bool | Bool the transaction was successful. |
 
-### balanceOf
+### balanceOf (0x70a08231)
 
 ```solidity
 function balanceOf(address who) external view returns (uint256)
@@ -106,40 +132,47 @@ function balanceOf(address who) external view returns (uint256)
 
 Returns token balance for an address.
 
-#### Parameters
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| who | address | Address to query balance for. |
+Parameters:
 
-#### Return Values
+| Name | Type    | Description                    |
+| :--- | :------ | :----------------------------- |
+| who  | address | Address to query balance for.  |
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| [0] | uint256 | Number of units held. |
 
-### allowance
+Return values:
+
+| Name | Type    | Description           |
+| :--- | :------ | :-------------------- |
+| [0]  | uint256 | Number of units held. |
+
+### allowance (0xdd62ed3e)
 
 ```solidity
-function allowance(address owner, address spender) external view returns (uint256)
+function allowance(
+    address owner,
+    address spender
+) external view returns (uint256)
 ```
 
 Returns token allowance of an address to another address.
 
-#### Parameters
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| owner | address | Address of token hodler. |
-| spender | address | Address of the token spender. |
+Parameters:
 
-#### Return Values
+| Name    | Type    | Description                    |
+| :------ | :------ | :----------------------------- |
+| owner   | address | Address of token hodler.       |
+| spender | address | Address of the token spender.  |
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| [0] | uint256 | Number of allowed units. |
 
-### decimals
+Return values:
+
+| Name | Type    | Description              |
+| :--- | :------ | :----------------------- |
+| [0]  | uint256 | Number of allowed units. |
+
+### decimals (0x313ce567)
 
 ```solidity
 function decimals() external view returns (uint8)
@@ -147,9 +180,9 @@ function decimals() external view returns (uint8)
 
 Returns token decimals.
 
-#### Return Values
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| [0] | uint8 | Uint8 number of decimals. |
+Return values:
 
+| Name | Type  | Description               |
+| :--- | :---- | :------------------------ |
+| [0]  | uint8 | Uint8 number of decimals. |

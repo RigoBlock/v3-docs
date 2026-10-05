@@ -1,6 +1,15 @@
-# Solidity API
+# MixinFallback
 
-## MixinFallback
+## Overview
+
+#### License: Apache 2.0
+
+```solidity
+abstract contract MixinFallback is MixinImmutables, MixinStorage
+```
+
+
+## Errors info
 
 ### PoolImplementationDirectCallNotAllowed
 
@@ -8,11 +17,13 @@
 error PoolImplementationDirectCallNotAllowed()
 ```
 
+
 ### PoolMethodNotAllowed
 
 ```solidity
 error PoolMethodNotAllowed()
 ```
+
 
 ### PoolVersionNotSupported
 
@@ -20,30 +31,38 @@ error PoolMethodNotAllowed()
 error PoolVersionNotSupported()
 ```
 
+
+## Modifiers info
+
 ### onlyDelegateCall
 
 ```solidity
 modifier onlyDelegateCall()
 ```
 
+
+## Functions info
+
 ### fallback
 
 ```solidity
-fallback() external
+fallback() external onlyDelegateCall
 ```
 
 Delegate calls to pool extension.
 
-_Extensions are persistent, while adapters are upgradable by the governance.
-uses shouldDelegatecall to flag selectors that should prompt a delegatecall._
+Extensions are persistent, while adapters are upgradable by the governance.
 
+uses shouldDelegatecall to flag selectors that should prompt a delegatecall.
+Delegatecall restricted to owner, staticcall accessible by everyone.
+
+Restricting delegatecall to owner effectively locks direct calls.
 ### receive
 
 ```solidity
-receive() external payable
+receive() external payable onlyDelegateCall
 ```
 
 Allows transfers to pool.
 
-_Prevents accidental transfer to implementation contract._
-
+Prevents accidental transfer to implementation contract.

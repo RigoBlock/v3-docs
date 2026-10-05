@@ -1,20 +1,29 @@
-# Solidity API
+# IMinimumVersion
 
-## IMinimumVersion
+## Overview
 
-### requiredVersion
+#### License: Apache 2.0
 
 ```solidity
-function requiredVersion() external view returns (string)
+interface IMinimumVersion
+```
+
+
+## Functions info
+
+### requiredVersion (0x2ea6c3f0)
+
+```solidity
+function requiredVersion() external view returns (string memory)
 ```
 
 Returns the minimum implementation version to use an external application.
 
-_Adapters must implement it when modifying proxy state or storage._
+Adapters must implement it when modifying proxy state or storage.
 
-#### Return Values
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| [0] | string | String of the minimum supported version. |
+Return values:
 
+| Name | Type   | Description                              |
+| :--- | :----- | :--------------------------------------- |
+| [0]  | string | String of the minimum supported version. |

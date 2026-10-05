@@ -1,6 +1,15 @@
-# Solidity API
+# MixinOwnerActions
 
-## MixinOwnerActions
+## Overview
+
+#### License: Apache 2.0-or-later
+
+```solidity
+abstract contract MixinOwnerActions is MixinActions
+```
+
+
+## Errors info
 
 ### PoolCallerIsNotOwner
 
@@ -8,11 +17,13 @@
 error PoolCallerIsNotOwner()
 ```
 
+
 ### PoolFeeBiggerThanMax
 
 ```solidity
 error PoolFeeBiggerThanMax(uint16 maxFee)
 ```
+
 
 ### PoolInputIsNotContract
 
@@ -20,11 +31,13 @@ error PoolFeeBiggerThanMax(uint16 maxFee)
 error PoolInputIsNotContract()
 ```
 
+
 ### OwnerActionInputIsSameAsCurrent
 
 ```solidity
 error OwnerActionInputIsSameAsCurrent()
 ```
+
 
 ### PoolLockupPeriodInvalid
 
@@ -32,11 +45,13 @@ error OwnerActionInputIsSameAsCurrent()
 error PoolLockupPeriodInvalid(uint48 minimum, uint48 maximum)
 ```
 
+
 ### PoolNullOwnerInput
 
 ```solidity
 error PoolNullOwnerInput()
 ```
+
 
 ### PoolSpreadInvalid
 
@@ -44,174 +59,195 @@ error PoolNullOwnerInput()
 error PoolSpreadInvalid(uint16 maxSpread)
 ```
 
+
+## Modifiers info
+
 ### onlyOwner
 
 ```solidity
 modifier onlyOwner()
 ```
 
-### changeFeeCollector
+
+## Functions info
+
+### changeFeeCollector (0x9245290d)
 
 ```solidity
-function changeFeeCollector(address feeCollector) external
+function changeFeeCollector(address feeCollector) external override onlyOwner
 ```
 
 Allows owner to decide where to receive the fee.
 
-#### Parameters
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
+Parameters:
+
+| Name         | Type    | Description                  |
+| :----------- | :------ | :--------------------------- |
 | feeCollector | address | Address of the fee receiver. |
 
-### changeMinPeriod
+### changeMinPeriod (0x9d604df6)
 
 ```solidity
-function changeMinPeriod(uint48 minPeriod) external
+function changeMinPeriod(uint48 minPeriod) external override onlyOwner
 ```
 
 Allows pool owner to change the minimum holding period.
 
-_Minimum period is always at least 10 to prevent flash txs._
+Minimum period is always at least 10 to prevent flash txs.
 
-#### Parameters
+Parameters:
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
+| Name      | Type   | Description      |
+| :-------- | :----- | :--------------- |
 | minPeriod | uint48 | Time in seconds. |
 
-### changeSpread
+### changeSpread (0xed4fd3cc)
 
 ```solidity
-function changeSpread(uint16 newSpread) external
+function changeSpread(uint16 newSpread) external override onlyOwner
 ```
 
 Allows pool owner to change the mint/burn spread.
 
-#### Parameters
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
+Parameters:
+
+| Name      | Type   | Description                                 |
+| :-------- | :----- | :------------------------------------------ |
 | newSpread | uint16 | Number between 0 and 1000, in basis points. |
 
-### purgeInactiveTokensAndApps
+### purgeInactiveTokensAndApps (0x7ace8b8d)
 
 ```solidity
-function purgeInactiveTokensAndApps() external
+function purgeInactiveTokensAndApps() external override onlyOwner
 ```
 
 Allows the owner to remove all inactive token and applications.
 
-_This is the only endpoint that has access to removing a token from the active tokens tuple.
-Used to reduce cost of mint/burn as more tokens are traded, and allow lower gas for hft._
+This is the only endpoint that has access to removing a token from the active tokens tuple.
 
-### revokeAllDelegations
+Used to reduce cost of mint/burn as more tokens are traded, and allow lower gas for hft.
+### revokeAllDelegations (0xf1fc2f75)
 
 ```solidity
-function revokeAllDelegations(address delegated) external
+function revokeAllDelegations(address delegated) external override onlyOwner
 ```
 
 Revokes all selector delegations for a given address in a single call.
 
-_Useful when a delegated wallet is compromised._
+Useful when a delegated wallet is compromised.
 
-#### Parameters
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
+Parameters:
+
+| Name      | Type    | Description                                     |
+| :-------- | :------ | :---------------------------------------------- |
 | delegated | address | Address whose full delegation is to be revoked. |
 
-### revokeAllDelegationsForSelector
+### revokeAllDelegationsForSelector (0x3658e24b)
 
 ```solidity
-function revokeAllDelegationsForSelector(bytes4 selector) external
+function revokeAllDelegationsForSelector(
+    bytes4 selector
+) external override onlyOwner
 ```
 
 Revokes all address delegations for a given selector in a single call.
 
-_Useful when an adapter is being replaced by governance and stale delegates should be cleaned._
+Useful when an adapter is being replaced by governance and stale delegates should be cleaned.
 
-#### Parameters
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
+Parameters:
+
+| Name     | Type   | Description                                           |
+| :------- | :----- | :---------------------------------------------------- |
 | selector | bytes4 | Selector whose full delegation list is to be cleared. |
 
-### setAcceptableMintToken
+### setAcceptableMintToken (0x0dd56740)
 
 ```solidity
-function setAcceptableMintToken(address token, bool isAccepted) external
+function setAcceptableMintToken(
+    address token,
+    bool isAccepted
+) external override onlyOwner
 ```
 
 Allows the owner to set acceptable mint tokens other than the base token.
 
-#### Parameters
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| token | address | Address of the target token. |
-| isAccepted | bool | Boolean to indicate whether the token is to be added or removed from storage. |
+Parameters:
 
-### setKycProvider
+| Name       | Type    | Description                                                                   |
+| :--------- | :------ | :---------------------------------------------------------------------------- |
+| token      | address | Address of the target token.                                                  |
+| isAccepted | bool    | Boolean to indicate whether the token is to be added or removed from storage. |
+
+### setKycProvider (0xdf0795aa)
 
 ```solidity
-function setKycProvider(address kycProvider) external
+function setKycProvider(address kycProvider) external override onlyOwner
 ```
 
 Allows pool owner to set/update the user whitelist contract.
 
-_Kyc provider can be set to null, removing user whitelist requirement._
+Kyc provider can be set to null, removing user whitelist requirement.
 
-#### Parameters
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
+Parameters:
+
+| Name        | Type    | Description                  |
+| :---------- | :------ | :--------------------------- |
 | kycProvider | address | Address if the kyc provider. |
 
-### setOwner
+### setOwner (0x13af4035)
 
 ```solidity
-function setOwner(address newOwner) external
+function setOwner(address newOwner) external override onlyOwner
 ```
 
 Allows pool owner to set a new owner address.
 
-_Method restricted to owner._
+Method restricted to owner.
 
-#### Parameters
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
+Parameters:
+
+| Name     | Type    | Description               |
+| :------- | :------ | :------------------------ |
 | newOwner | address | Address of the new owner. |
 
-### setTransactionFee
+### setTransactionFee (0xb45940f2)
 
 ```solidity
-function setTransactionFee(uint16 transactionFee) external
+function setTransactionFee(uint16 transactionFee) external override onlyOwner
 ```
 
 Allows pool owner to set the transaction fee.
 
-#### Parameters
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
+Parameters:
+
+| Name           | Type   | Description                                   |
+| :------------- | :----- | :-------------------------------------------- |
 | transactionFee | uint16 | Value of the transaction fee in basis points. |
 
-### updateDelegation
+### updateDelegation (0xe5c2197e)
 
 ```solidity
-function updateDelegation(struct Delegation[] delegations) external
+function updateDelegation(
+    Delegation[] calldata delegations
+) external override onlyOwner
 ```
 
 Allows pool owner to batch grant or revoke delegated adapter write access.
 
-_Each entry independently adds or removes one (selector, address) pair.
-     Emits DelegationUpdated only for entries that change storage (idempotent operations emit no event)._
+Each entry independently adds or removes one (selector, address) pair.
+Emits DelegationUpdated only for entries that change storage (idempotent operations emit no event).
 
-#### Parameters
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
+Parameters:
+
+| Name        | Type                | Description                              |
+| :---------- | :------------------ | :--------------------------------------- |
 | delegations | struct Delegation[] | Array of delegation operations to apply. |
-

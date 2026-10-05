@@ -1,22 +1,32 @@
-# Solidity API
+# IRigoblockV3PoolImmutable
 
-## IRigoblockV3PoolImmutable
+## Overview
 
-### VERSION
+#### License: Apache 2.0
 
 ```solidity
-function VERSION() external view returns (string)
+interface IRigoblockV3PoolImmutable
+```
+
+Author: Gabriele Rigo - <gab@rigoblock.com>
+## Functions info
+
+### VERSION (0xffa1ad74)
+
+```solidity
+function VERSION() external view returns (string memory)
 ```
 
 Returns a string of the pool version.
 
-#### Return Values
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| [0] | string | String of the pool implementation version. |
+Return values:
 
-### authority
+| Name | Type   | Description                                |
+| :--- | :----- | :----------------------------------------- |
+| [0]  | string | String of the pool implementation version. |
+
+### authority (0xbf7e214f)
 
 ```solidity
 function authority() external view returns (address)
@@ -24,9 +34,9 @@ function authority() external view returns (address)
 
 Returns the address of the authority contract.
 
-#### Return Values
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| [0] | address | Address of the authority contract. |
+Return values:
 
+| Name | Type    | Description                        |
+| :--- | :------ | :--------------------------------- |
+| [0]  | address | Address of the authority contract. |

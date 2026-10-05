@@ -1,6 +1,15 @@
-# Solidity API
+# MixinInitializer
 
-## MixinInitializer
+## Overview
+
+#### License: Apache 2.0
+
+```solidity
+abstract contract MixinInitializer is MixinImmutables, MixinStorage
+```
+
+
+## Errors info
 
 ### BaseTokenDecimals
 
@@ -8,11 +17,15 @@
 error BaseTokenDecimals()
 ```
 
+
 ### PoolAlreadyInitialized
 
 ```solidity
 error PoolAlreadyInitialized()
 ```
+
+
+## Modifiers info
 
 ### onlyUninitialized
 
@@ -20,13 +33,16 @@ error PoolAlreadyInitialized()
 modifier onlyUninitialized()
 ```
 
-### initializePool
+
+## Functions info
+
+### initializePool (0x250e6de0)
 
 ```solidity
-function initializePool() external
+function initializePool() external override onlyUninitialized
 ```
 
 Initializes to pool storage.
 
-_Cannot be reentered as no non-view call is performed to external contracts. Unlocked is kept for backwards compatibility._
-
+Cannot be reentered as no non-view call is performed to external contracts. Unlocked is kept for backwards compatibility.
+Pool can only be initialized at creation, meaning this method cannot be called directly to implementation.

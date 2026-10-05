@@ -1,44 +1,15 @@
-# Solidity API
+# TransientStorage
 
-## Int256
+## Overview
 
-## TransientStorage
-
-### _TRANSIENT_BALANCE_SLOT
+#### License: Apache-2.0-or-later
 
 ```solidity
-bytes32 _TRANSIENT_BALANCE_SLOT
+library TransientStorage
 ```
 
-### _TRANSIENT_TWAP_TICK_SLOT
 
-```solidity
-bytes32 _TRANSIENT_TWAP_TICK_SLOT
-```
-
-### _STORED_NAV_SLOT
-
-```solidity
-bytes32 _STORED_NAV_SLOT
-```
-
-### _STORED_ASSETS_SLOT
-
-```solidity
-bytes32 _STORED_ASSETS_SLOT
-```
-
-### _TEMP_BALANCE_SLOT
-
-```solidity
-bytes32 _TEMP_BALANCE_SLOT
-```
-
-### _DONATION_LOCK_SLOT
-
-```solidity
-bytes32 _DONATION_LOCK_SLOT
-```
+## Functions info
 
 ### store
 
@@ -47,12 +18,12 @@ function store(Int256 slot, address token, int256 value) internal
 ```
 
 Stores a mapping of token addresses to int256 values
-
 ### get
 
 ```solidity
 function get(Int256 slot, address token) internal view returns (int256)
 ```
+
 
 ### storeBalance
 
@@ -60,11 +31,13 @@ function get(Int256 slot, address token) internal view returns (int256)
 function storeBalance(address token, int256 balance) internal
 ```
 
+
 ### getBalance
 
 ```solidity
 function getBalance(address token) internal view returns (int256)
 ```
+
 
 ### storeTwap
 
@@ -72,11 +45,13 @@ function getBalance(address token) internal view returns (int256)
 function storeTwap(address token, int24 twap) internal
 ```
 
+
 ### getTwap
 
 ```solidity
 function getTwap(address token) internal view returns (int24)
 ```
+
 
 ### setDonationLock
 
@@ -84,17 +59,36 @@ function getTwap(address token) internal view returns (int24)
 function setDonationLock(address token, uint256 balance) internal
 ```
 
+
 ### getDonationLock
 
 ```solidity
 function getDonationLock() internal view returns (bool)
 ```
 
+
+### setNavLockExempt
+
+```solidity
+function setNavLockExempt(bool exempt) internal
+```
+
+
+### getNavLockExempt
+
+```solidity
+function getNavLockExempt() internal view returns (bool)
+```
+
+
 ### getTemporaryBalance
 
 ```solidity
-function getTemporaryBalance(address token) internal view returns (uint256, bool)
+function getTemporaryBalance(
+    address token
+) internal view returns (uint256, bool)
 ```
+
 
 ### storeNav
 
@@ -102,17 +96,20 @@ function getTemporaryBalance(address token) internal view returns (uint256, bool
 function storeNav(uint256 nav) internal
 ```
 
+
 ### storeAssets
 
 ```solidity
 function storeAssets(uint256 assets) internal
 ```
 
+
 ### getStoredNav
 
 ```solidity
 function getStoredNav() internal view returns (uint256)
 ```
+
 
 ### getStoredAssets
 

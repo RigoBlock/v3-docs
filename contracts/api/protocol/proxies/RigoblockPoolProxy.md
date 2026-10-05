@@ -1,21 +1,34 @@
-# Solidity API
+# RigoblockPoolProxy
 
-## RigoblockPoolProxy
+## Overview
 
-### _IMPLEMENTATION_SLOT
+#### License: Apache-2.0-or-later
 
 ```solidity
-bytes32 _IMPLEMENTATION_SLOT
+contract RigoblockPoolProxy is IRigoblockPoolProxy
 ```
+
+Author: Gabriele Rigo - <gab@rigoblock.com>
+## Structs info
+
+### ImplementationSlot
+
+```solidity
+struct ImplementationSlot {
+	address implementation;
+}
+```
+
+
+## Functions info
 
 ### constructor
 
 ```solidity
-constructor() public payable
+constructor() payable
 ```
 
 Sets address of implementation contract.
-
 ### fallback
 
 ```solidity
@@ -23,12 +36,3 @@ fallback() external payable
 ```
 
 Fallback function forwards all transactions and returns all received return data.
-
-### ImplementationSlot
-
-```solidity
-struct ImplementationSlot {
-  address implementation;
-}
-```
-

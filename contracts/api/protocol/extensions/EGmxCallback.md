@@ -1,13 +1,20 @@
-# Solidity API
+# EGmxCallback
 
-## EGmxCallback
+## Overview
+
+#### License: Apache-2.0-or-later
+
+```solidity
+contract EGmxCallback is IEGmxCallback
+```
 
 GMX v2 order-execution callback extension. Records claimable collateral
- rebates and tracked markets in pool storage so NAV remains accurate after full
- closes, liquidations, and ADL.
+rebates and tracked markets in pool storage so NAV remains accurate after full
+closes, liquidations, and ADL.
 
-_Runs as an extension (always delegatecalled). Only GMX controller contracts
- may invoke the callback handler._
+Runs as an extension (always delegatecalled). Only GMX controller contracts
+may invoke the callback handler.
+## Errors info
 
 ### NotGmxController
 
@@ -15,11 +22,13 @@ _Runs as an extension (always delegatecalled). Only GMX controller contracts
 error NotGmxController()
 ```
 
+
 ### InvalidCallbackAccount
 
 ```solidity
 error InvalidCallbackAccount()
 ```
+
 
 ### NotArbitrum
 
@@ -27,11 +36,8 @@ error InvalidCallbackAccount()
 error NotArbitrum()
 ```
 
-### constructor
 
-```solidity
-constructor() public
-```
+## Modifiers info
 
 ### onlyGmxController
 
@@ -39,19 +45,33 @@ constructor() public
 modifier onlyGmxController()
 ```
 
-### afterOrderExecution
+
+## Functions info
+
+### constructor
 
 ```solidity
-function afterOrderExecution(bytes32, struct EventUtils.EventLogData orderData, struct EventUtils.EventLogData) external
+constructor()
+```
+
+
+### afterOrderExecution (0xffaf393f)
+
+```solidity
+function afterOrderExecution(
+    bytes32,
+    EventUtils.EventLogData memory orderData,
+    EventUtils.EventLogData memory
+) external override onlyGmxController
 ```
 
 Called by GMX after an order affecting this pool is executed.
 
-#### Parameters
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-|  | bytes32 |  |
-| orderData | struct EventUtils.EventLogData | Event log data describing the order. |
-|  | struct EventUtils.EventLogData |  |
+Parameters:
 
+| Name      | Type                           | Description                           |
+| :-------- | :----------------------------- | :------------------------------------ |
+| key       | bytes32                        | The GMX order key.                    |
+| orderData | struct EventUtils.EventLogData | Event log data describing the order.  |
+| eventData | struct EventUtils.EventLogData | Additional event data from GMX.       |

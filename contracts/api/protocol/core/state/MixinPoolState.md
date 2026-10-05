@@ -1,289 +1,344 @@
-# Solidity API
+# MixinPoolState
 
-## MixinPoolState
+## Overview
 
-### balanceOf
+#### License: Apache 2.0-or-later
 
 ```solidity
-function balanceOf(address who) external view returns (uint256)
+abstract contract MixinPoolState is MixinPoolValue
 ```
 
-Returns token balance for an address.
 
-#### Parameters
+## Functions info
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| who | address | Address to query balance for. |
-
-#### Return Values
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| [0] | uint256 | Number of units held. |
-
-### getAcceptedMintTokens
+### balanceOf (0x70a08231)
 
 ```solidity
-function getAcceptedMintTokens() external view returns (address[] tokens)
+function balanceOf(address who) external view override returns (uint256)
+```
+
+Returns the balance of pool tokens for a given holder.
+
+
+Parameters:
+
+| Name | Type    | Description                   |
+| :--- | :------ | :---------------------------- |
+| who  | address | Address of the token holder.  |
+
+
+Return values:
+
+| Name | Type    | Description                 |
+| :--- | :------ | :-------------------------- |
+| [0]  | uint256 | Number of pool tokens held. |
+
+### getAcceptedMintTokens (0xd0624bed)
+
+```solidity
+function getAcceptedMintTokens()
+    external
+    view
+    override
+    returns (address[] memory tokens)
 ```
 
 Returns the list of accepted mint tokens.
 
-#### Return Values
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
+Return values:
+
+| Name   | Type      | Description               |
+| :----- | :-------- | :------------------------ |
 | tokens | address[] | Array of token addresses. |
 
-### getActiveApplications
+### getActiveApplications (0x935ef3ad)
 
 ```solidity
-function getActiveApplications() external view returns (uint256 packedApplications)
+function getActiveApplications()
+    external
+    view
+    override
+    returns (uint256 packedApplications)
 ```
 
 Returns the active application flags.
 
-_Grg staking is always queried regardless of the active bit._
+Grg staking is always queried regardless of the active bit.
 
-#### Return Values
+Return values:
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
+| Name               | Type    | Description                                  |
+| :----------------- | :------ | :------------------------------------------- |
 | packedApplications | uint256 | Packed value of bitmap encoded active flags. |
 
-### getActiveTokens
+### getActiveTokens (0x5f5817e3)
 
 ```solidity
-function getActiveTokens() external view returns (struct ISmartPoolState.ActiveTokens tokens)
+function getActiveTokens()
+    external
+    view
+    override
+    returns (ISmartPoolState.ActiveTokens memory tokens)
 ```
 
 Returns the list of active tokens and the base token.
 
-_Base token is always active._
+Base token is always active.
 
-#### Return Values
+Return values:
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| tokens | struct ISmartPoolState.ActiveTokens | Tuple of active tokens list and base token. |
+| Name   | Type                                | Description                                  |
+| :----- | :---------------------------------- | :------------------------------------------- |
+| tokens | struct ISmartPoolState.ActiveTokens | Tuple of active tokens list and base token.  |
 
-### getPoolStorage
+### getPoolStorage (0x95f71b16)
 
 ```solidity
-function getPoolStorage() external view returns (struct ISmartPoolState.ReturnedPool poolInitParams, struct ISmartPoolState.PoolParams poolVariables, struct ISmartPoolState.PoolTokens poolTokensInfo)
+function getPoolStorage()
+    external
+    view
+    override
+    returns (
+        ISmartPoolState.ReturnedPool memory poolInitParams,
+        ISmartPoolState.PoolParams memory poolVariables,
+        ISmartPoolState.PoolTokens memory poolTokensInfo
+    )
 ```
 
 Returns the aggregate pool generic storage.
 
-#### Return Values
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| poolInitParams | struct ISmartPoolState.ReturnedPool | The pool's initialization parameters. |
-| poolVariables | struct ISmartPoolState.PoolParams | The pool's variables. |
-| poolTokensInfo | struct ISmartPoolState.PoolTokens | The pool's tokens info. |
+Return values:
 
-### getUserAccount
+| Name           | Type                                | Description                            |
+| :------------- | :---------------------------------- | :------------------------------------- |
+| poolInitParams | struct ISmartPoolState.ReturnedPool | The pool's initialization parameters.  |
+| poolVariables  | struct ISmartPoolState.PoolParams   | The pool's variables.                  |
+| poolTokensInfo | struct ISmartPoolState.PoolTokens   | The pool's tokens info.                |
+
+### getUserAccount (0xfb47e016)
 
 ```solidity
-function getUserAccount(address who) external view returns (struct ISmartPoolState.UserAccount)
+function getUserAccount(
+    address who
+) external view override returns (ISmartPoolState.UserAccount memory)
 ```
 
 Returns a pool holder's account struct.
 
-#### Return Values
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| [0] | struct ISmartPoolState.UserAccount | UserAccount struct. |
+Return values:
 
-### name
+| Name | Type                               | Description         |
+| :--- | :--------------------------------- | :------------------ |
+| [0]  | struct ISmartPoolState.UserAccount | UserAccount struct. |
+
+### name (0x06fdde03)
 
 ```solidity
-function name() external view returns (string)
+function name() external view override returns (string memory)
 ```
 
 Returns a string of the pool name.
 
-_Name maximum length 31 bytes._
+Name maximum length 31 bytes.
 
-#### Return Values
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| [0] | string | String of the name. |
+Return values:
 
-### owner
+| Name | Type   | Description         |
+| :--- | :----- | :------------------ |
+| [0]  | string | String of the name. |
+
+### owner (0x8da5cb5b)
 
 ```solidity
-function owner() external view returns (address)
+function owner() external view override returns (address)
 ```
 
 Returns the address of the owner.
 
-#### Return Values
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| [0] | address | Address of the owner. |
+Return values:
 
-### totalSupply
+| Name | Type    | Description           |
+| :--- | :------ | :-------------------- |
+| [0]  | address | Address of the owner. |
+
+### totalSupply (0x18160ddd)
 
 ```solidity
-function totalSupply() external view returns (uint256)
+function totalSupply() external view override returns (uint256)
 ```
 
 Returns the total amount of issued tokens for this pool.
 
-#### Return Values
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| [0] | uint256 | Number of total issued tokens. |
+Return values:
 
-### decimals
+| Name | Type    | Description                    |
+| :--- | :------ | :----------------------------- |
+| [0]  | uint256 | Number of total issued tokens. |
+
+### decimals (0x313ce567)
 
 ```solidity
-function decimals() public view returns (uint8)
+function decimals() public view override returns (uint8)
 ```
 
-### getPool
+Returns the number of decimals of the pool token.
+
+
+Return values:
+
+| Name | Type  | Description         |
+| :--- | :---- | :------------------ |
+| [0]  | uint8 | Number of decimals. |
+
+### getPool (0x026b1d5f)
 
 ```solidity
-function getPool() public view returns (struct ISmartPoolState.ReturnedPool)
+function getPool()
+    public
+    view
+    override
+    returns (ISmartPoolState.ReturnedPool memory)
 ```
 
 Returns the struct containing pool initialization parameters.
 
-_Symbol is stored as bytes8 but returned as string in the returned struct, unlocked is omitted as alwasy true._
+Symbol is stored as bytes8 but returned as string in the returned struct, unlocked is omitted as alwasy true.
 
-#### Return Values
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| [0] | struct ISmartPoolState.ReturnedPool | ReturnedPool struct. |
+Return values:
 
-### getPoolParams
+| Name | Type                                | Description          |
+| :--- | :---------------------------------- | :------------------- |
+| [0]  | struct ISmartPoolState.ReturnedPool | ReturnedPool struct. |
+
+### getPoolParams (0x42377107)
 
 ```solidity
-function getPoolParams() public view returns (struct ISmartPoolState.PoolParams)
+function getPoolParams()
+    public
+    view
+    override
+    returns (ISmartPoolState.PoolParams memory)
 ```
 
 Returns the struct compaining pool parameters.
 
-#### Return Values
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| [0] | struct ISmartPoolState.PoolParams | PoolParams struct. |
+Return values:
 
-### getPoolTokens
+| Name | Type                              | Description        |
+| :--- | :-------------------------------- | :----------------- |
+| [0]  | struct ISmartPoolState.PoolParams | PoolParams struct. |
+
+### getPoolTokens (0x89c06568)
 
 ```solidity
-function getPoolTokens() public view returns (struct ISmartPoolState.PoolTokens)
+function getPoolTokens()
+    public
+    view
+    override
+    returns (ISmartPoolState.PoolTokens memory)
 ```
 
 Returns the struct containing pool tokens info.
-Unitary value is the last stored unitary value.
 
-#### Return Values
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| [0] | struct ISmartPoolState.PoolTokens | PoolTokens struct. |
+Return values:
 
-### symbol
+| Name | Type                              | Description         |
+| :--- | :-------------------------------- | :------------------ |
+| [0]  | struct ISmartPoolState.PoolTokens | PoolTokens struct.  |
+
+### symbol (0x95d89b41)
 
 ```solidity
-function symbol() public view returns (string)
+function symbol() public view override returns (string memory)
 ```
 
 Returns a string of the pool symbol.
 
-#### Return Values
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| [0] | string | String of the symbol. |
+Return values:
 
-### isOperator
+| Name | Type   | Description           |
+| :--- | :----- | :-------------------- |
+| [0]  | string | String of the symbol. |
+
+### isOperator (0xb6363cf2)
 
 ```solidity
-function isOperator(address holder, address operator) public view returns (bool)
+function isOperator(
+    address holder,
+    address operator
+) public view override returns (bool)
 ```
 
-### getDelegatedAddresses
+
+
+Parameters:
+
+| Name     | Type    | Description                   |
+| :------- | :------ | :---------------------------- |
+| holder   | address | The address of the holder.    |
+| operator | address | The address of the operator.  |
+
+
+Return values:
+
+| Name     | Type | Description          |
+| :------- | :--- | :------------------- |
+| approved | bool | The approval status. |
+
+### getDelegatedAddresses (0xe598a475)
 
 ```solidity
-function getDelegatedAddresses(bytes4 selector) external view returns (address[])
+function getDelegatedAddresses(
+    bytes4 selector
+) external view override returns (address[] memory)
 ```
 
 Returns all addresses currently granted delegated write access to a selector.
 
-#### Parameters
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| selector | bytes4 | The adapter function selector to query. |
+Parameters:
 
-#### Return Values
+| Name     | Type   | Description                              |
+| :------- | :----- | :--------------------------------------- |
+| selector | bytes4 | The adapter function selector to query.  |
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| [0] | address[] |  |
 
-### getDelegatedSelectors
+Return values:
+
+| Name      | Type      | Description                                                 |
+| :-------- | :-------- | :---------------------------------------------------------- |
+| addresses | address[] | Array of addresses with delegated access for that selector. |
+
+### getDelegatedSelectors (0xe496fb4a)
 
 ```solidity
-function getDelegatedSelectors(address delegated) external view returns (bytes4[])
+function getDelegatedSelectors(
+    address delegated
+) external view override returns (bytes4[] memory)
 ```
 
 Returns all selectors currently delegated to an address.
 
-#### Parameters
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| delegated | address | The address to query. |
+Parameters:
 
-#### Return Values
+| Name      | Type    | Description            |
+| :-------- | :------ | :--------------------- |
+| delegated | address | The address to query.  |
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| [0] | bytes4[] |  |
 
-### _getActiveApplications
+Return values:
 
-```solidity
-function _getActiveApplications() internal view returns (uint256)
-```
-
-virtual methods
-
-### _getFeeCollector
-
-```solidity
-function _getFeeCollector() internal view returns (address)
-```
-
-### _getMinPeriod
-
-```solidity
-function _getMinPeriod() internal view returns (uint48)
-```
-
-### _getSpread
-
-```solidity
-function _getSpread() internal view returns (uint16)
-```
-
-_Returns the spread, or _MAX_SPREAD if not set_
-
-### _getTokenJar
-
-```solidity
-function _getTokenJar() internal view returns (address)
-```
-
+| Name      | Type     | Description                                                |
+| :-------- | :------- | :--------------------------------------------------------- |
+| selectors | bytes4[] | Array of selectors the address has been granted access to. |
