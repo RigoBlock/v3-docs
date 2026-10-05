@@ -7,6 +7,7 @@
   * [Deployed Contracts - v3](deployments/deployed-contracts-v3.md)
   * [Deployed Contracts - Staking](deployments/deployed-contracts-staking.md)
   * [Deployed Contracts - Gov](deployments/deployed-contracts-gov.md)
+  * [Deployed Contracts - GRG](deployments/deployed-contracts-grg.md)
   * [v1.5.0](https://github.com/RigoBlock/V3-deployments/tree/main/src/1.5.0)
   * [v1.4.2](https://github.com/RigoBlock/V3-deployments/tree/main/src/1.4.2)
   * [v1.4.1](https://github.com/RigoBlock/V3-deployments/tree/main/src/1.4.1)
