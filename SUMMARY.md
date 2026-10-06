@@ -8,12 +8,6 @@
   * [Deployed Contracts - Staking](deployments/deployed-contracts-staking.md)
   * [Deployed Contracts - Gov](deployments/deployed-contracts-gov.md)
   * [Deployed Contracts - GRG](deployments/deployed-contracts-grg.md)
-  * [v1.5.0](https://github.com/RigoBlock/V3-deployments/tree/main/src/1.5.0)
-  * [v1.4.2](https://github.com/RigoBlock/V3-deployments/tree/main/src/1.4.2)
-  * [v1.4.1](https://github.com/RigoBlock/V3-deployments/tree/main/src/1.4.1)
-  * [v1.3.0](https://github.com/RigoBlock/V3-deployments/tree/main/src/1.3.0)
-  * [v1.1.1](https://github.com/RigoBlock/V3-deployments/tree/main/src/1.1.1)
-  * [v1.1.0](https://github.com/RigoBlock/V3-deployments/tree/main/src/1.1.0)
 * [Oracles and Price Feeds](oracles-and-price-feeds.md)
 * [AI Agents](ai-agents/README.md)
   * [TWAP Order](ai-agents/twap-order.md)
@@ -93,24 +87,23 @@
         kind: openapi
         spec: rigo-x402-api
   ```
-<!-- AUTO-GENERATED-API-START -->
 * [Solidity API Reference](contracts/api/README.md)
-  * Governance
+  * [Governance](api/governance/README.md)
     * [IRigoblockGovernance](contracts/api/governance/IRigoblockGovernance.md)
     * [RigoblockGovernance](contracts/api/governance/RigoblockGovernance.md)
-    * Interfaces
+    * [Interfaces](api/governance/interfaces/README.md)
       * [IGovernanceStrategy](contracts/api/governance/interfaces/IGovernanceStrategy.md)
       * [IRigoblockGovernanceFactory](contracts/api/governance/interfaces/IRigoblockGovernanceFactory.md)
-      * Governance
+      * [Governance](api/governance/interfaces/governance/README.md)
         * [IGovernanceCrosschain](contracts/api/governance/interfaces/governance/IGovernanceCrosschain.md)
         * [IGovernanceEvents](contracts/api/governance/interfaces/governance/IGovernanceEvents.md)
         * [IGovernanceInitializer](contracts/api/governance/interfaces/governance/IGovernanceInitializer.md)
         * [IGovernanceState](contracts/api/governance/interfaces/governance/IGovernanceState.md)
         * [IGovernanceUpgrade](contracts/api/governance/interfaces/governance/IGovernanceUpgrade.md)
         * [IGovernanceVoting](contracts/api/governance/interfaces/governance/IGovernanceVoting.md)
-    * Libraries
+    * [Libraries](api/governance/libraries/README.md)
       * [GovernanceActionLib](contracts/api/governance/libraries/GovernanceActionLib.md)
-    * Mixins
+    * [Mixins](api/governance/mixins/README.md)
       * [MixinAbstract](contracts/api/governance/mixins/MixinAbstract.md)
       * [MixinConstants](contracts/api/governance/mixins/MixinConstants.md)
       * [MixinCrosschain](contracts/api/governance/mixins/MixinCrosschain.md)
@@ -120,37 +113,37 @@
       * [MixinStorage](contracts/api/governance/mixins/MixinStorage.md)
       * [MixinUpgrade](contracts/api/governance/mixins/MixinUpgrade.md)
       * [MixinVoting](contracts/api/governance/mixins/MixinVoting.md)
-    * Proxies
+    * [Proxies](api/governance/proxies/README.md)
       * [RigoblockGovernanceFactory](contracts/api/governance/proxies/RigoblockGovernanceFactory.md)
       * [RigoblockGovernanceProxy](contracts/api/governance/proxies/RigoblockGovernanceProxy.md)
-    * Strategies
+    * [Strategies](api/governance/strategies/README.md)
       * [RigoblockGovernanceStrategy](contracts/api/governance/strategies/RigoblockGovernanceStrategy.md)
-  * Protocol
+  * [Protocol](api/protocol/README.md)
     * [IRigoblockV3Pool](contracts/api/protocol/IRigoblockV3Pool.md)
     * [ISmartPool](contracts/api/protocol/ISmartPool.md)
     * [SmartPool](contracts/api/protocol/SmartPool.md)
-    * Core
-      * Actions
+    * [Core](api/protocol/core/README.md)
+      * [Actions](api/protocol/core/actions/README.md)
         * [MixinActions](contracts/api/protocol/core/actions/MixinActions.md)
         * [MixinOwnerActions](contracts/api/protocol/core/actions/MixinOwnerActions.md)
-      * Immutable
+      * [Immutable](api/protocol/core/immutable/README.md)
         * [MixinConstants](contracts/api/protocol/core/immutable/MixinConstants.md)
         * [MixinImmutables](contracts/api/protocol/core/immutable/MixinImmutables.md)
         * [MixinStorage](contracts/api/protocol/core/immutable/MixinStorage.md)
-      * State
+      * [State](api/protocol/core/state/README.md)
         * [MixinPoolState](contracts/api/protocol/core/state/MixinPoolState.md)
         * [MixinPoolValue](contracts/api/protocol/core/state/MixinPoolValue.md)
         * [MixinStorageAccessible](contracts/api/protocol/core/state/MixinStorageAccessible.md)
-      * Sys
+      * [Sys](api/protocol/core/sys/README.md)
         * [MixinFallback](contracts/api/protocol/core/sys/MixinFallback.md)
         * [MixinInitializer](contracts/api/protocol/core/sys/MixinInitializer.md)
-    * Deps
+    * [Deps](api/protocol/deps/README.md)
       * [Authority](contracts/api/protocol/deps/Authority.md)
       * [Escrow](contracts/api/protocol/deps/Escrow.md)
       * [ExtensionsMap](contracts/api/protocol/deps/ExtensionsMap.md)
       * [ExtensionsMapDeployer](contracts/api/protocol/deps/ExtensionsMapDeployer.md)
       * [PoolRegistry](contracts/api/protocol/deps/PoolRegistry.md)
-    * Extensions
+    * [Extensions](api/protocol/extensions/README.md)
       * [EApps](contracts/api/protocol/extensions/EApps.md)
       * [ECrosschain](contracts/api/protocol/extensions/ECrosschain.md)
       * [EERC20](contracts/api/protocol/extensions/EERC20.md)
@@ -158,7 +151,7 @@
       * [ENavView](contracts/api/protocol/extensions/ENavView.md)
       * [EOracle](contracts/api/protocol/extensions/EOracle.md)
       * [EUpgrade](contracts/api/protocol/extensions/EUpgrade.md)
-      * Adapters
+      * [Adapters](api/protocol/extensions/adapters/README.md)
         * [A0xRouter](contracts/api/protocol/extensions/adapters/A0xRouter.md)
         * [AGmxV2](contracts/api/protocol/extensions/adapters/AGmxV2.md)
         * [AGovernance](contracts/api/protocol/extensions/adapters/AGovernance.md)
@@ -171,7 +164,7 @@
         * [AUniswapRouter](contracts/api/protocol/extensions/adapters/AUniswapRouter.md)
         * [IPermit2Forwarder](contracts/api/protocol/extensions/adapters/IPermit2Forwarder.md)
         * [IUniswapRouter](contracts/api/protocol/extensions/adapters/IUniswapRouter.md)
-        * Interfaces
+        * [Interfaces](api/protocol/extensions/adapters/interfaces/README.md)
           * [IA0xRouter](contracts/api/protocol/extensions/adapters/interfaces/IA0xRouter.md)
           * [IAGmxV2](contracts/api/protocol/extensions/adapters/interfaces/IAGmxV2.md)
           * [IAGovernance](contracts/api/protocol/extensions/adapters/interfaces/IAGovernance.md)
@@ -190,7 +183,7 @@
           * [IEUpgrade](contracts/api/protocol/extensions/adapters/interfaces/IEUpgrade.md)
           * [IMinimumVersion](contracts/api/protocol/extensions/adapters/interfaces/IMinimumVersion.md)
           * [IRigoblockExtensions](contracts/api/protocol/extensions/adapters/interfaces/IRigoblockExtensions.md)
-    * Interfaces
+    * [Interfaces](api/protocol/interfaces/README.md)
       * [IAcrossSpokePool](contracts/api/protocol/interfaces/IAcrossSpokePool.md)
       * [IAuthority](contracts/api/protocol/interfaces/IAuthority.md)
       * [IERC20](contracts/api/protocol/interfaces/IERC20.md)
@@ -204,7 +197,7 @@
       * [IRigoblockPoolProxy](contracts/api/protocol/interfaces/IRigoblockPoolProxy.md)
       * [IRigoblockPoolProxyFactory](contracts/api/protocol/interfaces/IRigoblockPoolProxyFactory.md)
       * [IWETH9](contracts/api/protocol/interfaces/IWETH9.md)
-      * Pool
+      * [Pool](api/protocol/interfaces/pool/README.md)
         * [IRigoblockV3PoolActions](contracts/api/protocol/interfaces/pool/IRigoblockV3PoolActions.md)
         * [IRigoblockV3PoolEvents](contracts/api/protocol/interfaces/pool/IRigoblockV3PoolEvents.md)
         * [IRigoblockV3PoolFallback](contracts/api/protocol/interfaces/pool/IRigoblockV3PoolFallback.md)
@@ -213,8 +206,8 @@
         * [IRigoblockV3PoolOwnerActions](contracts/api/protocol/interfaces/pool/IRigoblockV3PoolOwnerActions.md)
         * [IRigoblockV3PoolState](contracts/api/protocol/interfaces/pool/IRigoblockV3PoolState.md)
         * [IStorageAccessible](contracts/api/protocol/interfaces/pool/IStorageAccessible.md)
-      * V4
-        * Pool
+      * [V4](api/protocol/interfaces/v4/README.md)
+        * [Pool](api/protocol/interfaces/v4/pool/README.md)
           * [ISmartPoolActions](contracts/api/protocol/interfaces/v4/pool/ISmartPoolActions.md)
           * [ISmartPoolEvents](contracts/api/protocol/interfaces/v4/pool/ISmartPoolEvents.md)
           * [ISmartPoolFallback](contracts/api/protocol/interfaces/v4/pool/ISmartPoolFallback.md)
@@ -223,7 +216,7 @@
           * [ISmartPoolOwnerActions](contracts/api/protocol/interfaces/v4/pool/ISmartPoolOwnerActions.md)
           * [ISmartPoolState](contracts/api/protocol/interfaces/v4/pool/ISmartPoolState.md)
           * [IStorageAccessible](contracts/api/protocol/interfaces/v4/pool/IStorageAccessible.md)
-    * Libraries
+    * [Libraries](api/protocol/libraries/README.md)
       * [ApplicationsLib](contracts/api/protocol/libraries/ApplicationsLib.md)
       * [CrosschainLib](contracts/api/protocol/libraries/CrosschainLib.md)
       * [DelegationLib](contracts/api/protocol/libraries/DelegationLib.md)
@@ -244,34 +237,34 @@
       * [TransientStorage](contracts/api/protocol/libraries/TransientStorage.md)
       * [VersionLib](contracts/api/protocol/libraries/VersionLib.md)
       * [VirtualStorageLib](contracts/api/protocol/libraries/VirtualStorageLib.md)
-    * Proxies
+    * [Proxies](api/protocol/proxies/README.md)
       * [RigoblockPoolProxy](contracts/api/protocol/proxies/RigoblockPoolProxy.md)
       * [RigoblockPoolProxyFactory](contracts/api/protocol/proxies/RigoblockPoolProxyFactory.md)
-    * Types
+    * [Types](api/protocol/types/README.md)
       * [CrosschainTokens](contracts/api/protocol/types/CrosschainTokens.md)
       * [GmxClaimableHelpers](contracts/api/protocol/types/GmxClaimableHelpers.md)
       * [GmxFallback](contracts/api/protocol/types/GmxFallback.md)
-  * RigoToken
-    * Inflation
+  * [RigoToken](api/rigotoken/README.md)
+    * [Inflation](api/rigotoken/inflation/README.md)
       * [Inflation](contracts/api/rigoToken/inflation/Inflation.md)
       * [InflationL2](contracts/api/rigoToken/inflation/InflationL2.md)
-    * Interfaces
+    * [Interfaces](api/rigotoken/interfaces/README.md)
       * [IInflation](contracts/api/rigoToken/interfaces/IInflation.md)
       * [IProofOfPerformance](contracts/api/rigoToken/interfaces/IProofOfPerformance.md)
       * [IRigoToken](contracts/api/rigoToken/interfaces/IRigoToken.md)
-    * ProofOfPerformance
+    * [ProofOfPerformance](api/rigotoken/proofofperformance/README.md)
       * [ProofOfPerformance](contracts/api/rigoToken/proofOfPerformance/ProofOfPerformance.md)
-    * RigoToken
+    * [RigoToken](api/rigotoken/rigotoken/README.md)
       * [RigoToken](contracts/api/rigoToken/rigoToken/RigoToken.md)
-  * Staking
+  * [Staking](api/staking/README.md)
     * [GrgVault](contracts/api/staking/GrgVault.md)
     * [Staking](contracts/api/staking/Staking.md)
     * [StakingProxy](contracts/api/staking/StakingProxy.md)
-    * Immutable
+    * [Immutable](api/staking/immutable/README.md)
       * [MixinConstants](contracts/api/staking/immutable/MixinConstants.md)
       * [MixinDeploymentConstants](contracts/api/staking/immutable/MixinDeploymentConstants.md)
       * [MixinStorage](contracts/api/staking/immutable/MixinStorage.md)
-    * Interfaces
+    * [Interfaces](api/staking/interfaces/README.md)
       * [IGrgVault](contracts/api/staking/interfaces/IGrgVault.md)
       * [IStaking](contracts/api/staking/interfaces/IStaking.md)
       * [IStakingEvents](contracts/api/staking/interfaces/IStakingEvents.md)
@@ -279,36 +272,36 @@
       * [IStorage](contracts/api/staking/interfaces/IStorage.md)
       * [IStorageInit](contracts/api/staking/interfaces/IStorageInit.md)
       * [IStructs](contracts/api/staking/interfaces/IStructs.md)
-    * Libs
+    * [Libs](api/staking/libs/README.md)
       * [LibCobbDouglas](contracts/api/staking/libs/LibCobbDouglas.md)
       * [LibFixedMath](contracts/api/staking/libs/LibFixedMath.md)
       * [LibSafeDowncast](contracts/api/staking/libs/LibSafeDowncast.md)
-    * Rewards
+    * [Rewards](api/staking/rewards/README.md)
       * [MixinPopManager](contracts/api/staking/rewards/MixinPopManager.md)
       * [MixinPopRewards](contracts/api/staking/rewards/MixinPopRewards.md)
-    * Stake
+    * [Stake](api/staking/stake/README.md)
       * [MixinStake](contracts/api/staking/stake/MixinStake.md)
       * [MixinStakeBalances](contracts/api/staking/stake/MixinStakeBalances.md)
       * [MixinStakeStorage](contracts/api/staking/stake/MixinStakeStorage.md)
-    * Staking_pools
+    * [Staking\_pools](api/staking/staking_pools/README.md)
       * [MixinCumulativeRewards](contracts/api/staking/staking_pools/MixinCumulativeRewards.md)
       * [MixinStakingPool](contracts/api/staking/staking_pools/MixinStakingPool.md)
       * [MixinStakingPoolRewards](contracts/api/staking/staking_pools/MixinStakingPoolRewards.md)
-    * Sys
+    * [Sys](api/staking/sys/README.md)
       * [MixinAbstract](contracts/api/staking/sys/MixinAbstract.md)
       * [MixinFinalizer](contracts/api/staking/sys/MixinFinalizer.md)
       * [MixinParams](contracts/api/staking/sys/MixinParams.md)
       * [MixinScheduler](contracts/api/staking/sys/MixinScheduler.md)
-  * Tokens
-    * ERC20
+  * [Tokens](api/tokens/README.md)
+    * [ERC20](api/tokens/erc20/README.md)
       * [ERC20](contracts/api/tokens/ERC20/ERC20.md)
       * [IERC20](contracts/api/tokens/ERC20/IERC20.md)
-    * UnlimitedAllowanceToken
+    * [UnlimitedAllowanceToken](api/tokens/unlimitedallowancetoken/README.md)
       * [UnlimitedAllowanceToken](contracts/api/tokens/UnlimitedAllowanceToken/UnlimitedAllowanceToken.md)
-    * WETH9
+    * [WETH9](api/tokens/weth9/README.md)
       * [WETH9](contracts/api/tokens/WETH9/WETH9.md)
-  * Utils
-    * 0xUtils
+  * [Utils](api/utils/README.md)
+    * [0xUtils](api/utils/0xutils/README.md)
       * [Authorizable](contracts/api/utils/0xUtils/Authorizable.md)
       * [IAssetData](contracts/api/utils/0xUtils/IAssetData.md)
       * [IAssetProxy](contracts/api/utils/0xUtils/IAssetProxy.md)
@@ -317,27 +310,26 @@
       * [LibFractions](contracts/api/utils/0xUtils/LibFractions.md)
       * [LibMath](contracts/api/utils/0xUtils/LibMath.md)
       * [Ownable](contracts/api/utils/0xUtils/Ownable.md)
-      * ERC20Proxy
+      * [ERC20Proxy](api/utils/0xutils/erc20proxy/README.md)
         * [ERC20Proxy](contracts/api/utils/0xUtils/ERC20Proxy/ERC20Proxy.md)
         * [MAuthorizable](contracts/api/utils/0xUtils/ERC20Proxy/MAuthorizable.md)
         * [MixinAuthorizable](contracts/api/utils/0xUtils/ERC20Proxy/MixinAuthorizable.md)
-      * Interfaces
+      * [Interfaces](api/utils/0xutils/interfaces/README.md)
         * [IAuthorizable](contracts/api/utils/0xUtils/interfaces/IAuthorizable.md)
         * [IOwnable](contracts/api/utils/0xUtils/interfaces/IOwnable.md)
-    * Exchanges
-      * Uniswap
-        * INonfungiblePositionManager
+    * [Exchanges](api/utils/exchanges/README.md)
+      * [Uniswap](api/utils/exchanges/uniswap/README.md)
+        * [INonfungiblePositionManager](api/utils/exchanges/uniswap/inonfungiblepositionmanager/README.md)
           * [INonfungiblePositionManager](contracts/api/utils/exchanges/uniswap/INonfungiblePositionManager/INonfungiblePositionManager.md)
-        * V3-periphery
-          * Contracts
-            * Interfaces
+        * [V3-periphery](api/utils/exchanges/uniswap/v3-periphery/README.md)
+          * [Contracts](api/utils/exchanges/uniswap/v3-periphery/contracts/README.md)
+            * [Interfaces](api/utils/exchanges/uniswap/v3-periphery/contracts/interfaces/README.md)
               * [IPeripheryImmutableState](contracts/api/utils/exchanges/uniswap/v3-periphery/contracts/interfaces/IPeripheryImmutableState.md)
               * [IPoolInitializer](contracts/api/utils/exchanges/uniswap/v3-periphery/contracts/interfaces/IPoolInitializer.md)
-              * External
+              * [External](api/utils/exchanges/uniswap/v3-periphery/contracts/interfaces/external/README.md)
                 * [IERC721](contracts/api/utils/exchanges/uniswap/v3-periphery/contracts/interfaces/external/IERC721.md)
-    * LibSanitize
+    * [LibSanitize](api/utils/libsanitize/README.md)
       * [LibSanitize](contracts/api/utils/libSanitize/LibSanitize.md)
-    * Owned
+    * [Owned](api/utils/owned/README.md)
       * [IOwnedUninitialized](contracts/api/utils/owned/IOwnedUninitialized.md)
       * [OwnedUninitialized](contracts/api/utils/owned/OwnedUninitialized.md)
-<!-- AUTO-GENERATED-API-END -->
